@@ -105,7 +105,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
         >
           <BarChart
             data={histogramData}
-            margin={{ top: 12, right: 12, left: 4, bottom: 4 }}
+            margin={{ top: 12, right: 12, left: 20, bottom: 4 }}
             accessibilityLayer
           >
             <CartesianGrid vertical={false} strokeDasharray="3 3" className="stroke-border/50" />
@@ -131,6 +131,8 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 value: de ? "Beschäftigte" : "Employees",
                 angle: -90,
                 position: "insideLeft",
+                offset: -8,
+                style: { textAnchor: "middle" },
                 className: "fill-muted-foreground text-[11px]",
               }}
             />
