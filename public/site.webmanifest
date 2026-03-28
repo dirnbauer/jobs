@@ -1,0 +1,26 @@
+{
+  "name": "KI-Exposition am österreichischen Arbeitsmarkt",
+  "short_name": "KI-Exposition AT",
+  "description": "KI-Exposition und Arbeitsmarktstruktur: 71 Berufsgruppen (ISCO-08) im österreichischen Arbeitsmarkt — webconsulting.at",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0a",
+  "theme_color": "#1B7A95",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
