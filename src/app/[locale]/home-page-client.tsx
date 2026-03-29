@@ -64,7 +64,7 @@ export default function HomePageClient() {
                 <>
                   AI will transform occupations — that does not mean everyone loses their job.
                   It means <strong className="text-foreground/90">tasks, tools, and requirements shift</strong>.
-                  This map visualises all 75 Austrian occupation groups — colour indicates estimated AI impact, from green (low) to red (high).
+                  This map visualises all 75 Austrian occupation groups — colour here indicates estimated AI impact, from green (low) to red (high).
                 </>
               )}
             </p>
