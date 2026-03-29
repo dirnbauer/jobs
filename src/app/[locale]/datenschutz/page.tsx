@@ -10,7 +10,7 @@ export default async function DatenschutzPage({
   const de = locale === "de";
 
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-6 max-w-3xl mx-auto">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
           {de ? "Datenschutzerklärung" : "Privacy Policy"}

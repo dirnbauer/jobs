@@ -14,7 +14,7 @@ export function AboutView({ locale }: AboutViewProps) {
 
 function AboutEn() {
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-6 max-w-3xl mx-auto">
       <div className="text-base text-foreground/70 leading-relaxed">
         Methodological documentation of the Austrian adaptation: what was adopted from the US original,
         local data replacements, and the structure of the occupation-based dataset,
@@ -29,7 +29,7 @@ function AboutEn() {
         <p className="text-base leading-relaxed text-foreground/80 border-b border-border/50 pb-3">
           <strong className="text-foreground">Andrej Karpathy</strong> developed the{" "}
           <strong className="text-foreground">US Job Market Visualizer</strong> — treemap visualisation, data pipeline, and
-          exposure scoring rubric are <em>his</em> work. This page documents the Austrian adaptation:
+          AI impact scoring rubric are <em>his</em> work. This page documents the Austrian adaptation:
           local data sources, occupation-based navigation, bilingual interface, and the ISCO-08-based structure
           built on top of that original foundation.
         </p>
@@ -62,10 +62,11 @@ function AboutEn() {
             <strong className="text-foreground">Education levels</strong> → Austrian qualification structure (Pflichtschule, Lehrabschluss, BMS, Matura, Kolleg, Bachelor, Master/Diplom, Doktorat)
           </li>
           <li className="list-disc">
-            <strong className="text-foreground">AI exposure &amp; outlook</strong> →{" "}
-            Qualitatively assessed for Austrian occupation groups using a <strong>Karpathy-compatible scoring rubric</strong>
-            (0–10 exposure, –10 to +10 outlook), scored for local occupation profiles and Austrian
-            sectoral context; methodology detailed below.
+            <strong className="text-foreground">AI impact</strong> → Qualitatively assessed for Austrian occupation groups using a{" "}
+            <strong>Karpathy-compatible scoring rubric</strong> (0–10); methodology detailed below.{" "}
+            <strong className="text-foreground">Outlook 2023–2030</strong> → Computed from{" "}
+            <strong>WIFO/AMS Mittelfristige Beschäftigungsprognose 2023–2030</strong> (Tabellenband, Dec. 2024),
+            weighted average of NACE sector and ISCO group growth rates (% p.a.).
           </li>
           <li className="list-disc">
             <strong className="text-foreground">Reproducibility</strong> → All source data is freely downloadable as Open Government Data. The generation pipeline (scripts/generate-occupations.ts) is deterministic: identical inputs produce identical outputs. 30+ automated integrity tests verify the dataset on every regeneration. No LLM API call at build time.
@@ -82,7 +83,7 @@ function AboutEn() {
         </p>
         <div className="space-y-2 text-base leading-relaxed text-foreground/70 border-t border-border/60 pt-3 mt-3">
           <h3 className="font-semibold text-foreground text-base">
-            Generation of AI exposure and outlook scores (pipeline documentation)
+            Generation of AI impact scores &amp; outlook data (pipeline documentation)
           </h3>
           <ol className="list-decimal pl-5 space-y-2">
             <li>
@@ -90,14 +91,12 @@ function AboutEn() {
               <code className="text-xs bg-muted px-1 rounded">scripts/generate-occupations.ts</code>{" "}
               → array <code className="text-xs bg-muted px-1 rounded">OCCUPATION_DEFS</code>. Each
               occupation row sets <code className="text-xs bg-muted px-1 rounded">exposure</code>{" "}
-              (integer 0–10), <code className="text-xs bg-muted px-1 rounded">exposureRationale</code>{" "}
-              (EN/DE), <code className="text-xs bg-muted px-1 rounded">outlook</code>{" "}
-              (integer –10…+10), and <code className="text-xs bg-muted px-1 rounded">outlookDesc</code>{" "}
-              (short tier label, e.g. &quot;Slow growth&quot;).
+              (integer 0–10) and <code className="text-xs bg-muted px-1 rounded">exposureRationale</code>{" "}
+              (EN/DE). Outlook is computed at build time from WIFO/AMS data (see below).
             </li>
             <li>
-              <strong className="text-foreground">Rubric (Karpathy-aligned):</strong> exposure
-              quantifies the share of occupational tasks that are cognitive, digital, or susceptible to substitution by current large language models and multimodal AI systems—<em>not</em> an empirically measured labour-market outcome (unlike the AI Occupational Exposure Index by Felten et al., 2021). High exposure does not imply job displacement (cf. Karpathy&apos;s
+              <strong className="text-foreground">Rubric (Karpathy-aligned):</strong> AI impact
+              quantifies the share of occupational tasks that are cognitive, digital, or susceptible to substitution by current large language models and multimodal AI systems—<em>not</em> an empirically measured labour-market outcome (unlike the AI Occupational Exposure Index by Felten et al., 2021). High AI impact does not imply job displacement (cf. Karpathy&apos;s
               explicit caveat on software developers). Outlook is a <em>qualitative</em> demand signal for the
               aggregated occupation group, informed by sectoral structure and labour-market discourse—not a
               statistical forecast.
@@ -106,9 +105,9 @@ function AboutEn() {
               <strong className="text-foreground">Regeneration:</strong> running{" "}
               <code className="text-xs bg-muted px-1 rounded">npm run generate:occupations</code>{" "}
               recomputes employment and pay from Eurostat + Statistik Austria CSVs embedded in{" "}
-              <code className="text-xs bg-muted px-1 rounded">src/lib/real-data.ts</code>, then writes{" "}
-              <code className="text-xs bg-muted px-1 rounded">src/lib/data.ts</code>. Base exposure/outlook
-              come from <code className="text-xs bg-muted px-1 rounded">OCCUPATION_DEFS</code>.{" "}
+              <code className="text-xs bg-muted px-1 rounded">src/lib/real-data.ts</code>, computes outlook
+              from WIFO/AMS forecast data in <code className="text-xs bg-muted px-1 rounded">scripts/wifo-ams-data.ts</code>,
+              then writes <code className="text-xs bg-muted px-1 rounded">src/lib/data.ts</code>.{" "}
               <code className="text-xs bg-muted px-1 rounded">npm run build</code> does <strong>not</strong>{" "}
               call any LLM API. The pipeline is fully deterministic: identical source CSVs produce
               identical output — every data point is traceable to a specific Eurostat or Statistik Austria
@@ -116,7 +115,7 @@ function AboutEn() {
             </li>
             <li>
               <strong className="text-foreground">Automated verification:</strong>{" "}
-              30+ integrity checks (employment totals, pay plausibility, ISCO consistency, exposure
+              30+ integrity checks (employment totals, pay plausibility, ISCO consistency, AI impact
               distribution) run on every regeneration. Results are visible under the Tests tab.
             </li>
             <li>
@@ -191,7 +190,7 @@ function AboutEn() {
               practitioner (having built production AI systems at Tesla and
               OpenAI) and a widely-followed public communicator (3M+ YouTube
               subscribers for his neural network lectures). When an insider of
-              this caliber publishes an AI exposure map of the labor market, the
+              this caliber publishes an AI impact map of the labor market, the
               signal carries qualitatively different weight than equivalent
               analysis from a consultancy or think tank. The implicit message —
               &quot;I build these systems, and here is how they map onto your job&quot; —
@@ -211,11 +210,11 @@ function AboutEn() {
               underweight statistical probabilities but overweight vivid,
               personally relevant information. Prior AI labor impact studies —
               Frey & Osborne (2017), Acemoglu & Restrepo (2020), Eloundou et al.
-              (2023) — quantified exposure at the aggregate level (&quot;47% of US
+              (2023) — quantified AI impact at the aggregate level (&quot;47% of US
               jobs at risk&quot;, &quot;80% of workers affected by GPTs&quot;). Karpathy&apos;s
               treemap does something fundamentally different: it makes each
               occupation individually visible, sized by employment, and colored
-              by exposure. A nurse can find &quot;Registered Nurses&quot; on the map, see
+              by AI impact. A nurse can find &quot;Registered Nurses&quot; on the map, see
               its moderate green color (score 4/10), compare it to the deep red
               of &quot;Software Developers&quot; (9/10), and understand the relative
               positioning instantly. This <em>concretization effect</em> — transforming
@@ -231,7 +230,7 @@ function AboutEn() {
               3. The Nuance Paradox: Exposure ≠ Displacement
             </h3>
             <p className="text-base leading-relaxed text-muted-foreground">
-              Karpathy explicitly stated that a high AI exposure score &quot;does not
+              Karpathy explicitly stated that a high AI impact score &quot;does not
               predict that a job will disappear&quot; and that &quot;software developers
               score 9/10 because AI is transforming their work — but demand for
               software could easily <em>grow</em> as each developer becomes more
@@ -262,7 +261,7 @@ function AboutEn() {
               1,200 lines of Python plus a 912-line standalone HTML/Canvas
               frontend. The scoring component is parameterized by a prompt,
               meaning any researcher can substitute a different question — &quot;score
-              exposure to humanoid robotics,&quot; &quot;score offshoring risk,&quot; &quot;score
+              impact of humanoid robotics,&quot; &quot;score offshoring risk,&quot; &quot;score
               climate impact&quot; — and regenerate the entire visualization. This
               transforms the project from a static artifact into what
               computational social scientists call a <em>generative platform</em>{" "}
@@ -305,7 +304,7 @@ function AboutEn() {
         <ul className="space-y-2 text-base leading-relaxed text-muted-foreground pl-4">
           <li className="list-disc">
             <strong className="text-foreground">LLM scoring is not empirical measurement.</strong>{" "}
-            The AI exposure scores are generated by a single LLM (Gemini Flash)
+            The AI impact scores are generated by a single LLM (Gemini Flash)
             with a fixed prompt at low temperature (0.2). They reflect the
             model&apos;s training distribution, not observed labor market outcomes.
             This contrasts with econometric approaches (e.g., Felten et al.&apos;s
@@ -323,7 +322,7 @@ function AboutEn() {
           <li className="list-disc">
             <strong className="text-foreground">Static snapshot.</strong>{" "}
             The BLS OOH data reflects 2024 employment levels with 2034
-            projections. The AI exposure scores reflect 2026 LLM capabilities.
+            projections. The AI impact scores reflect 2026 LLM capabilities.
             Both will change rapidly, making the visualization a time-stamped
             artifact rather than a persistent forecast.
           </li>
@@ -434,7 +433,7 @@ function AboutEn() {
 
 function AboutDe() {
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-6 max-w-3xl mx-auto">
       <div className="text-base text-foreground/70 leading-relaxed">
         Methodische Dokumentation der österreichischen Adaptation: Übernahmen aus der US-Originalversion,
         lokale Datenersetzungen sowie die Struktur des berufsbasierten Datensatzes,
@@ -482,10 +481,11 @@ function AboutDe() {
             <strong className="text-foreground">Bildungsniveaus</strong> → Österreichische Qualifikationsstruktur (Pflichtschule, Lehrabschluss, BMS, Matura, Kolleg, Bachelor, Master/Diplom, Doktorat)
           </li>
           <li className="list-disc">
-            <strong className="text-foreground">KI-Exposition &amp; Ausblick</strong> →{" "}
-            Für österreichische Berufsgruppen kuratiert mit einem <strong>Karpathy-kompatiblen Bewertungsrahmen</strong>{" "}
-            (0–10 Exposition, –10…+10 Ausblick), aber auf lokale Berufsgruppen und lokalen
-            Sektor-Kontext angepasst; Details unten.
+            <strong className="text-foreground">KI-Einfluss</strong> → Für österreichische Berufsgruppen kuratiert mit einem{" "}
+            <strong>Karpathy-kompatiblen Bewertungsrahmen</strong> (0–10); Details unten.{" "}
+            <strong className="text-foreground">Ausblick 2023–2030</strong> → Berechnet aus der{" "}
+            <strong>WIFO/AMS Mittelfristigen Beschäftigungsprognose 2023–2030</strong> (Tabellenband, Dez. 2024),
+            gewichteter Durchschnitt aus NACE-Branchen- und ISCO-Berufsgruppenentwicklung (% p.a.).
           </li>
           <li className="list-disc">
             <strong className="text-foreground">Reproduzierbarkeit</strong> → Alle Quelldaten sind als Open Government Data frei herunterladbar. Die Generierungspipeline (scripts/generate-occupations.ts) ist deterministisch: identische Eingaben erzeugen identische Ergebnisse. Über 30 automatisierte Integritätstests verifizieren den Datensatz bei jeder Regeneration. Kein LLM-API-Aufruf beim Build.
@@ -502,26 +502,24 @@ function AboutDe() {
         </p>
         <div className="space-y-2 text-base leading-relaxed text-foreground/70 border-t border-border/60 pt-3 mt-3">
           <h3 className="font-semibold text-foreground text-base">
-            Erstellung der KI-Expositions- und Ausblickwerte (Pipeline-Dokumentation)
+            Erstellung der KI-Einflusswerte &amp; Ausblickdaten (Pipeline-Dokumentation)
           </h3>
           <ol className="list-decimal pl-5 space-y-2">
             <li>
               <strong className="text-foreground">Quelle:</strong>{" "}
               <code className="text-xs bg-muted px-1 rounded">scripts/generate-occupations.ts</code>{" "}
               → Array <code className="text-xs bg-muted px-1 rounded">OCCUPATION_DEFS</code>. Jede
-              Zeile setzt <code className="text-xs bg-muted px-1 rounded">exposure</code> (0–10),{" "}
-              <code className="text-xs bg-muted px-1 rounded">exposureRationale</code> (Begründung EN/DE),{" "}
-              <code className="text-xs bg-muted px-1 rounded">outlook</code> (–10…+10) und{" "}
-              <code className="text-xs bg-muted px-1 rounded">outlookDesc</code> (kurze Stufe, z. B.
-              „Slow growth“).
+              Zeile setzt <code className="text-xs bg-muted px-1 rounded">exposure</code> (0–10) und{" "}
+              <code className="text-xs bg-muted px-1 rounded">exposureRationale</code> (Begründung EN/DE).
+              Der Ausblick wird zur Buildzeit aus WIFO/AMS-Daten berechnet.
             </li>
             <li>
-              <strong className="text-foreground">Rahmen (Karpathy-kompatibel):</strong> Exposition
+              <strong className="text-foreground">Rahmen (Karpathy-kompatibel):</strong> KI-Einfluss
               quantifiziert den Anteil kognitiver, digitaler bzw. durch Large Language Models und multimodale KI-Systeme substituierbarer Aufgaben—{" "}
-              <strong>keine</strong> empirische Messung im Sinne des AI Occupational Exposure Index (Felten et al., 2021). Hohe Exposition bedeutet nicht
-              Arbeitsplatzverlust (vgl. Karpathys expliziten Hinweis zur Softwareentwicklung). Ausblick ist ein{" "}
-              <strong>qualitatives</strong> Nachfragesignal pro aggregierter Berufsgruppe, informiert durch sektorale Struktur und arbeitsmarktpolitischen Diskurs —
-              <strong>kein</strong> statistisches Prognosemodell.
+              <strong>keine</strong> empirische Messung im Sinne des AI Occupational Exposure Index (Felten et al., 2021). Hoher KI-Einfluss bedeutet nicht
+              Arbeitsplatzverlust (vgl. Karpathys expliziten Hinweis zur Softwareentwicklung). Der Ausblick basiert auf der{" "}
+              <strong>WIFO/AMS Mittelfristigen Beschäftigungsprognose 2023–2030</strong> und wird als gewichteter
+              Durchschnitt aus NACE-Branchen- und ISCO-Berufsgruppenentwicklung (% p.a.) berechnet.
             </li>
             <li>
               <strong className="text-foreground">Regenerieren:</strong>{" "}
@@ -529,13 +527,14 @@ function AboutDe() {
               berechnet Beschäftigung und Gehälter neu aus Eurostat + in{" "}
               <code className="text-xs bg-muted px-1 rounded">src/lib/real-data.ts</code> eingebetteten
               Statistik-Austria-Daten und schreibt <code className="text-xs bg-muted px-1 rounded">src/lib/data.ts</code>.
-              Basis-Exposition/-Ausblick stammen aus <code className="text-xs bg-muted px-1 rounded">OCCUPATION_DEFS</code>.{" "}
+              KI-Einflusswerte stammen aus <code className="text-xs bg-muted px-1 rounded">OCCUPATION_DEFS</code>,
+              Ausblickdaten aus <code className="text-xs bg-muted px-1 rounded">scripts/wifo-ams-data.ts</code>.{" "}
               <code className="text-xs bg-muted px-1 rounded">npm run build</code> ruft <strong>keine</strong> LLM-API auf.
               Die Pipeline ist vollständig deterministisch: identische Quell-CSVs erzeugen identisches Ergebnis — jeder Datenpunkt ist auf eine spezifische Eurostat- oder Statistik-Austria-Download-URL rückführbar.
             </li>
             <li>
               <strong className="text-foreground">Automatisierte Verifikation:</strong>{" "}
-              Über 30 Integritätstests (Beschäftigungssummen, Entgeltplausibilität, ISCO-Konsistenz, Expositionsverteilung) laufen bei jeder Regeneration. Ergebnisse sind im Tab „Tests" einsehbar.
+              Über 30 Integritätstests (Beschäftigungssummen, Entgeltplausibilität, ISCO-Konsistenz, KI-Einflussverteilung) laufen bei jeder Regeneration. Ergebnisse sind im Tab „Tests" einsehbar.
             </li>
             <li>
               <strong className="text-foreground">Optionales LLM-Scoring (wie Karpathy):</strong>{" "}
@@ -607,7 +606,7 @@ function AboutDe() {
               führender technischer Praktiker (Produktions-KI-Systeme bei Tesla
               und OpenAI) als auch weitreichender Kommunikator (3M+
               YouTube-Abonnenten). Wenn ein Insider dieses Kalibers eine
-              KI-Expositionskarte des Arbeitsmarktes veröffentlicht, trägt das
+              KI-Einflusskarte des Arbeitsmarktes veröffentlicht, trägt das
               Signal qualitativ anderes Gewicht als eine äquivalente Analyse
               einer Beratungsfirma.
             </p>
@@ -623,9 +622,9 @@ function AboutDe() {
               statistische Wahrscheinlichkeiten untergewichten, aber lebhafte,
               persönlich relevante Informationen übergewichten. Frühere
               KI-Arbeitsmarktstudien — Frey & Osborne (2017), Eloundou et al.
-              (2023) — quantifizierten Exposition auf aggregierter Ebene.
+              (2023) — quantifizierten KI-Einfluss auf aggregierter Ebene.
               Karpathys Treemap macht jeden Beruf individuell sichtbar, nach
-              Beschäftigung dimensioniert und nach Exposition eingefärbt. Dieser{" "}
+              Beschäftigung dimensioniert und nach KI-Einfluss eingefärbt. Dieser{" "}
               <em>Konkretisierungseffekt</em> — die Transformation aggregierter
               Statistiken in persönlich identifizierbare visuelle
               Repräsentationen — erklärt die emotionalen Reaktionen.
@@ -634,10 +633,10 @@ function AboutDe() {
 
           <div className="space-y-1.5">
             <h3 className="text-base font-semibold">
-              3. Das Nuancen-Paradoxon: Exposition ≠ Verdrängung
+              3. Das Nuancen-Paradoxon: KI-Einfluss ≠ Verdrängung
             </h3>
             <p className="text-base leading-relaxed text-muted-foreground">
-              Karpathy betonte explizit, dass ein hoher Expositionswert &quot;nicht
+              Karpathy betonte explizit, dass ein hoher KI-Einflusswert &quot;nicht
               vorhersagt, dass ein Job verschwindet.&quot; Dies entspricht dem
               ökonomischen Konzept der <em>Nachfrageelastizität</em> und dem von
               Autor (2015) identifizierten <em>Produktivitätseffekt</em>.

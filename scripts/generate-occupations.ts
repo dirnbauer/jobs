@@ -21,7 +21,9 @@
  * - Rubric follows Karpathy’s *concept*: higher exposure = more cognitive / digital /
  *   generative-AI-relevant task content for that aggregated occupation; not Felten-style
  *   empirical AI deployment, not BLS numeric growth.
- * - Outlook is a qualitative demand signal per occupation group (sector-informed), not a model forecast.
+ * - Outlook is a curated demand signal per occupation group (~2025–2030 horizon),
+ *   based on sectoral trends and labour market discourse in the context of
+ *   WIFO/AMS forecasts — but not computed from their data. Editorial assessment.
  * - To change scores: edit OCCUPATION_DEFS, then run: npx tsx scripts/generate-occupations.ts
  * - Optional LLM exposure: run npx tsx scripts/score-exposure-llm.ts (OpenRouter) to write
  *   scripts/llm-exposure-overrides.json; generate merges those over OCCUPATION_DEFS for exposure only.
@@ -45,6 +47,12 @@ import {
   LFS_EMPLOYMENT_YEAR,
   DATA_FETCHED_AT,
 } from "../src/lib/real-data";
+import {
+  lookupWifoGrowth,
+  growthToOutlookScale,
+  growthToOutlookDesc,
+  growthToOutlookDescDe,
+} from "./wifo-ams-data";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -430,7 +438,9 @@ interface GeneratedOccupation {
   pay: number;
   jobs: number;
   outlook: number;
+  outlookGrowthPa: number;
   outlookDesc: string;
+  outlookDescDe: string;
   education: string;
   educationDe: string;
   exposure: number;
@@ -508,6 +518,12 @@ function main() {
 
     const llm = llmExposure[def.slug];
 
+    const wifo = lookupWifoGrowth(def.nace, def.isco);
+    const outlookGrowthPa = wifo?.growthPa ?? 0;
+    const outlook = growthToOutlookScale(outlookGrowthPa);
+    const outlookDesc = growthToOutlookDesc(outlookGrowthPa);
+    const outlookDescDe = growthToOutlookDescDe(outlookGrowthPa);
+
     return {
       title: def.title,
       titleDe: def.titleDe,
@@ -519,8 +535,10 @@ function main() {
       iscoLabelDe: getISCOLabelDe(def.isco),
       pay,
       jobs,
-      outlook: def.outlook,
-      outlookDesc: def.outlookDesc,
+      outlook,
+      outlookGrowthPa,
+      outlookDesc,
+      outlookDescDe,
       education: def.education,
       educationDe: def.educationDe,
       exposure: llm?.exposure ?? def.exposure,
@@ -581,7 +599,9 @@ function generateOutput(
     pay: ${o.pay},
     jobs: ${o.jobs},
     outlook: ${o.outlook},
+    outlookGrowthPa: ${o.outlookGrowthPa},
     outlookDesc: ${JSON.stringify(o.outlookDesc)},
+    outlookDescDe: ${JSON.stringify(o.outlookDescDe)},
     education: ${JSON.stringify(o.education)},
     educationDe: ${JSON.stringify(o.educationDe)},
     exposure: ${o.exposure},
@@ -614,7 +634,9 @@ function generateOutput(
  * ║                                                                          ║
  * ║  METHODOLOGY: jobs = LFS_total[ISCO] × NACE_weight[row]/Σ_weight[ISCO]   ║
  * ║  → Pay = VSE 2022 median hourly × 2,080h × 1.17 (13th/14th salary)       ║
- * ║  → AI exposure/outlook = OCCUPATION_DEFS (Karpathy rubric)               ║
+ * ║  OUTLOOK: WIFO/AMS Beschäftigungsprognose 2023–2030 (Tabellenband)       ║
+ * ║  → NACE sector × ISCO group composite growth rate (% p.a.)              ║
+ * ║  → AI exposure = OCCUPATION_DEFS (Karpathy rubric)                      ║
  * ║  → Regenerate: npx tsx scripts/fetch-real-data.ts && generate-occupations ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  *
@@ -636,7 +658,9 @@ export interface Occupation {
   pay: number | null;
   jobs: number | null;
   outlook: number | null;
+  outlookGrowthPa: number;
   outlookDesc: string;
+  outlookDescDe: string;
   education: string;
   educationDe: string;
   exposure: number | null;

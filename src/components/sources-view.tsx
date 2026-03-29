@@ -170,6 +170,11 @@ const referenceSourcesList: Record<
       desc: "Open government data portal with CSV/JSON/API access",
     },
     {
+      name: "WIFO/AMS — Medium-Term Employment Forecast 2023–2030",
+      url: "https://forschungsnetzwerk.ams.at/elibrary/publikation/ams-reports/2025/mittelfristige-beschaeftigungsprognose-fuer-oesterreich-bis-2030-(ams-report-185).html",
+      desc: "AMS report 185 + Tabellenband: employment projections by 38 NACE sectors and 59 ISCO groups to 2030 — direct data source for outlook values (% p.a.)",
+    },
+    {
       name: "BMAW — Bundesministerium für Arbeit und Wirtschaft",
       url: "https://www.sozialministerium.gv.at/Themen/Arbeit/Arbeitsmarkt/Arbeitsmarktdaten.html",
       desc: "Federal Ministry labor market data and reports",
@@ -195,6 +200,11 @@ const referenceSourcesList: Record<
       name: "Statistik Austria — Open Data",
       url: "https://data.statistik.gv.at/web/",
       desc: "Open-Government-Datenportal mit CSV/JSON/API-Zugang",
+    },
+    {
+      name: "WIFO/AMS — Mittelfristige Beschäftigungsprognose 2023–2030",
+      url: "https://forschungsnetzwerk.ams.at/elibrary/publikation/ams-reports/2025/mittelfristige-beschaeftigungsprognose-fuer-oesterreich-bis-2030-(ams-report-185).html",
+      desc: "AMS report 185 + Tabellenband: Beschäftigungsprognose nach 38 NACE-Branchen und 59 ISCO-Berufsgruppen bis 2030 — direkte Datenquelle für Ausblickwerte (% p.a.)",
     },
     {
       name: "BMAW — Bundesministerium für Arbeit und Wirtschaft",
@@ -314,16 +324,16 @@ export function SourcesView({ locale }: SourcesViewProps) {
               : "Gross hourly earnings (median) from the Structure of Earnings Survey 2022 × 2,080 hours/year × 1.17 (13th and 14th month salary) = estimated gross annual earnings."}
           </li>
           <li>
-            <strong>{de ? "KI-Exposition:" : "AI Exposure:"}</strong>{" "}
+            <strong>{de ? "KI-Einfluss:" : "AI Impact:"}</strong>{" "}
             {de
-              ? "Ganzzahl 0–10 plus Begründung (Deutsch und Englisch) pro Berufsgruppe, definiert in scripts/generate-occupations.ts (OCCUPATION_DEFS). Bewertungsrahmen wie bei Karpathy (kognitive/digitale Aufgabenanteile; keine empirische Messung wie Felten et al.). Kein LLM-API-Aufruf beim Build — Werte sind kuratiert und werden beim Generatorlauf nach data.ts geschrieben. Optional: npm run score:exposure-llm (OPENROUTER_API_KEY) schreibt scripts/llm-exposure-overrides.json; der Generator überschreibt damit nur Exposition/Begründung."
-              : "Integer 0–10 plus English rationale per occupation group, defined in scripts/generate-occupations.ts (OCCUPATION_DEFS). Rubric matches Karpathy’s concept (cognitive/digital task content; not empirical measurement like Felten et al.). No LLM API call at build time—values are curated and written to data.ts when you run the generator. Optional: npm run score:exposure-llm (OPENROUTER_API_KEY) writes scripts/llm-exposure-overrides.json; the generator merges those for exposure + rationale only."}
+              ? "Ganzzahl 0–10 plus Begründung (Deutsch und Englisch) pro Berufsgruppe, definiert in scripts/generate-occupations.ts (OCCUPATION_DEFS). Bewertungsrahmen wie bei Karpathy (kognitive/digitale Aufgabenanteile; keine empirische Messung wie Felten et al.). Kein LLM-API-Aufruf beim Build — Werte sind kuratiert und werden beim Generatorlauf nach data.ts geschrieben. Optional: npm run score:exposure-llm (OPENROUTER_API_KEY) schreibt scripts/llm-exposure-overrides.json; der Generator überschreibt damit nur KI-Einfluss/Begründung."
+              : "Integer 0–10 plus English rationale per occupation group, defined in scripts/generate-occupations.ts (OCCUPATION_DEFS). Rubric matches Karpathy’s concept (cognitive/digital task content; not empirical measurement like Felten et al.). No LLM API call at build time—values are curated and written to data.ts when you run the generator. Optional: npm run score:exposure-llm (OPENROUTER_API_KEY) writes scripts/llm-exposure-overrides.json; the generator merges those for AI impact + rationale only."}
           </li>
           <li>
-            <strong>{de ? "Berufsausblick:" : "Occupation outlook:"}</strong>{" "}
+            <strong>{de ? "Berufsausblick 2023–2030:" : "Occupation outlook 2023–2030:"}</strong>{" "}
             {de
-              ? "Ganzzahl –10…+10 und Kurzlabel (outlookDesc) in OCCUPATION_DEFS; qualitatives Nachfragesignal pro aggregierter Gruppe, sektorinformiert — nicht identisch mit AMS-Prognosen, aber im selben Diskurs (Strukturwandel, WIFO/AMS)."
-              : "Integer –10…+10 and short label (outlookDesc) in OCCUPATION_DEFS; qualitative demand signal per aggregated group, sector-informed—not identical to AMS forecasts, but in the same policy discourse (structural change, WIFO/AMS)."}
+              ? "Berechnet aus der WIFO/AMS Mittelfristigen Beschäftigungsprognose 2023–2030 (Tabellenband, Dez. 2024). Gewichteter Durchschnitt aus NACE-Branchenwachstumsrate (60 %) und ISCO-Berufsgruppenentwicklung (40 %). Angabe in % p.a., abgebildet auf Skala –10…+10 für die Farbgebung."
+              : "Computed from the WIFO/AMS Medium-Term Employment Forecast 2023–2030 (Tabellenband, Dec. 2024). Weighted average of NACE sector growth rate (60%) and ISCO occupation group growth rate (40%). Expressed as % p.a., mapped to –10…+10 scale for colour encoding."}
           </li>
         </ul>
       </Card>
@@ -413,7 +423,16 @@ export function SourcesView({ locale }: SourcesViewProps) {
             • Statistik Austria {de ? "Allgemeiner Einkommensbericht" : "General Income Report"} 2024 ({de ? "Gehaltsdaten" : "salary data"})
           </li>
           <li>
-            • WIFO ({de ? "Wirtschaftsforschungsinstitut" : "Austrian Institute of Economic Research"}) {de ? "Arbeitsmarktprognosen" : "labour market projections"} 2025–2030
+            • WIFO ({de ? "Wirtschaftsforschungsinstitut" : "Austrian Institute of Economic Research"}) — {de ? "Mittelfristige Beschäftigungsprognose 2023–2030" : "Medium-Term Employment Forecast 2023–2030"} ({de ? "AMS report 185, Mai 2025" : "AMS report 185, May 2025"}):{" "}
+            <a
+              href="https://forschungsnetzwerk.ams.at/elibrary/publikation/ams-reports/2025/mittelfristige-beschaeftigungsprognose-fuer-oesterreich-bis-2030-(ams-report-185).html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 decoration-primary/60 hover:decoration-primary"
+              style={{ color: "var(--webcon-primary, #1b7a95)" }}
+            >
+              {de ? "AMS Forschungsnetzwerk" : "AMS Research Network"}
+            </a>
           </li>
         </ul>
       </Card>

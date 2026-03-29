@@ -279,12 +279,13 @@ function layerMetric(d: Occupation, mode: ColorMode, de: boolean): { label: stri
   switch (mode) {
     case "exposure": {
       const exp = d.exposure ?? 0;
-      return { label: de ? "KI-Exposition" : "AI Exposure", value: `${exp}/10` };
+      return { label: de ? "KI-Einfluss" : "AI Impact", value: `${exp}/10` };
     }
     case "outlook": {
-      const o = d.outlook;
-      const str = o != null ? `${o > 0 ? "+" : ""}${o}%` : "—";
-      return { label: de ? "Ausblick" : "Outlook", value: `${str} ${d.outlookDesc ?? ""}`.trim() };
+      const gpa = d.outlookGrowthPa;
+      const paStr = gpa != null ? `${gpa > 0 ? "+" : ""}${gpa}% p.a.` : "—";
+      const desc = de ? (d.outlookDescDe ?? d.outlookDesc) : d.outlookDesc;
+      return { label: de ? "Ausblick 2023–2030" : "Outlook 2023–2030", value: `${paStr} · ${desc ?? ""}`.trim() };
     }
     case "pay":
       return { label: de ? "Medianentgelt" : "Median earnings", value: formatPay(d.pay) };
@@ -336,8 +337,8 @@ function Tooltip({
   const progress = layerProgress(d, colorMode);
 
   const outlookStr =
-    d.outlook != null
-      ? `${d.outlook > 0 ? "+" : ""}${d.outlook}%`
+    d.outlookGrowthPa != null
+      ? `${d.outlookGrowthPa > 0 ? "+" : ""}${d.outlookGrowthPa}% p.a.`
       : "—";
 
   return (
@@ -357,7 +358,7 @@ function Tooltip({
           <StatCell label={de ? "Medianentgelt" : "Median earnings"} value={formatPay(d.pay)} />
           <StatCell label={de ? "Beschäftigte" : "Employed"} value={formatNumber(d.jobs)} />
           <StatCell label={de ? "Ausbildung" : "Education"} value={edu} />
-          <StatCell label={de ? "Ausblick" : "Outlook"} value={`${outlookStr} ${d.outlookDesc ?? ""}`} />
+          <StatCell label={de ? "Ausblick 2023–2030" : "Outlook 2023–2030"} value={`${outlookStr} · ${de ? (d.outlookDescDe ?? d.outlookDesc) : d.outlookDesc}`} />
         </div>
 
         <div className="mt-3 border-t border-border/40 pt-3">

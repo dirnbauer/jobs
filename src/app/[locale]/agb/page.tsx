@@ -12,7 +12,7 @@ export default async function AGBPage({
   const sections = de ? SECTIONS_DE : SECTIONS_EN;
 
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-6 max-w-3xl mx-auto">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
           {de ? "Allgemeine Geschäftsbedingungen" : "Terms and Conditions"}

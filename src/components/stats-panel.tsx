@@ -59,12 +59,12 @@ const EDU_GROUPS = [
   },
 ];
 
-const OUTLOOK_TIERS = [
-  { label: "Declining (<0%)", labelDe: "Rückläufig (<0%)", min: -Infinity, max: -1 },
-  { label: "Slow (0–3%)", labelDe: "Langsam (0–3%)", min: 0, max: 3 },
-  { label: "Average (4–7%)", labelDe: "Durchschnitt (4–7%)", min: 4, max: 7 },
-  { label: "Fast (8–14%)", labelDe: "Schnell (8–14%)", min: 8, max: 14 },
-  { label: "Much faster (15%+)", labelDe: "Viel schneller (15%+)", min: 15, max: Infinity },
+const OUTLOOK_TIERS_PA = [
+  { label: "Declining (<0%)", labelDe: "Rückläufig (<0%)", min: -Infinity, max: -0.05 },
+  { label: "Stable (0–0.5%)", labelDe: "Stabil (0–0,5%)", min: -0.05, max: 0.5 },
+  { label: "Slow growth (0.5–1%)", labelDe: "Leichtes Wachstum (0,5–1%)", min: 0.5, max: 1.0 },
+  { label: "Growing (1–2%)", labelDe: "Wachsend (1–2%)", min: 1.0, max: 2.0 },
+  { label: "Strong growth (2%+)", labelDe: "Starkes Wachstum (2%+)", min: 2.0, max: Infinity },
 ];
 
 function TierBar({
@@ -93,36 +93,6 @@ function TierBar({
               ? ((t.jobs / totalJobs) * 100).toFixed(0)
               : 0}
             %
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function HBarChart({
-  items,
-}: {
-  items: { label: string; val: string; pct: number; color: string }[];
-}) {
-  return (
-    <div className="flex flex-col gap-0.5">
-      {items.map((it) => (
-        <div key={it.label} className="flex items-center gap-1.5 text-xs">
-          <span className="w-[72px] shrink-0 text-right text-[11px] text-muted-foreground">
-            {it.label}
-          </span>
-          <div className="flex-1 h-3 bg-muted/50 rounded-sm overflow-hidden min-w-[36px]">
-            <div
-              className="h-full rounded-sm"
-              style={{
-                width: `${Math.max(0, Math.min(100, it.pct))}%`,
-                background: it.color,
-              }}
-            />
-          </div>
-          <span className="w-[42px] shrink-0 text-right text-[11px] tabular-nums">
-            {it.val}
           </span>
         </div>
       ))}
@@ -188,68 +158,49 @@ function OutlookStats({
   locale: Locale;
 }) {
   const de = locale === "de";
-  const { avg } = weightedAvg(data, () => true, (d) => d.outlook);
+  const { avg: avgGrowth } = weightedAvg(data, () => true, (d) => d.outlookGrowthPa as number | null);
+  const { avg: avgOutlook } = weightedAvg(data, () => true, (d) => d.outlook);
 
-  const tiers = OUTLOOK_TIERS.map((t) => {
+  const tiers = OUTLOOK_TIERS_PA.map((t) => {
     let jobs = 0;
     for (const d of data) {
-      if (d.outlook != null && d.jobs && d.outlook >= t.min && d.outlook <= t.max)
+      if (d.outlookGrowthPa != null && d.jobs && d.outlookGrowthPa >= t.min && d.outlookGrowthPa < t.max)
         jobs += d.jobs;
     }
-    const mid = t.min === -Infinity ? -8 : t.max === Infinity ? 20 : (t.min + t.max) / 2;
-    return { label: de ? t.labelDe : t.label, jobs, color: outlookColor(mid, 1) };
+    const midOutlook = t.min <= -2 ? -8 : t.max > 3 ? 8 : Math.round(((t.min + Math.min(t.max, 3)) / 2 / 3.7) * 10);
+    return { label: de ? t.labelDe : t.label, jobs, color: outlookColor(midOutlook, 1) };
   });
 
   let declining = 0,
     growing = 0;
   for (const d of data) {
-    if (d.outlook != null && d.jobs) {
-      if (d.outlook < 0) declining += d.jobs;
-      if (d.outlook > 0) growing += d.jobs;
+    if (d.outlookGrowthPa != null && d.jobs) {
+      if (d.outlookGrowthPa < 0) declining += d.jobs;
+      if (d.outlookGrowthPa > 0) growing += d.jobs;
     }
   }
-
-  const byPay = PAY_BANDS_AT.map((g) => {
-    const r = weightedAvg(
-      data,
-      (d) => d.pay != null && d.pay >= g.min && d.pay < g.max,
-      (d) => d.outlook
-    );
-    return {
-      label: g.label,
-      val: (r.avg > 0 ? "+" : "") + r.avg.toFixed(1) + "%",
-      pct: Math.max(0, Math.min(100, (r.avg + 10) / 30 * 100)),
-      color: outlookColor(r.avg, 0.8),
-    };
-  });
 
   return (
     <>
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Ø Ausblick" : "Avg. Outlook"}
+          {de ? "Ø Wachstum p.a." : "Avg. growth p.a."}
         </h3>
         <div className="text-3xl font-bold tracking-tight tabular-nums">
-          <span style={{ color: outlookColor(avg, 1, true) }}>
-            {avg > 0 ? "+" : ""}
-            {avg.toFixed(1)}%
+          <span style={{ color: outlookColor(avgOutlook, 1, true) }}>
+            {avgGrowth > 0 ? "+" : ""}
+            {avgGrowth.toFixed(1)}%
           </span>
         </div>
         <div className="text-[11px] text-muted-foreground">
-          {de ? "beschäftigungsgewichtet" : "job-weighted"}
+          {de ? "WIFO/AMS 2023–2030" : "WIFO/AMS 2023–2030"}
         </div>
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Ausblick-Stufen" : "Outlook Tiers"}
+          {de ? "Ausblick-Stufen" : "Outlook tiers"}
         </h3>
         <TierBar tiers={tiers} totalJobs={totalJobs} />
-      </div>
-      <div className="flex flex-col gap-1">
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Ausblick nach Entgeltstufe" : "Outlook by earnings"}
-        </h3>
-        <HBarChart items={byPay} />
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -444,25 +395,11 @@ function ExposureStats({
       wagesExposed += d.jobs * d.pay;
   }
 
-  const byPay = PAY_BANDS_AT.map((g) => {
-    const r = weightedAvg(
-      data,
-      (d) => d.pay != null && d.pay >= g.min && d.pay < g.max,
-      (d) => d.exposure
-    );
-    return {
-      label: g.label,
-      val: r.avg.toFixed(1),
-      pct: (r.avg / 10) * 100,
-      color: exposureColor(r.avg, 0.8),
-    };
-  });
-
   return (
     <>
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Ø Exposition" : "Avg. Exposure"}
+          {de ? "Ø KI-Einfluss" : "Avg. AI Impact"}
         </h3>
         <div className="text-3xl font-bold tracking-tight tabular-nums">
           <span style={{ color: exposureColor(avg, 1, true) }}>
@@ -475,25 +412,19 @@ function ExposureStats({
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Expositions-Stufen" : "Exposure Tiers"}
+          {de ? "Einfluss-Stufen" : "Impact Tiers"}
         </h3>
         <TierBar tiers={tiers} totalJobs={totalJobs} />
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Exposition nach Entgeltstufe" : "Exposure by earnings"}
-        </h3>
-        <HBarChart items={byPay} />
-      </div>
-      <div className="flex flex-col gap-1">
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-          {de ? "Exponierte Entgeltsumme" : "Exposed earnings"}
+          {de ? "Betroffene Entgeltsumme" : "High-impact earnings"}
         </h3>
         <div className="text-3xl font-bold tracking-tight tabular-nums" style={{ color: exposureColor(8, 1, true) }}>
           €{(wagesExposed / 1e9).toFixed(0)}B
         </div>
         <div className="text-[11px] text-muted-foreground">
-          {de ? "jährlich, Berufsgruppen mit Expositionsgrad ≥7" : "annual, occupation groups with exposure ≥7"}
+          {de ? "jährlich, Berufsgruppen mit KI-Einfluss ≥7" : "annual, occupation groups with AI impact ≥7"}
         </div>
       </div>
     </>

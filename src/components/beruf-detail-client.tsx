@@ -33,7 +33,7 @@ export function BerufDetailClient({
   const family = getOccupationFamilyByMajor(occ.iscoMajor);
 
   return (
-    <div className="space-y-6 max-w-3xl">
+    <div className="space-y-6 max-w-4xl mx-auto">
       <div>
         <Link
           href={backHref}
@@ -77,7 +77,7 @@ export function BerufDetailClient({
       <div className="grid sm:grid-cols-2 gap-3">
         <Card className="p-4 border-border/70">
           <div className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">
-            {de ? "KI-Exposition" : "AI exposure"}
+            {de ? "KI-Einfluss" : "AI impact"}
           </div>
           <div className="mt-2 flex items-center gap-3">
             <div
@@ -196,7 +196,7 @@ export function BerufDetailClient({
       </Card>
 
       <Card className="p-4 sm:p-5 border-border/70">
-        <h2 className="text-base font-semibold mb-2">{de ? "Begründung KI-Exposition" : "AI exposure rationale"}</h2>
+        <h2 className="text-base font-semibold mb-2">{de ? "Begründung KI-Einfluss" : "AI impact rationale"}</h2>
         <p className="text-base text-muted-foreground leading-relaxed">{de ? occ.exposureRationaleDe : occ.exposureRationale}</p>
       </Card>
 

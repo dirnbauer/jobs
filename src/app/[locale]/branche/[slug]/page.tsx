@@ -27,10 +27,10 @@ export async function generateMetadata({
   const stats = computeMarketStats(rows);
   const desc =
     locale === "de"
-      ? `${rows.length} Berufsgruppen · ${stats.totalJobs.toLocaleString("de-AT")} Jobs · Ø KI-Exposition ${stats.avgExposure.toFixed(1)}/10`
-      : `${rows.length} occupation groups · ${stats.totalJobs.toLocaleString("en-US")} jobs · avg AI exposure ${stats.avgExposure.toFixed(1)}/10`;
+      ? `${rows.length} Berufsgruppen · ${stats.totalJobs.toLocaleString("de-AT")} Jobs · Ø KI-Einfluss ${stats.avgExposure.toFixed(1)}/10`
+      : `${rows.length} occupation groups · ${stats.totalJobs.toLocaleString("en-US")} jobs · avg AI impact ${stats.avgExposure.toFixed(1)}/10`;
   return {
-    title: `${title} — ${locale === "de" ? "KI-Exposition Österreich" : "AI Exposure Austria"}`,
+    title: `${title} — ${locale === "de" ? "KI-Einfluss Österreich" : "AI Impact Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };
@@ -74,7 +74,7 @@ export default async function BranchePage({
           : "above the AT average";
 
   return (
-    <div className="space-y-8 max-w-4xl">
+    <div className="space-y-6 max-w-4xl mx-auto">
       <div>
         <Link
           href={`/${locale}?view=segment`}
@@ -117,7 +117,7 @@ export default async function BranchePage({
         </Card>
         <Card className="p-3 border-border/70">
           <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-semibold">
-            {de ? "Ø KI-Exposition" : "Avg. AI exposure"}
+            {de ? "Ø KI-Einfluss" : "Avg. AI impact"}
           </div>
           <div className="text-xl font-bold tabular-nums mt-0.5">
             {stats.avgExposure.toFixed(1)}

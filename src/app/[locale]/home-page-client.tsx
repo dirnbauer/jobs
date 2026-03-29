@@ -50,8 +50,8 @@ export default function HomePageClient() {
           <div className="space-y-3">
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
               {de
-                ? "KI-Exposition am österreichischen Arbeitsmarkt"
-                : "AI Exposure Across Austria\u2019s Labour Market"}
+                ? "KI-Einfluss am österreichischen Arbeitsmarkt"
+                : "AI Impact Across Austria\u2019s Labour Market"}
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
               {de ? (
@@ -111,12 +111,12 @@ export default function HomePageClient() {
 
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-xs text-muted-foreground whitespace-nowrap">
-              {de ? "Einfärben nach" : "Color by"}
+              {de ? "Kennzahl" : "Metric"}
             </span>
             <div className="inline-flex rounded-lg border border-border/70 bg-muted/30 p-0.5">
               {([
-                { mode: "exposure" as const, label: de ? "KI-Exposition" : "AI Exposure" },
-                { mode: "outlook" as const, label: de ? "Ausblick" : "Outlook" },
+                { mode: "exposure" as const, label: de ? "KI-Einfluss" : "AI Impact" },
+                { mode: "outlook" as const, label: de ? "Ausblick 2023–2030" : "Outlook 2023–2030" },
                 { mode: "pay" as const, label: de ? "Medianentgelt" : "Median earnings" },
                 { mode: "education" as const, label: de ? "Ausbildung" : "Education" },
               ] as const).map(({ mode, label }) => (
@@ -145,9 +145,22 @@ export default function HomePageClient() {
             <strong className="text-foreground">
               {de ? "Diagramm lesen" : "Reading the chart"}
             </strong>{" "}
-            {de
-              ? "Jede Kachel = eine Berufsgruppe. Größere Fläche = mehr Beschäftigte. Farbe folgt dem gewählten Layer. Gruppierung nach ISCO-Hauptgruppe; ÖNACE-Abschnitt im Tooltip."
-              : "Each tile = one occupation group. Larger area = more employees. Colour follows the selected layer. Grouped by ISCO major group; ÖNACE section visible in tooltip."}
+            {colorMode === "exposure" && (de
+              ? "Jede Kachel steht für eine der 75 Berufsgruppen (ISCO-08). Die Fläche ist proportional zur Beschäftigtenzahl. Die Farbe zeigt den KI-Einfluss (0–10): Grün = geringe Substituierbarkeit durch generative KI, Rot = hohe Substituierbarkeit. Gruppierung nach ISCO-Hauptgruppe; ÖNACE-Wirtschaftsabschnitt im Tooltip."
+              : "Each tile represents one of 75 occupation groups (ISCO-08). Area is proportional to the number of employed persons. Colour indicates AI impact (0–10): green = low substitutability by generative AI, red = high substitutability. Grouped by ISCO major group; ÖNACE economic section in tooltip."
+            )}
+            {colorMode === "outlook" && (de
+              ? "Jede Kachel steht für eine Berufsgruppe. Die Fläche ist proportional zur Beschäftigtenzahl. Die Farbe zeigt die prognostizierte Beschäftigungsentwicklung 2023–2030 (% p.a.): Grün = Wachstum, Rot = Rückgang. Quelle: WIFO/AMS Mittelfristige Beschäftigungsprognose 2023–2030 (Tabellenband, Dez. 2024)."
+              : "Each tile represents one occupation group. Area is proportional to employment. Colour shows projected employment growth 2023–2030 (% p.a.): green = growing, red = declining. Source: WIFO/AMS Medium-Term Employment Forecast 2023–2030 (Tabellenband, Dec. 2024)."
+            )}
+            {colorMode === "pay" && (de
+              ? "Jede Kachel steht für eine Berufsgruppe. Die Fläche ist proportional zur Beschäftigtenzahl. Die Farbe zeigt das geschätzte Bruttojahresentgelt (Median, Vollzeit): Grün = höheres Entgelt, Rot = niedrigeres Entgelt. Basis: Verdienststrukturerhebung 2022 (Statistik Austria), umgerechnet auf Jahresbasis inkl. 13./14. Gehalt."
+              : "Each tile represents one occupation group. Area is proportional to employment. Colour shows estimated gross annual earnings (median, full-time): green = higher pay, red = lower pay. Source: Structure of Earnings Survey 2022 (Statistik Austria), converted to annual including 13th/14th salary."
+            )}
+            {colorMode === "education" && (de
+              ? "Jede Kachel steht für eine Berufsgruppe. Die Fläche ist proportional zur Beschäftigtenzahl. Die Farbe zeigt das typische Ausbildungsniveau: Grün = höhere formale Qualifikation (Doktorat, Master), Rot = niedrigere (Pflichtschule, Lehre). Zuordnung nach dem für die Berufsgruppe üblichsten Bildungsabschluss."
+              : "Each tile represents one occupation group. Area is proportional to employment. Colour shows the typical education level: green = higher formal qualification (doctoral, master's), red = lower (compulsory school, apprenticeship). Assigned by the most common qualification for each occupation group."
+            )}
           </Card>
 
           <StatsPanel data={austrianOccupations} colorMode={colorMode} locale={locale} />
@@ -177,6 +190,10 @@ export default function HomePageClient() {
                 <p>{hiw.dataBody}</p>
               </div>
               <div>
+                <p className="font-medium text-foreground mb-1">{hiw.outlookTitle}</p>
+                <p>{hiw.outlookBody}</p>
+              </div>
+              <div>
                 <p className="font-medium text-foreground mb-1">{hiw.caveatTitle}</p>
                 <p>{hiw.caveatBody}</p>
               </div>
@@ -198,8 +215,8 @@ export default function HomePageClient() {
             </h1>
             <p className="text-sm text-muted-foreground max-w-2xl">
               {de
-                ? "75 Berufsgruppen nach KI-Exposition, Beschäftigung und Entgelt durchsuchen und filtern."
-                : "Search and filter 75 occupation groups by AI exposure, employment, and earnings."}
+                ? "75 Berufsgruppen nach KI-Einfluss, Beschäftigung und Entgelt durchsuchen und filtern."
+                : "Search and filter 75 occupation groups by AI impact, employment, and earnings."}
             </p>
           </div>
           <JobsExplorer locale={locale} />
@@ -215,8 +232,8 @@ export default function HomePageClient() {
             </h1>
             <p className="text-sm text-muted-foreground max-w-2xl">
               {de
-                ? "Berufsgruppen aggregiert nach den 10 ISCO-08-Hauptgruppen (1-stellig) — Beschäftigte, KI-Exposition und Medianentgelt je Familie."
-                : "Occupation groups aggregated by the 10 ISCO-08 major groups (1-digit) — employment, AI exposure, and median earnings per family."}
+                ? "Berufsgruppen aggregiert nach den 10 ISCO-08-Hauptgruppen (1-stellig) — Beschäftigte, KI-Einfluss und Medianentgelt je Familie."
+                : "Occupation groups aggregated by the 10 ISCO-08 major groups (1-digit) — employment, AI impact, and median earnings per family."}
             </p>
           </div>
           <FamilyGrid locale={locale} />

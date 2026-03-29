@@ -33,11 +33,11 @@ export async function generateMetadata({
   const title = locale === "de" ? family.labelDe : family.labelEn;
   const desc =
     locale === "de"
-      ? `${summary?.rows.length ?? 0} Berufsgruppen · ${(summary?.stats.totalJobs ?? 0).toLocaleString("de-AT")} Jobs · Ø KI-Exposition ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`
-      : `${summary?.rows.length ?? 0} occupation groups · ${(summary?.stats.totalJobs ?? 0).toLocaleString("en-US")} jobs · avg AI exposure ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`;
+      ? `${summary?.rows.length ?? 0} Berufsgruppen · ${(summary?.stats.totalJobs ?? 0).toLocaleString("de-AT")} Jobs · Ø KI-Einfluss ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`
+      : `${summary?.rows.length ?? 0} occupation groups · ${(summary?.stats.totalJobs ?? 0).toLocaleString("en-US")} jobs · avg AI impact ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`;
 
   return {
-    title: `${title} — ${locale === "de" ? "KI-Exposition Österreich" : "AI Exposure Austria"}`,
+    title: `${title} — ${locale === "de" ? "KI-Einfluss Österreich" : "AI Impact Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };
@@ -67,7 +67,7 @@ export default async function FamilyPage({
   if (!summary) notFound();
 
   return (
-    <div className="space-y-8 max-w-4xl">
+    <div className="space-y-6 max-w-4xl mx-auto">
       <div>
         <Link
           href={`/${locale}?view=families`}
