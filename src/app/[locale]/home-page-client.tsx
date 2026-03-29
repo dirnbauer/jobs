@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { austrianOccupations } from "@/lib/data";
 import type { ColorMode } from "@/lib/colors";
-import { greenRedCSS, LEGEND_CONFIG } from "@/lib/colors";
+import { exposureColor, outlookColor, payColor, eduColor, LEGEND_CONFIG } from "@/lib/colors";
 import { howItWorksCopy } from "@/lib/how-it-works-copy";
 import { useLocale } from "@/lib/locale-context";
 import { TreemapCanvas } from "@/components/treemap-canvas";
@@ -341,7 +341,18 @@ function GradientLegend({ colorMode }: { colorMode: ColorMode }) {
   const steps = 20;
   const colors = Array.from({ length: steps }, (_, i) => {
     const t = i / (steps - 1);
-    return colorMode === "exposure" ? greenRedCSS(t, 1) : greenRedCSS(1 - t, 1);
+    switch (colorMode) {
+      case "exposure":
+        return exposureColor(t * 10, 1);
+      case "outlook":
+        return outlookColor(-12 + t * 24, 1);
+      case "pay":
+        return payColor(20000 + t * 80000, 1);
+      case "education":
+        return eduColor(Math.round(t * 7), 1);
+      default:
+        return `rgba(128,128,128,1)`;
+    }
   });
 
   const gradient = `linear-gradient(to right, ${colors.join(", ")})`;

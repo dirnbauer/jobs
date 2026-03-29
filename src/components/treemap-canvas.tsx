@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { Occupation } from "@/lib/data";
+import { EDU_LEVELS_EN } from "@/lib/data";
 import { squarify } from "@/lib/treemap";
 import type { ColorMode } from "@/lib/colors";
-import { tileColor } from "@/lib/colors";
+import { tileColor, tileTextColor } from "@/lib/colors";
 import type { Locale } from "@/lib/locale";
 import { explorerQueryString } from "@/lib/explorer-params";
 
@@ -137,9 +138,6 @@ export function TreemapCanvas({ data, colorMode, locale }: TreemapCanvasProps) {
     // Get theme
     const isDark = document.documentElement.classList.contains("dark");
     const bg = isDark ? "#0a0a0f" : "#f8f9fa";
-    const textColor = isDark ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.85)";
-    const textColorHovered = isDark ? "#fff" : "#000";
-    const subTextColor = isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)";
 
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
@@ -150,11 +148,12 @@ export function TreemapCanvas({ data, colorMode, locale }: TreemapCanvasProps) {
       const rx = r.rx + g, ry = r.ry + g, rw = r.rw - g * 2, rh = r.rh - g * 2;
       if (rw <= 0 || rh <= 0) continue;
 
-      ctx.fillStyle = tileColor(r, colorMode, isHovered ? 0.8 : 0.5);
+      ctx.fillStyle = tileColor(r, colorMode, isHovered ? 0.95 : 0.85);
       ctx.fillRect(rx, ry, rw, rh);
 
       if (isHovered) {
-        ctx.strokeStyle = isDark ? "#fff" : "#000";
+        const hoverTextColor = tileTextColor(r, colorMode, 0.95, bg);
+        ctx.strokeStyle = hoverTextColor.includes("0,0,0") ? "#000" : "#fff";
         ctx.lineWidth = 2;
         ctx.strokeRect(rx, ry, rw, rh);
       }
@@ -165,15 +164,18 @@ export function TreemapCanvas({ data, colorMode, locale }: TreemapCanvasProps) {
         ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4);
         ctx.clip();
         const fontSize = Math.min(13, Math.max(9, Math.min(rw / 10, rh / 3)));
+        const tAlpha = isHovered ? 0.95 : 0.85;
+        const tColor = tileTextColor(r, colorMode, tAlpha, bg);
+        const tColorSub = tColor.replace("0.85)", "0.55)");
         ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
-        ctx.fillStyle = isHovered ? textColorHovered : textColor;
+        ctx.fillStyle = tColor;
         ctx.textBaseline = "top";
         const title = locale === "de" ? r.titleDe : r.title;
         ctx.fillText(title, rx + 5, ry + 4);
 
         if (rh > 34 && rw > 60) {
           ctx.font = `400 ${Math.max(8, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
-          ctx.fillStyle = subTextColor;
+          ctx.fillStyle = tColorSub;
           ctx.fillText(tileSubInfo(r, colorMode, locale), rx + 5, ry + 4 + fontSize + 2);
         }
         ctx.restore();
@@ -254,10 +256,43 @@ export function TreemapCanvas({ data, colorMode, locale }: TreemapCanvasProps) {
   );
 }
 
-function exposureColor(level: number): string {
-  if (level >= 7) return "hsl(0, 72%, 51%)";
-  if (level >= 4) return "hsl(38, 92%, 50%)";
-  return "hsl(142, 71%, 45%)";
+/** Normalized 0-100 progress for the active layer's metric. */
+function layerProgress(d: Occupation, mode: ColorMode): number {
+  switch (mode) {
+    case "exposure":
+      return (d.exposure ?? 0) * 10;
+    case "outlook":
+      return ((d.outlook ?? 0) + 12) / 24 * 100;
+    case "pay": {
+      const v = Math.max(20000, Math.min(100000, d.pay ?? 20000));
+      return (Math.log(v) - Math.log(20000)) / (Math.log(100000) - Math.log(20000)) * 100;
+    }
+    case "education":
+      return Math.max(0, EDU_LEVELS_EN.indexOf(d.education)) / (EDU_LEVELS_EN.length - 1) * 100;
+    default:
+      return 0;
+  }
+}
+
+/** Human-readable label + value for the active layer. */
+function layerMetric(d: Occupation, mode: ColorMode, de: boolean): { label: string; value: string } {
+  switch (mode) {
+    case "exposure": {
+      const exp = d.exposure ?? 0;
+      return { label: de ? "KI-Exposition" : "AI Exposure", value: `${exp}/10` };
+    }
+    case "outlook": {
+      const o = d.outlook;
+      const str = o != null ? `${o > 0 ? "+" : ""}${o}%` : "—";
+      return { label: de ? "Ausblick" : "Outlook", value: `${str} ${d.outlookDesc ?? ""}`.trim() };
+    }
+    case "pay":
+      return { label: de ? "Medianentgelt" : "Median earnings", value: formatPay(d.pay) };
+    case "education":
+      return { label: de ? "Ausbildung" : "Education", value: de ? d.educationDe : d.education };
+    default:
+      return { label: "", value: "" };
+  }
 }
 
 function StatCell({ label, value }: { label: string; value: string }) {
@@ -273,7 +308,7 @@ function Tooltip({
   d,
   x,
   y,
-  colorMode: _colorMode,
+  colorMode,
   locale,
 }: {
   d: TreemapRect;
@@ -295,8 +330,10 @@ function Tooltip({
   const sector = de ? d.categoryDe : d.category.replace(/-/g, " ");
   const edu = de ? d.educationDe : d.education;
   const rationale = de ? d.exposureRationaleDe : d.exposureRationale;
-  const exp = d.exposure ?? 0;
-  const accent = exposureColor(exp);
+  const accent = tileColor(d, colorMode, 1);
+  const accentTrack = tileColor(d, colorMode, 0.2);
+  const metric = layerMetric(d, colorMode, de);
+  const progress = layerProgress(d, colorMode);
 
   const outlookStr =
     d.outlook != null
@@ -326,19 +363,19 @@ function Tooltip({
         <div className="mt-3 border-t border-border/40 pt-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium">
-              {de ? "KI-Exposition" : "AI Exposure"}
+              {metric.label}
             </span>
             <span className="text-sm font-bold tabular-nums" style={{ color: accent }}>
-              {exp}/10
+              {metric.value}
             </span>
           </div>
-          <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-popover-foreground/15">
+          <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full" style={{ background: accentTrack }}>
             <div
               className="h-full rounded-full"
-              style={{ width: `${exp * 10}%`, background: accent }}
+              style={{ width: `${progress}%`, background: accent }}
             />
           </div>
-          {rationale && (
+          {colorMode === "exposure" && rationale && (
             <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">
               {rationale}
             </p>
