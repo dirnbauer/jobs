@@ -21,17 +21,17 @@ interface NavItem {
 }
 
 const PRIMARY: NavItem[] = [
-  { href: "/", labelEn: "Treemap", labelDe: "Treemap", homeView: "treemap" },
-  { href: "/?view=explorer", labelEn: "Occupations", labelDe: "Berufsgruppen", homeView: "explorer" },
-  { href: "/?view=families", labelEn: "Families", labelDe: "Hauptgruppen", homeView: "families" },
-  { href: "/?view=sectors", labelEn: "Sectors", labelDe: "Sektoren", homeView: "sectors" },
-  { href: "/comparison", labelEn: "AT vs US", labelDe: "AT vs US" },
+  { href: "/", labelEn: "Map", labelDe: "Karte", homeView: "treemap" },
+  { href: "/?view=explorer", labelEn: "All Occupations", labelDe: "Alle Berufe", homeView: "explorer" },
+  { href: "/?view=families", labelEn: "Major Groups", labelDe: "Hauptgruppen", homeView: "families" },
+  { href: "/?view=sectors", labelEn: "Industries", labelDe: "Branchen", homeView: "sectors" },
+  { href: "/comparison", labelEn: "Comparison", labelDe: "Vergleich" },
 ];
 
 const SECONDARY: NavItem[] = [
   { href: "/tests", labelEn: "Tests", labelDe: "Tests" },
   { href: "/sources", labelEn: "Sources", labelDe: "Quellen" },
-  { href: "/about", labelEn: "About", labelDe: "Über" },
+  { href: "/about", labelEn: "About", labelDe: "Info" },
 ];
 
 const ALL_ITEMS = [...PRIMARY, ...SECONDARY];
