@@ -127,11 +127,10 @@ export function ComparisonView({ locale }: ComparisonViewProps) {
                   </div>
                   <div className="flex-1 min-w-0 h-8 sm:h-9 bg-muted/50 rounded-md overflow-hidden flex items-center">
                     <div
-                      className="h-full rounded-md flex items-center px-2 text-xs font-semibold text-white shrink-0"
+                      className="h-full rounded-md flex items-center px-2 text-xs font-semibold text-foreground shrink-0"
                       style={{
                         width: `${usBarWidth}%`,
-                        // indigo-700 — white text clears WCAG AA 4.5:1 (vs ~4.46 on indigo-500)
-                        backgroundColor: "#4338ca",
+                        backgroundColor: "var(--webcon-primary-light, #66c4e1)",
                       }}
                     >
                       {usLabelInside ? usLabel : ""}
