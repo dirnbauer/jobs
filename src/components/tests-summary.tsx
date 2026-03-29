@@ -63,11 +63,22 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
 
     setIsRunning(true);
     setExpanded(true);
-    setRunLog([]);
+    setRunLog([
+      {
+        id: `start-${Date.now()}`,
+        name: de ? "Neustart gestartet" : "Restart started",
+        actual: de
+          ? `0/${dataTests.length} Prüfungen abgeschlossen`
+          : `0/${dataTests.length} checks completed`,
+        summary: true,
+      },
+    ]);
 
     const t0 = performance.now();
     const nextResults = new Map(results.map((result) => [result.id, result]));
     let passedCount = 0;
+
+    await waitForPaint();
 
     for (const [index, test] of dataTests.entries()) {
       const result = test.test();
@@ -120,88 +131,86 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
 
   return (
     <Card className="p-5 space-y-3">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="text-base font-bold">
-          {de ? "Datenverifizierung" : "Data Verification"}
-        </h2>
-        <div className="flex items-center gap-2">
-          <Badge variant={allPassed ? "default" : "destructive"} className="text-xs px-2 py-0.5">
-            {passed}/{total} {de ? "bestanden" : "passed"}
-          </Badge>
-          <Button
-            type="button"
-            onClick={runTests}
-            disabled={isRunning}
-            size="sm"
-            variant="outline"
-            className="h-7 text-xs"
-          >
-            {isRunning ? (
-              <Loader2 className="mr-1 h-3 w-3 animate-spin" aria-hidden />
-            ) : (
-              <PlayCircle className="mr-1 h-3 w-3" aria-hidden />
-            )}
-            {isRunning ? (de ? "Läuft…" : "Running…") : (de ? "Erneut" : "Re-run")}
-          </Button>
-        </div>
-      </div>
-
-      <div className="space-y-2">
+      <div className="space-y-3">
         <div className="flex items-center justify-between gap-3">
-          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/45">
-            {de ? "Live-Ausgabe" : "Live output"}
-          </div>
-          <div className="text-[11px] text-foreground/45">
-            {isRunning
-              ? (de ? `Prüfe ${dataTests.length} Regeln…` : `Checking ${dataTests.length} rules…`)
-              : (de ? "Startet mit „Erneut“" : "Starts on re-run")}
+          <h2 className="text-base font-bold">
+            {de ? "Datenverifizierung" : "Data Verification"}
+          </h2>
+          <div className="flex items-center gap-2">
+            <Badge variant={allPassed ? "default" : "destructive"} className="text-xs px-2 py-0.5">
+              {passed}/{total} {de ? "bestanden" : "passed"}
+            </Badge>
+            <Button
+              type="button"
+              onClick={runTests}
+              disabled={isRunning}
+              size="sm"
+              variant="outline"
+              className="h-7 text-xs"
+            >
+              {isRunning ? (
+                <Loader2 className="mr-1 h-3 w-3 animate-spin" aria-hidden />
+              ) : (
+                <PlayCircle className="mr-1 h-3 w-3" aria-hidden />
+              )}
+              {isRunning
+                ? (de ? "Neustart läuft…" : "Restarting…")
+                : (de ? "Neu starten" : "Restart")}
+            </Button>
           </div>
         </div>
 
-        <div
-          ref={logRef}
-          aria-live="polite"
-          className="max-h-52 overflow-y-auto rounded-xl border border-border/70 bg-neutral-950 px-3 py-2 font-mono text-[11px] leading-5 text-neutral-100 shadow-inner"
-        >
-          {runLog.length === 0 ? (
-            <div className="text-neutral-400">
-              {de
-                ? "Noch keine Live-Ausgabe. Klicke auf „Erneut“, um jeden Testlauf einzeln zu sehen."
-                : "No live output yet. Click re-run to watch each test execute."}
+        {(runLog.length > 0 || isRunning) && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-3">
+              <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/45">
+                {de ? "Inline-Ausgabe" : "Inline output"}
+              </div>
+              <div className="text-[11px] text-foreground/45">
+                {isRunning
+                  ? (de ? `Prüfe ${dataTests.length} Regeln…` : `Checking ${dataTests.length} rules…`)
+                  : (de ? "Letzter Durchlauf abgeschlossen" : "Latest run completed")}
+              </div>
             </div>
-          ) : (
-            <div className="space-y-1.5">
-              {runLog.map((entry) => (
-                <div key={entry.id} className="space-y-0.5">
-                  <div className="flex items-start gap-2">
-                    <span
-                      className={
-                        entry.summary
-                          ? "text-sky-300"
-                          : entry.passed
-                            ? "text-emerald-300"
-                            : "text-rose-300"
-                      }
-                    >
-                      {entry.summary ? ">" : entry.passed ? "PASS" : "FAIL"}
-                    </span>
-                    <span className="text-neutral-100">{entry.name}</span>
+
+            <div
+              ref={logRef}
+              aria-live="polite"
+              className="max-h-52 overflow-y-auto rounded-xl border border-border/70 bg-neutral-950 px-3 py-2 font-mono text-[11px] leading-5 text-neutral-100 shadow-inner"
+            >
+              <div className="space-y-1.5">
+                {runLog.map((entry) => (
+                  <div key={entry.id} className="space-y-0.5">
+                    <div className="flex items-start gap-2">
+                      <span
+                        className={
+                          entry.summary
+                            ? "text-sky-300"
+                            : entry.passed
+                              ? "text-emerald-300"
+                              : "text-rose-300"
+                        }
+                      >
+                        {entry.summary ? ">" : entry.passed ? "PASS" : "FAIL"}
+                      </span>
+                      <span className="text-neutral-100">{entry.name}</span>
+                    </div>
+                    {entry.actual ? (
+                      <div className="pl-11 text-neutral-400">
+                        {de ? "Ist:" : "Actual:"} {entry.actual}
+                      </div>
+                    ) : null}
+                    {entry.expected ? (
+                      <div className="pl-11 text-neutral-500">
+                        {de ? "Soll:" : "Expected:"} {entry.expected}
+                      </div>
+                    ) : null}
                   </div>
-                  {entry.actual ? (
-                    <div className="pl-11 text-neutral-400">
-                      {de ? "Ist:" : "Actual:"} {entry.actual}
-                    </div>
-                  ) : null}
-                  {entry.expected ? (
-                    <div className="pl-11 text-neutral-500">
-                      {de ? "Soll:" : "Expected:"} {entry.expected}
-                    </div>
-                  ) : null}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <p className="text-sm text-foreground/70">

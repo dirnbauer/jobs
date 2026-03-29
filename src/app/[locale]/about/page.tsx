@@ -11,8 +11,8 @@ export default async function AboutPage({
   const de = locale === "de";
 
   return (
-    <div className="space-y-6 max-w-3xl mx-auto">
-      <div>
+    <div className="space-y-6">
+      <div className="mx-auto w-full max-w-3xl">
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
           {de ? "Über dieses Projekt" : "About This Project"}
         </h1>
@@ -22,7 +22,9 @@ export default async function AboutPage({
             : "Background, methodology, data sources, and data verification."}
         </p>
       </div>
-      <AboutView locale={locale} />
+      <div className="mx-auto w-full max-w-3xl">
+        <AboutView locale={locale} />
+      </div>
     </div>
   );
 }

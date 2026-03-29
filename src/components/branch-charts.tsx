@@ -30,14 +30,14 @@ interface BranchChartsProps {
 }
 
 const PIE_PALETTE = [
-  "#0f766e",
-  "#0284c7",
-  "#4f46e5",
-  "#7c3aed",
-  "#db2777",
-  "#ea580c",
-  "#ca8a04",
-  "#16a34a",
+  "#0284c7", // blue
+  "#dc2626", // red
+  "#16a34a", // green
+  "#f59e0b", // amber
+  "#7c3aed", // purple
+  "#ea580c", // orange
+  "#06b6d4", // cyan
+  "#db2777", // pink
 ];
 
 function scoreBarColor(score: number): string {
@@ -74,14 +74,24 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
     [rows]
   );
 
+  const pieTotal = useMemo(
+    () => topOccupations.reduce((s, o) => s + (o.jobs ?? 0), 0),
+    [topOccupations]
+  );
+
   const pieData = useMemo(
     () =>
-      topOccupations.map((o, i) => ({
-        name: `${i + 1}. ${(de ? o.titleDe : o.title).slice(0, 36)}`,
-        value: o.jobs ?? 0,
-        fill: PIE_PALETTE[i % PIE_PALETTE.length],
-      })),
-    [topOccupations, de]
+      topOccupations.map((o, i) => {
+        const value = o.jobs ?? 0;
+        const pct = pieTotal > 0 ? ((value / pieTotal) * 100).toFixed(1) : "0";
+        return {
+          name: `${i + 1}. ${(de ? o.titleDe : o.title).slice(0, 36)}`,
+          value,
+          pct: `${pct}%`,
+          fill: PIE_PALETTE[i % PIE_PALETTE.length],
+        };
+      }),
+    [topOccupations, de, pieTotal]
   );
 
   const barConfig = {
@@ -223,6 +233,26 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 animationDuration={1000}
                 animationEasing="ease-out"
                 animationBegin={150}
+                label={({ cx, cy, midAngle, innerRadius, outerRadius, pct }) => {
+                  const RADIAN = Math.PI / 180;
+                  const r = Number(innerRadius) + (Number(outerRadius) - Number(innerRadius)) * 0.5;
+                  const x = Number(cx) + r * Math.cos(-midAngle * RADIAN);
+                  const y = Number(cy) + r * Math.sin(-midAngle * RADIAN);
+                  const pctNum = parseFloat(pct);
+                  if (pctNum < 4) return null;
+                  return (
+                    <text
+                      x={x}
+                      y={y}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      className="fill-white text-[11px] font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                    >
+                      {pct}
+                    </text>
+                  );
+                }}
+                labelLine={false}
               >
                 {pieData.map((entry) => (
                   <Cell key={`cell-${entry.name}`} fill={entry.fill} />
