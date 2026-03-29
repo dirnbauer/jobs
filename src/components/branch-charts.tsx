@@ -14,8 +14,6 @@ import {
 
 import {
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -201,9 +199,9 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
           </h3>
           <ChartContainer
             config={pieChartConfig}
-            className="aspect-auto h-[360px] w-full overflow-hidden rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30 mx-auto"
+            className="aspect-auto h-[420px] w-full overflow-visible rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30 mx-auto"
           >
-            <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+            <PieChart margin={{ top: 24, right: 140, bottom: 24, left: 140 }}>
               <ChartTooltip
                 content={
                   <ChartTooltipContent
@@ -225,7 +223,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 cx="50%"
                 cy="50%"
                 innerRadius="38%"
-                outerRadius="68%"
+                outerRadius="58%"
                 paddingAngle={3}
                 stroke="rgba(255,255,255,0.9)"
                 strokeWidth={2}
@@ -233,32 +231,49 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 animationDuration={1000}
                 animationEasing="ease-out"
                 animationBegin={150}
-                label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-                  if (
-                    cx == null ||
-                    cy == null ||
-                    midAngle == null ||
-                    innerRadius == null ||
-                    outerRadius == null
-                  ) {
-                    return null;
-                  }
+                label={({ cx: cxVal, cy: cyVal, midAngle, outerRadius: oR, name, value, pct, fill }) => {
+                  if (cxVal == null || cyVal == null || midAngle == null || oR == null) return null;
                   const RADIAN = Math.PI / 180;
-                  const r = Number(innerRadius) + (Number(outerRadius) - Number(innerRadius)) * 0.5;
-                  const x = Number(cx) + r * Math.cos(-midAngle * RADIAN);
-                  const y = Number(cy) + r * Math.sin(-midAngle * RADIAN);
-                  const share = Number(percent ?? 0) * 100;
-                  if (share < 4) return null;
+                  const cx0 = Number(cxVal);
+                  const cy0 = Number(cyVal);
+                  const or0 = Number(oR);
+                  // point on outer edge of donut
+                  const sx = cx0 + or0 * Math.cos(-midAngle * RADIAN);
+                  const sy = cy0 + or0 * Math.sin(-midAngle * RADIAN);
+                  // elbow point
+                  const mx = cx0 + (or0 + 18) * Math.cos(-midAngle * RADIAN);
+                  const my = cy0 + (or0 + 18) * Math.sin(-midAngle * RADIAN);
+                  // endpoint extending horizontally
+                  const isRight = midAngle <= 90 || midAngle > 270;
+                  const ex = mx + (isRight ? 16 : -16);
+                  const anchor = isRight ? "start" : "end";
+                  const formatted = typeof value === "number" ? value.toLocaleString(numberLocale) : String(value);
                   return (
-                    <text
-                      x={x}
-                      y={y}
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      className="fill-white text-[11px] font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
-                    >
-                      {share.toFixed(1)}%
-                    </text>
+                    <g>
+                      <path
+                        d={`M${sx},${sy}L${mx},${my}L${ex},${my}`}
+                        stroke={fill}
+                        strokeWidth={1.5}
+                        fill="none"
+                      />
+                      <circle cx={sx} cy={sy} r={2.5} fill={fill} />
+                      <text
+                        x={ex + (isRight ? 4 : -4)}
+                        y={my - 7}
+                        textAnchor={anchor}
+                        className="fill-foreground text-[11px] font-semibold"
+                      >
+                        {name}
+                      </text>
+                      <text
+                        x={ex + (isRight ? 4 : -4)}
+                        y={my + 7}
+                        textAnchor={anchor}
+                        className="fill-muted-foreground text-[10px] font-medium"
+                      >
+                        {formatted} ({pct})
+                      </text>
+                    </g>
                   );
                 }}
                 labelLine={false}
@@ -267,15 +282,6 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                   <Cell key={`cell-${entry.name}`} fill={entry.fill} />
                 ))}
               </Pie>
-              <ChartLegend
-                content={
-                  <ChartLegendContent
-                    nameKey="name"
-                    className="max-h-[120px] flex-wrap gap-x-3 gap-y-1 text-[11px] leading-tight"
-                  />
-                }
-                verticalAlign="bottom"
-              />
             </PieChart>
           </ChartContainer>
         </div>
