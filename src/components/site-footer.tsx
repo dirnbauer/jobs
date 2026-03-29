@@ -85,8 +85,8 @@ export function SiteFooter() {
               </p>
               <p className="mt-1.5 leading-relaxed text-foreground/74">
                 {de
-                  ? "Keine Verbindung zum U.S. Bureau of Labor Statistics (BLS); es werden keine BLS-Daten verwendet."
-                  : "No affiliation with the U.S. Bureau of Labor Statistics (BLS), and no BLS data is used."}
+                  ? "Keine Verbindung zur WKO, AK, zum AMS, WIFO, zur Statistik Austria oder einer anderen österreichischen Organisation oder Behörde. Keine Verbindung zum U.S. Bureau of Labor Statistics (BLS); es werden keine BLS-Daten verwendet."
+                  : "No affiliation with the WKO, AK, AMS, WIFO, Statistik Austria, or any other Austrian organisation or government body. No affiliation with the U.S. Bureau of Labor Statistics (BLS), and no BLS data is used."}
               </p>
             </div>
           </div>
