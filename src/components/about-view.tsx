@@ -16,7 +16,7 @@ export function AboutView({ locale }: AboutViewProps) {
 
 function AboutEn() {
   return (
-    <div className="space-y-6 max-w-3xl mx-auto">
+    <div className="space-y-6">
       {/* ── Disclaimer ──────────────────────────────────────────────── */}
       <Card className="p-4 space-y-2 border-amber-500/30 bg-amber-500/5">
         <h2 className="text-sm font-bold">Independent, non-official adaptation</h2>
@@ -115,7 +115,7 @@ function AboutEn() {
 
 function AboutDe() {
   return (
-    <div className="space-y-6 max-w-3xl mx-auto">
+    <div className="space-y-6">
       {/* ── Haftungsausschluss ──────────────────────────────────────── */}
       <Card className="p-4 space-y-2 border-amber-500/30 bg-amber-500/5">
         <h2 className="text-sm font-bold">Unabhängige, nicht-amtliche Adaption</h2>

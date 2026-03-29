@@ -11,12 +11,12 @@ export default async function AboutPage({
   const de = locale === "de";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-3xl mx-auto">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
           {de ? "Über dieses Projekt" : "About This Project"}
         </h1>
-        <p className="mt-2 text-base text-foreground/75 leading-relaxed max-w-3xl">
+        <p className="mt-2 text-base text-foreground/75 leading-relaxed">
           {de
             ? "Hintergrund, Methodik, Datenquellen und Datenverifizierung."
             : "Background, methodology, data sources, and data verification."}
