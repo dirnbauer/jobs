@@ -5,7 +5,6 @@
 
 export const howItWorksCopy = {
   de: {
-    detailsSummary: "Einordnung, Methodik und Lesehilfe",
     lead: "Diese Darstellung ordnet den Arbeitsmarkt primär nach Berufsgruppen (ISCO-08) und erst sekundär nach Wirtschaftsabschnitten (ÖNACE). Die zentrale Frage lautet: Welche beruflichen Tätigkeitsprofile weisen die höchste technische Substituierbarkeit durch generative KI-Modelle auf? Alle Daten basieren auf amtlichen, öffentlich zugänglichen Quellen; die gesamte Pipeline ist quelloffen und jederzeit reproduzierbar.",
     areaColor:
       "Die Rechteckfläche skaliert proportional zur Erwerbstätigenzahl; die Farbgebung folgt dem jeweils aktivierten Layer. In der Startansicht werden Kacheln nach ISCO-Hauptgruppen (Familien) gebündelt; der ÖNACE-Wirtschaftsabschnitt bleibt als ergänzender Kontext sichtbar.",
@@ -31,7 +30,6 @@ export const howItWorksCopy = {
       "Beherbergung und Gastronomie (ÖNACE I) beschäftigen in Österreich einen überdurchschnittlich hohen Anteil der Erwerbstätigen im EU-Vergleich. Das duale Ausbildungssystem (Lehre) prägt das Fachkräfteangebot. Maschinen- und Fahrzeugbau (ÖNACE C28, C29) sind stark exportorientiert und weisen historisch hohen Automatisierungsdruck auf.",
   },
   en: {
-    detailsSummary: "Context, methodology and reading guide",
     lead: "This visualisation structures the labour market primarily by occupation group (ISCO-08) and secondarily by economic section (ÖNACE). The central question is: which occupational task profiles exhibit the highest technical substitutability by generative AI models? All data derives from official, publicly accessible sources; the entire pipeline is open-source and fully reproducible.",
     areaColor:
       "Tile area scales proportionally to the number of employed persons; colour follows the currently active layer. On the start page, tiles are grouped by ISCO major groups (families); the ÖNACE economic section remains visible as supplementary context.",

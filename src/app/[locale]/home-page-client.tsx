@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { austrianOccupations } from "@/lib/data";
 import type { ColorMode } from "@/lib/colors";
 import { exposureColor, outlookColor, payColor, eduColor, LEGEND_CONFIG } from "@/lib/colors";
-import { howItWorksCopy } from "@/lib/how-it-works-copy";
 import { useLocale } from "@/lib/locale-context";
 import { TreemapCanvas } from "@/components/treemap-canvas";
 import { StatsPanel } from "@/components/stats-panel";
@@ -51,8 +50,6 @@ export default function HomePageClient() {
   const de = locale === "de";
   const mainTab = getMainTab(searchParams);
 
-  const hiw = de ? howItWorksCopy.de : howItWorksCopy.en;
-
   const legendCfg = LEGEND_CONFIG[colorMode];
   const legendLow = de ? legendCfg.lowDe : legendCfg.low;
   const legendHigh = de ? legendCfg.highDe : legendCfg.high;
@@ -64,33 +61,25 @@ export default function HomePageClient() {
         <>
           <div className="space-y-3">
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              {de
-                ? "KI-Einfluss am österreichischen Arbeitsmarkt"
-                : "AI Impact Across Austria\u2019s Labour Market"}
+              {de ? "BerufsRadar" : "Job Radar Austria"}
             </h1>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
               {de ? (
                 <>
+                  <strong className="text-foreground/90">Österreichischer Arbeitsmarkt unter KI-Einfluss.</strong>{" "}
                   KI wird Berufe verändern — das bedeutet nicht, dass alle arbeitslos werden.
                   Es bedeutet, dass sich <strong className="text-foreground/90">Aufgaben, Werkzeuge und Anforderungen verschieben</strong>.
                   Diese Karte bildet alle 75 österreichischen Berufsgruppen ab — die Farbe zeigt hier den geschätzten KI-Einfluss: von Grün (gering) bis Rot (hoch).
                 </>
               ) : (
                 <>
+                  <strong className="text-foreground/90">AI impact across Austria&apos;s labour market.</strong>{" "}
                   AI will transform occupations — that does not mean everyone loses their job.
                   It means <strong className="text-foreground/90">tasks, tools, and requirements shift</strong>.
                   This map visualises all 75 Austrian occupation groups — colour here indicates estimated AI impact, from green (low) to red (high).
                 </>
               )}
             </p>
-            <blockquote className="text-xs sm:text-sm text-muted-foreground/80 italic border-l-2 border-(--webcon-primary,#1b7a95)/40 pl-3 max-w-2xl">
-              {de
-                ? "\u201EWir werden die Welt mit KI neu aufbauen.\u201C"
-                : "\u201CWe\u2019re going to rebuild the world with AI.\u201D"}
-              <span className="not-italic text-muted-foreground/60">
-                {" \u2014 Guillermo Rauch, CEO Vercel"}
-              </span>
-            </blockquote>
             <details className="text-xs text-muted-foreground">
               <summary className="cursor-pointer hover:text-foreground select-none">
                 {de ? "Datenquellen & Methodik" : "Data sources & methodology"}
@@ -182,42 +171,6 @@ export default function HomePageClient() {
 
           <TreemapCanvas data={austrianOccupations} colorMode={colorMode} locale={locale} />
 
-          <details>
-            <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground select-none">
-              {hiw.detailsSummary}
-            </summary>
-            <Card className="mt-2 p-4 sm:p-5 border-border/70 space-y-4 text-sm text-muted-foreground leading-relaxed">
-              <p>{hiw.lead}</p>
-              <p>{hiw.areaColor}</p>
-              <div>
-                <p className="font-medium text-foreground mb-1">{hiw.bandsTitle}</p>
-                <p className="mb-2">{hiw.bandsIntro}</p>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>{hiw.band01}</li>
-                  <li>{hiw.band23}</li>
-                  <li>{hiw.band45}</li>
-                  <li>{hiw.band67}</li>
-                  <li>{hiw.band810}</li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-medium text-foreground mb-1">{hiw.dataTitle}</p>
-                <p>{hiw.dataBody}</p>
-              </div>
-              <div>
-                <p className="font-medium text-foreground mb-1">{hiw.outlookTitle}</p>
-                <p>{hiw.outlookBody}</p>
-              </div>
-              <div>
-                <p className="font-medium text-foreground mb-1">{hiw.caveatTitle}</p>
-                <p>{hiw.caveatBody}</p>
-              </div>
-              <div>
-                <p className="font-medium text-foreground mb-1">{hiw.atTitle}</p>
-                <p>{hiw.atBody}</p>
-              </div>
-            </Card>
-          </details>
         </>
       )}
 

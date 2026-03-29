@@ -20,6 +20,7 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
+import { exposureColor } from "@/lib/colors";
 import type { Occupation } from "@/lib/data";
 
 interface BranchChartsProps {
@@ -29,15 +30,19 @@ interface BranchChartsProps {
 }
 
 const PIE_PALETTE = [
-  "#1b7a95",
-  "#66c4e1",
-  "#0f4555",
-  "#9dd8eb",
-  "#155d73",
-  "#c5e4ed",
-  "#0d6b84",
-  "#e8f4f8",
+  "#0f766e",
+  "#0284c7",
+  "#4f46e5",
+  "#7c3aed",
+  "#db2777",
+  "#ea580c",
+  "#ca8a04",
+  "#16a34a",
 ];
+
+function scoreBarColor(score: number): string {
+  return exposureColor(score, 0.95);
+}
 
 function exposureHistogramJobs(rows: Occupation[]): { x: number[]; y: number[] } {
   const y = new Array(11).fill(0);
@@ -53,7 +58,11 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
 
   const histogramData = useMemo(() => {
     const { x, y } = exposureHistogramJobs(rows);
-    return x.map((score, i) => ({ score, jobs: y[i] as number }));
+    return x.map((score, i) => ({
+      score,
+      jobs: y[i] as number,
+      fill: scoreBarColor(score),
+    }));
   }, [rows]);
 
   const topOccupations = useMemo(
@@ -93,7 +102,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
   const showPie = rows.length > 1;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div>
         <h3 className="text-base font-semibold mb-2 text-foreground/90">
           {de ? "Beschäftigung nach KI-Einfluss (0–10)" : "Employment by AI impact (0–10)"}
@@ -101,20 +110,21 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
         <p className="text-xs text-muted-foreground mb-2">{branchLabel}</p>
         <ChartContainer
           config={barConfig}
-          className="aspect-auto h-[260px] w-full rounded-lg border border-border/60 bg-black/20 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted/30"
+          className="aspect-auto h-[280px] w-full overflow-hidden rounded-2xl border border-sky-200/70 bg-gradient-to-br from-white via-sky-50 to-cyan-100/70 shadow-[0_24px_70px_-34px_rgba(14,116,144,0.48)] dark:border-cyan-900/60 dark:from-slate-950 dark:via-slate-900 dark:to-cyan-950/40 [&_.recharts-cartesian-grid_line]:stroke-sky-200/80 dark:[&_.recharts-cartesian-grid_line]:stroke-slate-700/80 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-sky-200/30 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-cyan-400/12"
         >
           <BarChart
             data={histogramData}
             margin={{ top: 12, right: 12, left: 20, bottom: 4 }}
             accessibilityLayer
           >
-            <CartesianGrid vertical={false} strokeDasharray="3 3" className="stroke-border/50" />
+            <CartesianGrid vertical={false} strokeDasharray="3 3" />
             <XAxis
               dataKey="score"
               type="category"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              tick={{ fill: "var(--color-muted-foreground)", fontSize: 12, fontWeight: 500 }}
               label={{
                 value: de ? "KI-Score" : "AI score",
                 position: "insideBottom",
@@ -127,6 +137,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
               axisLine={false}
               tickMargin={8}
               tickFormatter={(v) => Number(v).toLocaleString(numberLocale)}
+              tick={{ fill: "var(--color-muted-foreground)", fontSize: 12, fontWeight: 500 }}
               label={{
                 value: de ? "Beschäftigte" : "Employees",
                 angle: -90,
@@ -158,14 +169,17 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
             />
             <Bar
               dataKey="jobs"
-              fill="var(--color-jobs)"
-              radius={[4, 4, 0, 0]}
+              radius={[8, 8, 0, 0]}
               maxBarSize={48}
               isAnimationActive
               animationDuration={900}
               animationEasing="ease-out"
               animationBegin={0}
-            />
+            >
+              {histogramData.map((entry) => (
+                <Cell key={`bar-${entry.score}`} fill={entry.fill} />
+              ))}
+            </Bar>
           </BarChart>
         </ChartContainer>
       </div>
@@ -177,7 +191,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
           </h3>
           <ChartContainer
             config={pieChartConfig}
-            className="aspect-auto h-[320px] w-full rounded-lg border border-border/60 bg-black/20 mx-auto"
+            className="aspect-auto h-[360px] w-full overflow-hidden rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30 mx-auto"
           >
             <PieChart margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
               <ChartTooltip
@@ -202,8 +216,9 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 cy="50%"
                 innerRadius="38%"
                 outerRadius="68%"
-                paddingAngle={2}
-                stroke="transparent"
+                paddingAngle={3}
+                stroke="rgba(255,255,255,0.9)"
+                strokeWidth={2}
                 isAnimationActive
                 animationDuration={1000}
                 animationEasing="ease-out"

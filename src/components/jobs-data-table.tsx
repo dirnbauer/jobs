@@ -79,6 +79,8 @@ export function JobsDataTable({
   listQuery,
   nationalJobsTotal,
 }: JobsDataTableProps) {
+  "use no memo";
+
   const de = locale === "de";
   const sorting = useMemo(() => sortToSortingState(sort), [sort]);
 

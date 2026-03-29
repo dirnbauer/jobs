@@ -46,7 +46,7 @@ export async function generateMetadata({
       : `${summary?.rows.length ?? 0} occupation groups · ${(summary?.stats.totalJobs ?? 0).toLocaleString("en-US")} jobs · avg AI impact ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`;
 
   return {
-    title: `${title} — ${locale === "de" ? "KI-Einfluss Österreich" : "AI Impact Austria"}`,
+    title: `${title} — ${locale === "de" ? "BerufsRadar" : "Job Radar Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };
