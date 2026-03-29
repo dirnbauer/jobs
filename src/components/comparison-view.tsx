@@ -96,7 +96,7 @@ export function ComparisonView({ locale }: ComparisonViewProps) {
                   </div>
                   <div className="flex-1 min-w-0 h-8 sm:h-9 bg-muted/50 rounded-md overflow-hidden flex items-center">
                     <div
-                      className="h-full rounded-md flex items-center px-2 text-xs font-semibold text-white shrink-0"
+                      className="h-full rounded-md flex items-center px-2 text-xs font-semibold shrink-0 text-white dark:text-gray-950"
                       style={{
                         width: `${atBarWidth}%`,
                         backgroundColor: "var(--webcon-primary, #1b7a95)",
@@ -127,7 +127,7 @@ export function ComparisonView({ locale }: ComparisonViewProps) {
                   </div>
                   <div className="flex-1 min-w-0 h-8 sm:h-9 bg-muted/50 rounded-md overflow-hidden flex items-center">
                     <div
-                      className="h-full rounded-md flex items-center px-2 text-xs font-semibold text-foreground shrink-0"
+                      className="h-full rounded-md flex items-center px-2 text-xs font-semibold shrink-0 text-gray-900 dark:text-gray-950"
                       style={{
                         width: `${usBarWidth}%`,
                         backgroundColor: "var(--webcon-primary-light, #66c4e1)",
