@@ -16,11 +16,11 @@ function AboutEn() {
   return (
     <div className="space-y-6 max-w-3xl">
       <div className="text-base text-foreground/70 leading-relaxed">
-        Methodische Dokumentation der österreichischen Adaptation: Übernahmen aus der US-Originalversion,
-        lokale Datenersetzungen sowie die Struktur des berufsbasierten Datensatzes,
-        der Routenarchitektur und der Methodik. Alle quantitativen Daten stammen aus amtlichen, öffentlich
-        zugänglichen Quellen und sind wissenschaftlich nachprüfbar — die gesamte Generierungspipeline ist
-        quelloffen und jederzeit reproduzierbar.
+        Methodological documentation of the Austrian adaptation: what was adopted from the US original,
+        local data replacements, and the structure of the occupation-based dataset,
+        route architecture, and methodology. All quantitative data originates from official, publicly
+        accessible sources and is scientifically verifiable — the entire generation pipeline is
+        open-source and reproducible at any time.
       </div>
 
       {/* ── Austrian Adaptation ──────────────────────────────────────── */}

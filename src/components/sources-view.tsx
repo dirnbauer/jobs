@@ -293,25 +293,25 @@ export function SourcesView({ locale }: SourcesViewProps) {
             <strong>{de ? "Beschäftigung:" : "Employment:"}</strong>{" "}
             {de
               ? "ISCO-08-Beschäftigungszahlen (2-Steller) direkt aus Eurostat lfsa_egai2d. NACE-Sektorbeschäftigung (nama_10_a64_e) dient als proportionale Gewichtung zur Aufteilung auf die ÖNACE-beschrifteten Berufszeilen."
-              : "ISCO-08-Beschäftigungszahlen (2-Steller) direkt aus Eurostat lfsa_egai2d. NACE-Sektorbeschäftigung (nama_10_a64_e) dient als proportionale Gewichtung zur Aufteilung auf die ÖNACE-beschrifteten Berufszeilen."}
+              : "ISCO-08 employment figures (2-digit) directly from Eurostat lfsa_egai2d. NACE sector employment (nama_10_a64_e) serves as proportional weighting to distribute across ÖNACE-labelled occupation rows."}
           </li>
           <li>
             <strong>{de ? "ISCO / Berufslogik:" : "ISCO / occupation logic:"}</strong>{" "}
             {de
               ? "Primärebene: ISCO-08-Berufsgruppen (2-Steller) und daraus abgeleitete ISCO-Hauptgruppen (Familien). ÖNACE 2025 bleibt die ergänzende Sektorebene für wirtschaftlichen Kontext."
-              : "Primärebene: ISCO-08-Berufsgruppen (2-Steller) und daraus abgeleitete ISCO-Hauptgruppen (Familien). ÖNACE 2025 bleibt die ergänzende Sektorebene für wirtschaftlichen Kontext."}
+              : "Primary layer: ISCO-08 occupation groups (2-digit) and derived ISCO major groups (families). ÖNACE 2025 remains the supplementary sector layer for economic context."}
           </li>
           <li>
             <strong>{de ? "ÖNACE / Sektorlabels:" : "ÖNACE / sector labels:"}</strong>{" "}
             {de
               ? "Sektordarstellung: ÖNACE 2025 (gültig seit 1.1.2025) für die Abschnittsbezeichnungen A–S. Die Verdienststrukturerhebung 2022 wurde unter ÖNACE 2008 (NACE Rev. 2) erhoben; auf Abschnittsebene ist die Struktur mit ÖNACE 2025 identisch, Unterschiede betreffen feinere Unterklassen."
-              : "Sektordarstellung: ÖNACE 2025 (gültig seit 1.1.2025) für die Abschnittsbezeichnungen A–S. Die Verdienststrukturerhebung 2022 wurde unter ÖNACE 2008 (NACE Rev. 2) erhoben; auf Abschnittsebene ist die Struktur mit ÖNACE 2025 identisch, Unterschiede betreffen feinere Unterklassen."}
+              : "Sector display: ÖNACE 2025 (effective since 1 Jan 2025) for section labels A–S. The Structure of Earnings Survey 2022 was collected under ÖNACE 2008 (NACE Rev. 2); at section level the structure is identical to ÖNACE 2025, differences concern finer subclasses."}
           </li>
           <li>
             <strong>{de ? "Gehälter:" : "Salaries:"}</strong>{" "}
             {de
               ? "Bruttostundenverdienst (Median) aus der Verdienststrukturerhebung 2022 × 2.080 Stunden/Jahr × 1,17 (13. und 14. Monatsgehalt) = geschätztes Bruttojahresentgelt."
-              : "Bruttostundenverdienst (Median) aus der Verdienststrukturerhebung 2022 × 2.080 Stunden/Jahr × 1,17 (13. und 14. Monatsgehalt) = geschätztes Bruttojahresentgelt."}
+              : "Gross hourly earnings (median) from the Structure of Earnings Survey 2022 × 2,080 hours/year × 1.17 (13th and 14th month salary) = estimated gross annual earnings."}
           </li>
           <li>
             <strong>{de ? "KI-Exposition:" : "AI Exposure:"}</strong>{" "}
@@ -392,7 +392,7 @@ export function SourcesView({ locale }: SourcesViewProps) {
             </p>
           </li>
           <li>
-            • Eurostat Labour Market:{" "}
+            • {de ? "Eurostat-Arbeitsmarkt" : "Eurostat Labour Market"}:{" "}
             <a
               href="https://eures.europa.eu/living-and-working/labour-market-information/labour-market-information-austria_en"
               target="_blank"
@@ -404,16 +404,16 @@ export function SourcesView({ locale }: SourcesViewProps) {
             </a>
           </li>
           <li>
-            • IMF World Economic Outlook 2025 (GDP per capita, PPP comparisons)
+            • IMF World Economic Outlook 2025 ({de ? "BIP pro Kopf, KKP-Vergleiche" : "GDP per capita, PPP comparisons"})
           </li>
           <li>
-            • OECD Employment Outlook (working hours, labor force participation)
+            • OECD Employment Outlook ({de ? "Arbeitszeiten, Erwerbsbeteiligung" : "working hours, labour force participation"})
           </li>
           <li>
-            • Statistik Austria Allgemeiner Einkommensbericht 2024 (salary data)
+            • Statistik Austria {de ? "Allgemeiner Einkommensbericht" : "General Income Report"} 2024 ({de ? "Gehaltsdaten" : "salary data"})
           </li>
           <li>
-            • WIFO (Wirtschaftsforschungsinstitut) labor market projections 2025-2030
+            • WIFO ({de ? "Wirtschaftsforschungsinstitut" : "Austrian Institute of Economic Research"}) {de ? "Arbeitsmarktprognosen" : "labour market projections"} 2025–2030
           </li>
         </ul>
       </Card>

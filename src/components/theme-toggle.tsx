@@ -4,11 +4,14 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, Monitor } from "lucide-react";
 import { useSyncExternalStore } from "react";
+import { useLocale } from "@/lib/locale-context";
 
 const noopSubscribe = () => () => {};
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const { locale } = useLocale();
+  const de = locale === "de";
   const mounted = useSyncExternalStore(
     noopSubscribe,
     () => true,
@@ -23,7 +26,7 @@ export function ThemeToggle() {
         size="sm"
         className="h-7 w-7 p-0"
         onClick={() => setTheme("light")}
-        aria-label="Light mode"
+        aria-label={de ? "Helles Design" : "Light mode"}
       >
         <Sun className="h-3.5 w-3.5" />
       </Button>
@@ -32,7 +35,7 @@ export function ThemeToggle() {
         size="sm"
         className="h-7 w-7 p-0"
         onClick={() => setTheme("dark")}
-        aria-label="Dark mode"
+        aria-label={de ? "Dunkles Design" : "Dark mode"}
       >
         <Moon className="h-3.5 w-3.5" />
       </Button>
@@ -41,7 +44,7 @@ export function ThemeToggle() {
         size="sm"
         className="h-7 w-7 p-0"
         onClick={() => setTheme("system")}
-        aria-label="System mode"
+        aria-label={de ? "Systemeinstellung" : "System mode"}
       >
         <Monitor className="h-3.5 w-3.5" />
       </Button>

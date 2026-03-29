@@ -17,7 +17,7 @@ import { SegmentGrid } from "@/components/segment-grid";
 type MainTab = "treemap" | "explorer" | "families" | "sectors";
 
 export default function HomePageClient() {
-  const [colorMode, setColorMode] = useState<ColorMode>("outlook");
+  const [colorMode, setColorMode] = useState<ColorMode>("exposure");
   const { locale } = useLocale();
   const searchParams = useSearchParams();
   const de = locale === "de";
@@ -44,164 +44,82 @@ export default function HomePageClient() {
 
   return (
     <div className="space-y-6">
-      {/* Hero section */}
-      <div className="space-y-3">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-          {de
-            ? "KI-Exposition am österreichischen Arbeitsmarkt"
-            : "AI exposure across Austria’s labour market"}
-        </h1>
-        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
-          {de ? (
-            <>
-              <strong className="text-foreground/90">
-                Welche Berufe werden durch generative KI-Modelle am stärksten verändert?
-              </strong>{" "}
-              75 Berufsgruppen (ISCO-08) bilden die Primärebene; ÖNACE-Wirtschaftsabschnitte liefern den
-              sektoralen Kontext. Alle Beschäftigungs- und Entgeltdaten stammen aus amtlichen, öffentlich
-              zugänglichen Quellen (Eurostat, Statistik Austria Open Government Data) und sind vollständig
-              reproduzierbar.
-            </>
-          ) : (
-            <>
-              <strong className="text-foreground/90">
-                Which occupations are most affected by generative AI models?
-              </strong>{" "}
-              75 occupation groups (ISCO-08) form the primary layer; ÖNACE economic sections provide
-              sectoral context. All employment and earnings data originate from official, publicly
-              accessible sources (Eurostat, Statistik Austria Open Government Data) and are fully
-              reproducible.
-            </>
-          )}
-        </p>
-        <p className="text-xs sm:text-sm text-muted-foreground/90 leading-relaxed max-w-3xl border-l-2 border-(--webcon-primary,#1b7a95)/40 pl-3">
-          {de ? (
-            <>
-              <strong className="text-foreground/85">Hinweis:</strong> Konzept und Bewertungsrahmen basieren auf{" "}
-              <a
-                href="https://karpathy.ai/jobs/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline-offset-2 hover:underline font-medium"
-                style={{ color: "var(--webcon-primary, #1b7a95)" }}
-              >
-                Karpathys US Job Market Visualizer
-              </a>
-              ; Datenquellen, Informationsarchitektur und Methodik wurden für den
-              österreichischen Arbeitsmarkt vollständig neu aufgebaut — alle Daten sind aus amtlichen Quellen
-              nachprüfbar und reproduzierbar (webconsulting.at).
-            </>
-          ) : (
-            <>
-              <strong className="text-foreground/85">Credit:</strong> Concept and scoring rubric based on{" "}
-              <a
-                href="https://karpathy.ai/jobs/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline-offset-2 hover:underline font-medium"
-                style={{ color: "var(--webcon-primary, #1b7a95)" }}
-              >
-                Andrej Karpathy&apos;s US Job Market Visualizer
-              </a>
-              ; data sources, information architecture, and methodology were rebuilt
-              entirely for the Austrian labour market — all data is verifiable from official sources
-              and fully reproducible (webconsulting.at).
-            </>
-          )}
-        </p>
-      </div>
-
-      {/* Main tabs removed — navigation lives in the navbar */}
-
-      {mainTab === "explorer" && <JobsExplorer locale={locale} />}
-
-      {mainTab === "families" && (
-        <div className="space-y-4">
-          <p className="text-sm text-muted-foreground max-w-2xl">
-            {de
-              ? "Primäre Navigationsebene: offizielle ISCO-08-Hauptgruppen (1-stellig). Jede Karte zeigt Beschäftigte, KI-Expositionsgrad und Medianentgelt innerhalb derselben Berufsfamilie."
-              : "Primary navigation layer: official ISCO-08 major groups (1-digit). Each card shows employed persons, AI exposure score, and median earnings within the same occupation family."}
-          </p>
-          <FamilyGrid locale={locale} />
-        </div>
-      )}
-
-      {mainTab === "sectors" && (
-        <div className="space-y-4">
-          <p className="text-sm text-muted-foreground max-w-2xl">
-            {de
-              ? "Sekundäre Perspektive: ÖNACE-2025-Wirtschaftsabschnitte als sektoraler Kontext. Jede Karte aggregiert die zugeordneten Berufsgruppen."
-              : "Secondary perspective: ÖNACE 2025 economic sections as sectoral context. Each card aggregates the assigned occupation groups."}
-          </p>
-          <SegmentGrid locale={locale} />
-        </div>
-      )}
-
-{/* "Context & method" content is now rendered as a collapsible inside the treemap view */}
-
+      {/* ── Treemap view ── */}
       {mainTab === "treemap" && (
         <>
-          <Card className="p-3 border-green-300 dark:border-green-700 bg-green-50/50 dark:bg-green-950/20">
-            <div className="flex items-start gap-2">
-              <span className="text-green-600 dark:text-green-400 text-sm shrink-0 mt-0.5">✓</span>
-              <div className="text-xs text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">
-                  {de ? "Nachprüfbare, reproduzierbare Datengrundlage" : "Verifiable, reproducible data pipeline"}
-                </strong>{" "}
-                {de
-                  ? "Jeder Datenpunkt ist auf eine amtliche Quelle rückführbar. Beschäftigung: Eurostat lfsa_egai2d (Mikrozensus-Arbeitskräfteerhebung 2024) nach ISCO-08. Entgelte: Verdienststrukturerhebung 2022 (Statistik Austria OGD) nach ISCO-08. Alle Rohdaten sind als Open Government Data frei herunterladbar; die Generierungspipeline (scripts/generate-occupations.ts) ist quelloffen und jederzeit reproduzierbar. 30+ automatisierte Integritätsprüfungen verifizieren den Datensatz bei jeder Regeneration. Quellenlinks und Downloadpfade unter Quellen."
-                  : "Every data point is traceable to an official source. Employment: Eurostat lfsa_egai2d (Mikrozensus-Arbeitskräfteerhebung 2024) by ISCO-08. Earnings: Structure of Earnings Survey 2022 (Statistik Austria OGD) by ISCO-08. All raw data is freely downloadable as Open Government Data; the generation pipeline (scripts/generate-occupations.ts) is open-source and fully reproducible. 30+ automated integrity checks verify the dataset on every regeneration. Source links and download paths under Sources."}
+          <div className="space-y-3">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              {de
+                ? "KI-Exposition am österreichischen Arbeitsmarkt"
+                : "AI Exposure Across Austria\u2019s Labour Market"}
+            </h1>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
+              {de ? (
+                <>
+                  KI wird Berufe verändern — das bedeutet nicht, dass alle arbeitslos werden.
+                  Es bedeutet, dass sich <strong className="text-foreground/90">Aufgaben, Werkzeuge und Anforderungen verschieben</strong>.
+                  Diese Karte zeigt, welche der 75 österreichischen Berufsgruppen am stärksten betroffen sind.
+                </>
+              ) : (
+                <>
+                  AI will transform occupations — that does not mean everyone loses their job.
+                  It means <strong className="text-foreground/90">tasks, tools, and requirements shift</strong>.
+                  This map shows which of Austria&apos;s 75 occupation groups are most affected.
+                </>
+              )}
+            </p>
+            <blockquote className="text-xs sm:text-sm text-muted-foreground/80 italic border-l-2 border-(--webcon-primary,#1b7a95)/40 pl-3 max-w-2xl">
+              {de
+                ? "\u201EWir werden die Welt mit KI neu aufbauen.\u201C"
+                : "\u201CWe\u2019re going to rebuild the world with AI.\u201D"}
+              <span className="not-italic text-muted-foreground/60">
+                {" \u2014 Guillermo Rauch, CEO Vercel"}
+              </span>
+            </blockquote>
+            <details className="text-xs text-muted-foreground">
+              <summary className="cursor-pointer hover:text-foreground select-none">
+                {de ? "Datenquellen & Methodik" : "Data sources & methodology"}
+              </summary>
+              <div className="mt-2 space-y-2 pl-3 border-l border-border/50">
+                <p>
+                  {de
+                    ? "Beschäftigung: Eurostat lfsa_egai2d (2024). Entgelte: Verdienststrukturerhebung 2022 (Statistik Austria OGD). Klassifikation: ISCO-08 Berufsgruppen, ÖNACE-Wirtschaftsabschnitte. 30+ automatisierte Integritätsprüfungen. Alle Rohdaten als Open Government Data frei herunterladbar."
+                    : "Employment: Eurostat lfsa_egai2d (2024). Earnings: Structure of Earnings Survey 2022 (Statistik Austria OGD). Classification: ISCO-08 occupation groups, ÖNACE economic sections. 30+ automated integrity tests. All raw data freely downloadable as Open Government Data."}
+                </p>
+                <p>
+                  {de ? (
+                    <>
+                      Konzept basiert auf{" "}
+                      <a href="https://karpathy.ai/jobs/" target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline" style={{ color: "var(--webcon-primary, #1b7a95)" }}>
+                        Karpathys US Job Market Visualizer
+                      </a>
+                      ; Daten und Methodik für Österreich vollständig neu aufgebaut.
+                    </>
+                  ) : (
+                    <>
+                      Concept based on{" "}
+                      <a href="https://karpathy.ai/jobs/" target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline" style={{ color: "var(--webcon-primary, #1b7a95)" }}>
+                        Karpathy&apos;s US Job Market Visualizer
+                      </a>
+                      ; data and methodology rebuilt entirely for Austria.
+                    </>
+                  )}
+                </p>
               </div>
-            </div>
-          </Card>
-
-          <details>
-            <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground select-none">
-              {de ? "Unterschiede zur US-Originalversion" : "Differences from the US original"}
-            </summary>
-            <ul className="mt-2 space-y-1 text-xs text-muted-foreground pl-4">
-              {(de
-                ? [
-                    "Datenquellen: Eurostat lfsa_egai2d, nama_10_a64_e, Statistik Austria Verdienststrukturerhebung 2022 statt US Bureau of Labor Statistics",
-                    "Informationsarchitektur: berufsbasiert nach ISCO-08 statt sektorbasiert nach SOC",
-                    "Routenstruktur: /occupation, /family, /sector mit Weiterleitungen für Altpfade",
-                    "Entgeltangaben: EUR Bruttojahresentgelt einschließlich 13. und 14. Monatsgehalt",
-                    "ISCO-Hauptgruppen und ÖNACE-Wirtschaftsabschnitte parallel dargestellt",
-                    "Visualisierungen und Navigationsstruktur nach Berufsgruppen statt ausschließlich nach Wirtschaftsabschnitten",
-                    "Zweisprachige Benutzeroberfläche (Deutsch/Englisch)",
-                    "Technologie: Next.js, TypeScript, shadcn/ui, webconsulting Design System",
-                  ]
-                : [
-                    "Data sources: Eurostat lfsa_egai2d, nama_10_a64_e, Statistik Austria Structure of Earnings Survey 2022 instead of US Bureau of Labor Statistics",
-                    "Information architecture: occupation-based by ISCO-08 instead of sector-based by SOC",
-                    "Route structure: /occupation, /family, /sector with redirects for legacy paths",
-                    "Earnings: EUR gross annual including 13th and 14th month salary",
-                    "ISCO major groups and ÖNACE economic sections displayed in parallel",
-                    "Visualisations and navigation structured by occupation group instead of solely by economic section",
-                    "Bilingual user interface (German/English)",
-                    "Technology: Next.js, TypeScript, shadcn/ui, webconsulting design system",
-                  ]
-              ).map((change, i) => (
-                <li key={i} className="list-disc">
-                  {change}
-                </li>
-              ))}
-            </ul>
-          </details>
+            </details>
+          </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-xs text-muted-foreground whitespace-nowrap">
               {de ? "Einfärben nach" : "Color by"}
             </span>
             <div className="inline-flex rounded-lg border border-border/70 bg-muted/30 p-0.5">
-              {(
-                [
-                  { mode: "outlook" as const, label: de ? "Ausblick" : "Outlook" },
-                  { mode: "pay" as const, label: de ? "Medianentgelt" : "Median earnings" },
-                  { mode: "education" as const, label: de ? "Ausbildung" : "Education" },
-                  { mode: "exposure" as const, label: de ? "KI-Exposition" : "AI Exposure" },
-                ] as const
-              ).map(({ mode, label }) => (
+              {([
+                { mode: "exposure" as const, label: de ? "KI-Exposition" : "AI Exposure" },
+                { mode: "outlook" as const, label: de ? "Ausblick" : "Outlook" },
+                { mode: "pay" as const, label: de ? "Medianentgelt" : "Median earnings" },
+                { mode: "education" as const, label: de ? "Ausbildung" : "Education" },
+              ] as const).map(({ mode, label }) => (
                 <button
                   key={mode}
                   type="button"
@@ -228,8 +146,8 @@ export default function HomePageClient() {
               {de ? "Diagramm lesen" : "Reading the chart"}
             </strong>{" "}
             {de
-              ? "Jede Kachel repräsentiert eine ISCO-08-Berufsgruppe. Größere Fläche = höhere Erwerbstätigenzahl. Die Farbgebung folgt dem aktivierten Layer: Ausblick (grün = wachsend, rot = rückläufig), Medianentgelt, Ausbildungsniveau oder KI-Expositionsgrad. Gruppierung nach ISCO-Hauptgruppe (Familie); der ÖNACE-Wirtschaftsabschnitt bleibt im Tooltip sichtbar. Alle dargestellten Beschäftigungs- und Entgeltwerte sind aus amtlichen Quellen reproduzierbar."
-              : "Each tile represents one ISCO-08 occupation group. Larger area = higher number of employed persons. Colour follows the active layer: outlook (green = growing, red = declining), median earnings, education level, or AI exposure score. Tiles are grouped by ISCO major group (family); the ÖNACE economic section remains visible in the tooltip. All displayed employment and earnings figures are reproducible from official sources."}
+              ? "Jede Kachel = eine Berufsgruppe. Größere Fläche = mehr Beschäftigte. Farbe folgt dem gewählten Layer. Gruppierung nach ISCO-Hauptgruppe; ÖNACE-Abschnitt im Tooltip."
+              : "Each tile = one occupation group. Larger area = more employees. Colour follows the selected layer. Grouped by ISCO major group; ÖNACE section visible in tooltip."}
           </Card>
 
           <StatsPanel data={austrianOccupations} colorMode={colorMode} locale={locale} />
@@ -268,6 +186,57 @@ export default function HomePageClient() {
               </div>
             </Card>
           </details>
+        </>
+      )}
+
+      {/* ── Explorer view ── */}
+      {mainTab === "explorer" && (
+        <>
+          <div className="space-y-1">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              {de ? "ISCO-08-Berufsgruppen" : "ISCO-08 Occupation Groups"}
+            </h1>
+            <p className="text-sm text-muted-foreground max-w-2xl">
+              {de
+                ? "75 Berufsgruppen nach KI-Exposition, Beschäftigung und Entgelt durchsuchen und filtern."
+                : "Search and filter 75 occupation groups by AI exposure, employment, and earnings."}
+            </p>
+          </div>
+          <JobsExplorer locale={locale} />
+        </>
+      )}
+
+      {/* ── ISCO families view ── */}
+      {mainTab === "families" && (
+        <>
+          <div className="space-y-1">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              {de ? "ISCO-08-Hauptgruppen" : "ISCO-08 Major Groups"}
+            </h1>
+            <p className="text-sm text-muted-foreground max-w-2xl">
+              {de
+                ? "Berufsgruppen aggregiert nach den 10 ISCO-08-Hauptgruppen (1-stellig) — Beschäftigte, KI-Exposition und Medianentgelt je Familie."
+                : "Occupation groups aggregated by the 10 ISCO-08 major groups (1-digit) — employment, AI exposure, and median earnings per family."}
+            </p>
+          </div>
+          <FamilyGrid locale={locale} />
+        </>
+      )}
+
+      {/* ── ÖNACE sectors view ── */}
+      {mainTab === "sectors" && (
+        <>
+          <div className="space-y-1">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              {de ? "ÖNACE-Wirtschaftsabschnitte" : "ÖNACE Economic Sections"}
+            </h1>
+            <p className="text-sm text-muted-foreground max-w-2xl">
+              {de
+                ? "Sektorale Perspektive: Berufsgruppen nach ÖNACE-Wirtschaftsabschnitten (A\u2013S) gruppiert."
+                : "Sectoral perspective: occupation groups grouped by ÖNACE economic sections (A\u2013S)."}
+            </p>
+          </div>
+          <SegmentGrid locale={locale} />
         </>
       )}
     </div>

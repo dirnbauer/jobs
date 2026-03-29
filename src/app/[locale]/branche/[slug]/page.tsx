@@ -30,7 +30,7 @@ export async function generateMetadata({
       ? `${rows.length} Berufsgruppen · ${stats.totalJobs.toLocaleString("de-AT")} Jobs · Ø KI-Exposition ${stats.avgExposure.toFixed(1)}/10`
       : `${rows.length} occupation groups · ${stats.totalJobs.toLocaleString("en-US")} jobs · avg AI exposure ${stats.avgExposure.toFixed(1)}/10`;
   return {
-    title: `${title} — KI-Exposition Österreich`,
+    title: `${title} — ${locale === "de" ? "KI-Exposition Österreich" : "AI Exposure Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };
@@ -177,7 +177,7 @@ export default async function BranchePage({
               </Link>
               <span className="text-muted-foreground">
                 {" "}
-                · {(o.jobs ?? 0).toLocaleString(de ? "de-AT" : "en-US")} · KI {o.exposure ?? "—"}/10
+                · {(o.jobs ?? 0).toLocaleString(de ? "de-AT" : "en-US")} · {de ? "KI" : "AI"} {o.exposure ?? "—"}/10
               </span>
             </li>
           ))}

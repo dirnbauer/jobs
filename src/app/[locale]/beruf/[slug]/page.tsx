@@ -28,7 +28,7 @@ export async function generateMetadata({
       : `${family} · AI exposure ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("en-US")} employees in Austria (estimate).`;
 
   return {
-    title: `${title} — KI-Exposition Österreich`,
+    title: `${title} — ${locale === "de" ? "KI-Exposition Österreich" : "AI Exposure Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };

@@ -30,22 +30,22 @@ const NAV_ITEMS = [
   {
     href: "/?view=explorer",
     icon: Search,
-    labelEn: "Explorer",
-    labelDe: "Explorer",
+    labelEn: "ISCO-08 Occupation Groups",
+    labelDe: "ISCO-08-Berufsgruppen",
     homeView: "explorer",
   },
   {
     href: "/?view=families",
     icon: Users,
-    labelEn: "Families",
-    labelDe: "Familien",
+    labelEn: "ISCO-08 Major Groups",
+    labelDe: "ISCO-08-Hauptgruppen",
     homeView: "families",
   },
   {
     href: "/?view=sectors",
     icon: Factory,
-    labelEn: "Sectors",
-    labelDe: "Sektoren",
+    labelEn: "ÖNACE Sections",
+    labelDe: "ÖNACE-Wirtschaftsabschnitte",
     homeView: "sectors",
   },
   {

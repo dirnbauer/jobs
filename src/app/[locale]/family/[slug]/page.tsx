@@ -37,7 +37,7 @@ export async function generateMetadata({
       : `${summary?.rows.length ?? 0} occupation groups · ${(summary?.stats.totalJobs ?? 0).toLocaleString("en-US")} jobs · avg AI exposure ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`;
 
   return {
-    title: `${title} — KI-Exposition Österreich`,
+    title: `${title} — ${locale === "de" ? "KI-Exposition Österreich" : "AI Exposure Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };
@@ -103,7 +103,7 @@ export default async function FamilyPage({
           </div>
         </Card>
         <Card className="p-3 border-border/70">
-          <div className="text-[10px] uppercase text-muted-foreground font-semibold">Ø KI</div>
+          <div className="text-[10px] uppercase text-muted-foreground font-semibold">{de ? "Ø KI" : "Avg AI"}</div>
           <div className="text-xl font-bold tabular-nums">{summary.stats.avgExposure.toFixed(1)}</div>
         </Card>
         <Card className="p-3 border-border/70">
@@ -140,7 +140,7 @@ export default async function FamilyPage({
               </Link>
               <span className="text-muted-foreground">
                 {" "}
-                · {(o.jobs ?? 0).toLocaleString(de ? "de-AT" : "en-US")} · KI {o.exposure ?? "—"}/10
+                · {(o.jobs ?? 0).toLocaleString(de ? "de-AT" : "en-US")} · {de ? "KI" : "AI"} {o.exposure ?? "—"}/10
               </span>
             </li>
           ))}
