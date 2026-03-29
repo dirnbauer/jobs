@@ -197,94 +197,165 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
           <h3 className="text-base font-semibold mb-2 text-foreground/90">
             {de ? "Arbeitsplatz-Anteile (Top 8 Gruppen)" : "Job share (top 8 groups)"}
           </h3>
-          <ChartContainer
-            config={pieChartConfig}
-            className="aspect-auto h-[420px] w-full overflow-visible rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30 mx-auto"
-          >
-            <PieChart margin={{ top: 24, right: 140, bottom: 24, left: 140 }}>
-              <ChartTooltip
-                content={
-                  <ChartTooltipContent
-                    nameKey="name"
-                    formatter={(value) => (
-                      <span className="font-mono tabular-nums">
-                        {typeof value === "number"
-                          ? value.toLocaleString(numberLocale)
-                          : String(value)}
-                      </span>
-                    )}
+
+          {/* ── Desktop: donut with leader-line labels ── */}
+          <div className="hidden sm:block">
+            <ChartContainer
+              config={pieChartConfig}
+              className="aspect-auto h-[420px] w-full overflow-visible rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30 mx-auto"
+            >
+              <PieChart margin={{ top: 24, right: 140, bottom: 24, left: 140 }}>
+                <ChartTooltip
+                  content={
+                    <ChartTooltipContent
+                      nameKey="name"
+                      formatter={(value) => (
+                        <span className="font-mono tabular-nums">
+                          {typeof value === "number"
+                            ? value.toLocaleString(numberLocale)
+                            : String(value)}
+                        </span>
+                      )}
+                    />
+                  }
+                />
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius="38%"
+                  outerRadius="58%"
+                  paddingAngle={3}
+                  stroke="rgba(255,255,255,0.9)"
+                  strokeWidth={2}
+                  isAnimationActive
+                  animationDuration={1000}
+                  animationEasing="ease-out"
+                  animationBegin={150}
+                  label={(props: /* eslint-disable-next-line @typescript-eslint/no-explicit-any */ any) => {
+                    const { cx: cxVal, cy: cyVal, midAngle, outerRadius: oR, name, value, pct, fill } = props;
+                    if (cxVal == null || cyVal == null || midAngle == null || oR == null) return null;
+                    const RADIAN = Math.PI / 180;
+                    const cx0 = Number(cxVal);
+                    const cy0 = Number(cyVal);
+                    const or0 = Number(oR);
+                    const sx = cx0 + or0 * Math.cos(-midAngle * RADIAN);
+                    const sy = cy0 + or0 * Math.sin(-midAngle * RADIAN);
+                    const mx = cx0 + (or0 + 18) * Math.cos(-midAngle * RADIAN);
+                    const my = cy0 + (or0 + 18) * Math.sin(-midAngle * RADIAN);
+                    const isRight = midAngle <= 90 || midAngle > 270;
+                    const ex = mx + (isRight ? 16 : -16);
+                    const anchor = isRight ? "start" : "end";
+                    const formatted = typeof value === "number" ? value.toLocaleString(numberLocale) : String(value);
+                    return (
+                      <g>
+                        <path
+                          d={`M${sx},${sy}L${mx},${my}L${ex},${my}`}
+                          stroke={fill}
+                          strokeWidth={1.5}
+                          fill="none"
+                        />
+                        <circle cx={sx} cy={sy} r={2.5} fill={fill} />
+                        <text
+                          x={ex + (isRight ? 4 : -4)}
+                          y={my - 7}
+                          textAnchor={anchor}
+                          className="fill-foreground text-[11px] font-semibold"
+                        >
+                          {name}
+                        </text>
+                        <text
+                          x={ex + (isRight ? 4 : -4)}
+                          y={my + 7}
+                          textAnchor={anchor}
+                          className="fill-muted-foreground text-[10px] font-medium"
+                        >
+                          {formatted} ({pct})
+                        </text>
+                      </g>
+                    );
+                  }}
+                  labelLine={false}
+                >
+                  {pieData.map((entry) => (
+                    <Cell key={`cell-${entry.name}`} fill={entry.fill} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ChartContainer>
+          </div>
+
+          {/* ── Mobile: donut + list below ── */}
+          <div className="sm:hidden space-y-3">
+            <ChartContainer
+              config={pieChartConfig}
+              className="aspect-square max-w-[240px] mx-auto overflow-hidden rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30"
+            >
+              <PieChart margin={{ top: 12, right: 12, bottom: 12, left: 12 }}>
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius="38%"
+                  outerRadius="68%"
+                  paddingAngle={3}
+                  stroke="rgba(255,255,255,0.9)"
+                  strokeWidth={2}
+                  isAnimationActive
+                  animationDuration={1000}
+                  animationEasing="ease-out"
+                  animationBegin={150}
+                  label={(props: /* eslint-disable-next-line @typescript-eslint/no-explicit-any */ any) => {
+                    const { cx: cxVal, cy: cyVal, midAngle, innerRadius: iR, outerRadius: oR, percent } = props;
+                    if (cxVal == null || cyVal == null || midAngle == null || iR == null || oR == null) return null;
+                    const RADIAN = Math.PI / 180;
+                    const r = Number(iR) + (Number(oR) - Number(iR)) * 0.5;
+                    const x = Number(cxVal) + r * Math.cos(-midAngle * RADIAN);
+                    const y = Number(cyVal) + r * Math.sin(-midAngle * RADIAN);
+                    const share = Number(percent ?? 0) * 100;
+                    if (share < 6) return null;
+                    return (
+                      <text
+                        x={x}
+                        y={y}
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        className="fill-white text-[11px] font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
+                      >
+                        {share.toFixed(0)}%
+                      </text>
+                    );
+                  }}
+                  labelLine={false}
+                >
+                  {pieData.map((entry) => (
+                    <Cell key={`cell-${entry.name}`} fill={entry.fill} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </ChartContainer>
+            <ul className="space-y-1.5 text-sm">
+              {pieData.map((d) => (
+                <li key={d.name} className="flex items-start gap-2">
+                  <span
+                    className="mt-1.5 size-2.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: d.fill }}
                   />
-                }
-              />
-              <Pie
-                data={pieData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                innerRadius="38%"
-                outerRadius="58%"
-                paddingAngle={3}
-                stroke="rgba(255,255,255,0.9)"
-                strokeWidth={2}
-                isAnimationActive
-                animationDuration={1000}
-                animationEasing="ease-out"
-                animationBegin={150}
-                label={(props: /* eslint-disable-next-line @typescript-eslint/no-explicit-any */ any) => {
-                  const { cx: cxVal, cy: cyVal, midAngle, outerRadius: oR, name, value, pct, fill } = props;
-                  if (cxVal == null || cyVal == null || midAngle == null || oR == null) return null;
-                  const RADIAN = Math.PI / 180;
-                  const cx0 = Number(cxVal);
-                  const cy0 = Number(cyVal);
-                  const or0 = Number(oR);
-                  // point on outer edge of donut
-                  const sx = cx0 + or0 * Math.cos(-midAngle * RADIAN);
-                  const sy = cy0 + or0 * Math.sin(-midAngle * RADIAN);
-                  // elbow point
-                  const mx = cx0 + (or0 + 18) * Math.cos(-midAngle * RADIAN);
-                  const my = cy0 + (or0 + 18) * Math.sin(-midAngle * RADIAN);
-                  // endpoint extending horizontally
-                  const isRight = midAngle <= 90 || midAngle > 270;
-                  const ex = mx + (isRight ? 16 : -16);
-                  const anchor = isRight ? "start" : "end";
-                  const formatted = typeof value === "number" ? value.toLocaleString(numberLocale) : String(value);
-                  return (
-                    <g>
-                      <path
-                        d={`M${sx},${sy}L${mx},${my}L${ex},${my}`}
-                        stroke={fill}
-                        strokeWidth={1.5}
-                        fill="none"
-                      />
-                      <circle cx={sx} cy={sy} r={2.5} fill={fill} />
-                      <text
-                        x={ex + (isRight ? 4 : -4)}
-                        y={my - 7}
-                        textAnchor={anchor}
-                        className="fill-foreground text-[11px] font-semibold"
-                      >
-                        {name}
-                      </text>
-                      <text
-                        x={ex + (isRight ? 4 : -4)}
-                        y={my + 7}
-                        textAnchor={anchor}
-                        className="fill-muted-foreground text-[10px] font-medium"
-                      >
-                        {formatted} ({pct})
-                      </text>
-                    </g>
-                  );
-                }}
-                labelLine={false}
-              >
-                {pieData.map((entry) => (
-                  <Cell key={`cell-${entry.name}`} fill={entry.fill} />
-                ))}
-              </Pie>
-            </PieChart>
-          </ChartContainer>
+                  <span className="min-w-0">
+                    <span className="font-medium text-foreground">{d.name}</span>
+                    <span className="text-muted-foreground">
+                      {" · "}
+                      {d.value.toLocaleString(numberLocale)} ({d.pct})
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       ) : (
         <p className="text-sm text-muted-foreground leading-relaxed">
