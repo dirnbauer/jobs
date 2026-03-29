@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { dataTests } from "@/lib/data";
 import type { Locale } from "@/lib/locale";
 import { Card } from "@/components/ui/card";
@@ -19,6 +19,15 @@ interface TestResult {
   expected: string;
 }
 
+interface TestLogEntry {
+  id: string;
+  passed?: boolean;
+  name: string;
+  actual?: string;
+  expected?: string;
+  summary?: boolean;
+}
+
 const TEST_GROUPS = [
   { id: "integrity", labelEn: "Integrity", labelDe: "Integrität", testIds: ["total-employment", "no-zero-jobs", "no-zero-pay", "education-valid", "unique-slugs", "has-source", "occupation-count"] },
   { id: "occupation-structure", labelEn: "ISCO structure", labelDe: "ISCO-Struktur", testIds: ["isco-fields-present", "isco-major-matches-code", "isco-family-labels-consistent", "isco-family-coverage"] },
@@ -27,7 +36,7 @@ const TEST_GROUPS = [
   { id: "sector", labelEn: "Sectors", labelDe: "Sektoren", testIds: ["manufacturing-total", "it-total", "services-share", "health-total", "construction-range", "nace-sections-all", "employment-hhi", "trade-sector-g"] },
 ] as const;
 
-const RUN_FEEDBACK_MS = 200;
+const STREAM_DELAY_MS = 24;
 
 const testsById = new Map(dataTests.map((t) => [t.id, t]));
 
@@ -38,17 +47,64 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
   );
   const [isRunning, setIsRunning] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [runLog, setRunLog] = useState<TestLogEntry[]>([]);
+  const logRef = useRef<HTMLDivElement | null>(null);
 
-  const runTests = () => {
+  useEffect(() => {
+    if (!logRef.current) return;
+    logRef.current.scrollTop = logRef.current.scrollHeight;
+  }, [runLog]);
+
+  const waitForPaint = (ms = STREAM_DELAY_MS) =>
+    new Promise((resolve) => window.setTimeout(resolve, ms));
+
+  const runTests = async () => {
     if (isRunning) return;
-    const t0 = performance.now();
+
     setIsRunning(true);
-    window.setTimeout(() => {
-      const res = dataTests.map((t) => ({ id: t.id, ...t.test() }));
-      setResults(res);
-      const elapsed = performance.now() - t0;
-      window.setTimeout(() => setIsRunning(false), Math.max(0, RUN_FEEDBACK_MS - elapsed));
-    }, 0);
+    setExpanded(true);
+    setRunLog([]);
+
+    const t0 = performance.now();
+    const nextResults = new Map(results.map((result) => [result.id, result]));
+    let passedCount = 0;
+
+    for (const [index, test] of dataTests.entries()) {
+      const result = test.test();
+      const nextResult = { id: test.id, ...result };
+      nextResults.set(test.id, nextResult);
+      passedCount += result.passed ? 1 : 0;
+
+      setResults(dataTests.map((candidate) => nextResults.get(candidate.id) ?? { id: candidate.id, passed: false, actual: "", expected: "" }));
+      setRunLog((prev) => [
+        ...prev,
+        {
+          id: `${test.id}-${index}`,
+          passed: result.passed,
+          name: `[${index + 1}/${dataTests.length}] ${de ? test.nameDe : test.name}`,
+          actual: result.actual,
+          expected: result.expected,
+        },
+      ]);
+
+      await waitForPaint();
+    }
+
+    const elapsed = performance.now() - t0;
+    setRunLog((prev) => [
+      ...prev,
+      {
+        id: `summary-${Date.now()}`,
+        name: de
+          ? `Durchlauf beendet in ${elapsed.toFixed(0)} ms`
+          : `Run finished in ${elapsed.toFixed(0)} ms`,
+        actual: de
+          ? `${passedCount}/${dataTests.length} Tests bestanden`
+          : `${passedCount}/${dataTests.length} tests passed`,
+        summary: true,
+      },
+    ]);
+    setIsRunning(false);
   };
 
   const passed = results.filter((r) => r.passed).length;
@@ -87,6 +143,64 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
             )}
             {isRunning ? (de ? "Läuft…" : "Running…") : (de ? "Erneut" : "Re-run")}
           </Button>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-3">
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/45">
+            {de ? "Live-Ausgabe" : "Live output"}
+          </div>
+          <div className="text-[11px] text-foreground/45">
+            {isRunning
+              ? (de ? `Prüfe ${dataTests.length} Regeln…` : `Checking ${dataTests.length} rules…`)
+              : (de ? "Startet mit „Erneut“" : "Starts on re-run")}
+          </div>
+        </div>
+
+        <div
+          ref={logRef}
+          aria-live="polite"
+          className="max-h-52 overflow-y-auto rounded-xl border border-border/70 bg-neutral-950 px-3 py-2 font-mono text-[11px] leading-5 text-neutral-100 shadow-inner"
+        >
+          {runLog.length === 0 ? (
+            <div className="text-neutral-400">
+              {de
+                ? "Noch keine Live-Ausgabe. Klicke auf „Erneut“, um jeden Testlauf einzeln zu sehen."
+                : "No live output yet. Click re-run to watch each test execute."}
+            </div>
+          ) : (
+            <div className="space-y-1.5">
+              {runLog.map((entry) => (
+                <div key={entry.id} className="space-y-0.5">
+                  <div className="flex items-start gap-2">
+                    <span
+                      className={
+                        entry.summary
+                          ? "text-sky-300"
+                          : entry.passed
+                            ? "text-emerald-300"
+                            : "text-rose-300"
+                      }
+                    >
+                      {entry.summary ? ">" : entry.passed ? "PASS" : "FAIL"}
+                    </span>
+                    <span className="text-neutral-100">{entry.name}</span>
+                  </div>
+                  {entry.actual ? (
+                    <div className="pl-11 text-neutral-400">
+                      {de ? "Ist:" : "Actual:"} {entry.actual}
+                    </div>
+                  ) : null}
+                  {entry.expected ? (
+                    <div className="pl-11 text-neutral-500">
+                      {de ? "Soll:" : "Expected:"} {entry.expected}
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
