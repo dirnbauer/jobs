@@ -58,13 +58,13 @@ export default function HomePageClient() {
                 <>
                   KI wird Berufe verändern — das bedeutet nicht, dass alle arbeitslos werden.
                   Es bedeutet, dass sich <strong className="text-foreground/90">Aufgaben, Werkzeuge und Anforderungen verschieben</strong>.
-                  Diese Karte bildet alle 75 österreichischen Berufsgruppen ab — je röter die Kachel, desto höher der geschätzte KI-Einfluss.
+                  Diese Karte bildet alle 75 österreichischen Berufsgruppen ab — die Farbe zeigt den geschätzten KI-Einfluss: von Grün (gering) bis Rot (hoch).
                 </>
               ) : (
                 <>
                   AI will transform occupations — that does not mean everyone loses their job.
                   It means <strong className="text-foreground/90">tasks, tools, and requirements shift</strong>.
-                  This map visualises all 75 Austrian occupation groups — the redder the tile, the higher the estimated AI impact.
+                  This map visualises all 75 Austrian occupation groups — colour indicates estimated AI impact, from green (low) to red (high).
                 </>
               )}
             </p>
