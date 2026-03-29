@@ -231,7 +231,8 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 animationDuration={1000}
                 animationEasing="ease-out"
                 animationBegin={150}
-                label={({ cx: cxVal, cy: cyVal, midAngle, outerRadius: oR, name, value, pct, fill }) => {
+                label={(props: /* eslint-disable-next-line @typescript-eslint/no-explicit-any */ any) => {
+                  const { cx: cxVal, cy: cyVal, midAngle, outerRadius: oR, name, value, pct, fill } = props;
                   if (cxVal == null || cyVal == null || midAngle == null || oR == null) return null;
                   const RADIAN = Math.PI / 180;
                   const cx0 = Number(cxVal);
