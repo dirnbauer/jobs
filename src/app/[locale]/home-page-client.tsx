@@ -58,7 +58,7 @@ export default function HomePageClient() {
                 <>
                   KI wird Berufe verändern — das bedeutet nicht, dass alle arbeitslos werden.
                   Es bedeutet, dass sich <strong className="text-foreground/90">Aufgaben, Werkzeuge und Anforderungen verschieben</strong>.
-                  Diese Karte bildet alle 75 österreichischen Berufsgruppen ab — die Farbe zeigt den geschätzten KI-Einfluss: von Grün (gering) bis Rot (hoch).
+                  Diese Karte bildet alle 75 österreichischen Berufsgruppen ab — die Farbe zeigt hier den geschätzten KI-Einfluss: von Grün (gering) bis Rot (hoch).
                 </>
               ) : (
                 <>
