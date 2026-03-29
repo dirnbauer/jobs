@@ -23,6 +23,23 @@ function AboutEn() {
         open-source and reproducible at any time.
       </div>
 
+      {/* ── Disclaimer ──────────────────────────────────────────────── */}
+      <Card className="p-4 space-y-2 border-amber-500/30 bg-amber-500/5">
+        <h2 className="text-sm font-bold">Independent, non-official adaptation</h2>
+        <ul className="text-sm leading-relaxed text-foreground/70 space-y-1 pl-4">
+          <li className="list-disc">
+            This project has <strong className="text-foreground">no affiliation</strong> with the Austrian government, any Austrian ministry, the AMS (Arbeitsmarktservice), WIFO, Statistik Austria, Eurostat, or any other official institution. It is an independent, private project by{" "}
+            <a href="https://webconsulting.at" target="_blank" rel="noopener noreferrer" className="underline">webconsulting.at</a>.
+          </li>
+          <li className="list-disc">
+            <strong className="text-foreground">No connection to the U.S. Bureau of Labor Statistics (BLS)</strong> — no BLS data is used. All data sources are European/Austrian.
+          </li>
+          <li className="list-disc">
+            Despite careful methodology and automated verification, <strong className="text-foreground">errors may occur</strong>. The AI impact scores are qualitative assessments, not empirical measurements. This tool is not a substitute for professional labour market advice.
+          </li>
+        </ul>
+      </Card>
+
       {/* ── Austrian Adaptation ──────────────────────────────────────── */}
       <Card className="p-5 space-y-3 border-(--webcon-primary,#1b7a95)/30 bg-(--webcon-primary,#1b7a95)/5">
         <h2 className="text-base font-bold">Austrian Adaptation: Data Sources and Architecture</h2>
@@ -441,6 +458,23 @@ function AboutDe() {
         zugänglichen Quellen und sind wissenschaftlich nachprüfbar — die gesamte Generierungspipeline ist
         quelloffen und jederzeit reproduzierbar.
       </div>
+
+      {/* ── Haftungsausschluss ──────────────────────────────────────── */}
+      <Card className="p-4 space-y-2 border-amber-500/30 bg-amber-500/5">
+        <h2 className="text-sm font-bold">Unabhängige, nicht-amtliche Adaption</h2>
+        <ul className="text-sm leading-relaxed text-foreground/70 space-y-1 pl-4">
+          <li className="list-disc">
+            Dieses Projekt steht in <strong className="text-foreground">keiner Verbindung</strong> zur österreichischen Bundesregierung, einem Ministerium, dem AMS (Arbeitsmarktservice), dem WIFO, der Statistik Austria, Eurostat oder einer anderen amtlichen Stelle. Es ist ein unabhängiges, privates Projekt von{" "}
+            <a href="https://webconsulting.at" target="_blank" rel="noopener noreferrer" className="underline">webconsulting.at</a>.
+          </li>
+          <li className="list-disc">
+            <strong className="text-foreground">Keine Verbindung zum U.S. Bureau of Labor Statistics (BLS)</strong> — es werden keine BLS-Daten verwendet. Alle Datenquellen sind europäisch/österreichisch.
+          </li>
+          <li className="list-disc">
+            Trotz sorgfältiger Methodik und automatisierter Verifikation <strong className="text-foreground">können Fehler auftreten</strong>. Die KI-Einflusswerte sind qualitative Einschätzungen, keine empirischen Messungen. Dieses Tool ersetzt keine professionelle Arbeitsmarktberatung.
+          </li>
+        </ul>
+      </Card>
 
       {/* ── Österreich-Anpassung ─────────────────────────────────────── */}
       <Card className="p-5 space-y-3 border-(--webcon-primary,#1b7a95)/30 bg-(--webcon-primary,#1b7a95)/5">
