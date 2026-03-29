@@ -1,7 +1,7 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { austrianOccupations } from "@/lib/data";
 import type { ColorMode } from "@/lib/colors";
 import { exposureColor, outlookColor, payColor, eduColor, LEGEND_CONFIG } from "@/lib/colors";
@@ -9,25 +9,22 @@ import { howItWorksCopy } from "@/lib/how-it-works-copy";
 import { useLocale } from "@/lib/locale-context";
 import { TreemapCanvas } from "@/components/treemap-canvas";
 import { StatsPanel } from "@/components/stats-panel";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FamilyGrid } from "@/components/family-grid";
 import { JobsExplorer } from "@/components/jobs-explorer";
 import { SegmentGrid } from "@/components/segment-grid";
 
-type MainTab = "treemap" | "explorer" | "families" | "sectors" | "how";
+type MainTab = "treemap" | "explorer" | "families" | "sectors";
 
 export default function HomePageClient() {
   const [colorMode, setColorMode] = useState<ColorMode>("outlook");
   const { locale } = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const de = locale === "de";
 
   const mainTab = useMemo<MainTab>(() => {
     const v = searchParams.get("view");
-    if (v === "explorer" || v === "families" || v === "sectors" || v === "how") return v;
+    if (v === "explorer" || v === "families" || v === "sectors") return v;
     if (
       searchParams.has("q") ||
       searchParams.has("sort") ||
@@ -38,17 +35,6 @@ export default function HomePageClient() {
     }
     return "treemap";
   }, [searchParams]);
-
-  const setMainTab = useCallback(
-    (next: MainTab) => {
-      const sp = new URLSearchParams(searchParams.toString());
-      if (next === "treemap") sp.delete("view");
-      else sp.set("view", next);
-      const qs = sp.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-    },
-    [router, pathname, searchParams]
-  );
 
   const hiw = de ? howItWorksCopy.de : howItWorksCopy.en;
 
@@ -71,7 +57,7 @@ export default function HomePageClient() {
               <strong className="text-foreground/90">
                 Welche Berufe werden durch generative KI-Modelle am stärksten verändert?
               </strong>{" "}
-              71 Berufsgruppen (ISCO-08) bilden die Primärebene; ÖNACE-Wirtschaftsabschnitte liefern den
+              75 Berufsgruppen (ISCO-08) bilden die Primärebene; ÖNACE-Wirtschaftsabschnitte liefern den
               sektoralen Kontext. Alle Beschäftigungs- und Entgeltdaten stammen aus amtlichen, öffentlich
               zugänglichen Quellen (Eurostat, Statistik Austria Open Government Data) und sind vollständig
               reproduzierbar.
@@ -81,7 +67,7 @@ export default function HomePageClient() {
               <strong className="text-foreground/90">
                 Which occupations are most affected by generative AI models?
               </strong>{" "}
-              71 occupation groups (ISCO-08) form the primary layer; ÖNACE economic sections provide
+              75 occupation groups (ISCO-08) form the primary layer; ÖNACE economic sections provide
               sectoral context. All employment and earnings data originate from official, publicly
               accessible sources (Eurostat, Statistik Austria Open Government Data) and are fully
               reproducible.
@@ -125,31 +111,7 @@ export default function HomePageClient() {
         </p>
       </div>
 
-      {/* Main tabs */}
-      <div className="flex flex-wrap gap-1 p-1 rounded-xl bg-muted/40 border border-border/60">
-        {(
-          [
-            { id: "treemap" as const, label: de ? "Treemap" : "Treemap" },
-            { id: "explorer" as const, label: de ? "Berufe-Explorer" : "Job explorer" },
-            { id: "families" as const, label: de ? "ISCO-Familien" : "ISCO families" },
-            { id: "sectors" as const, label: de ? "Sektoren" : "Sectors" },
-            { id: "how" as const, label: de ? "Einordnung & Methodik" : "Context & method" },
-          ] as const
-        ).map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={() => setMainTab(t.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              mainTab === t.id
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
+      {/* Main tabs removed — navigation lives in the navbar */}
 
       {mainTab === "explorer" && <JobsExplorer locale={locale} />}
 
@@ -175,65 +137,7 @@ export default function HomePageClient() {
         </div>
       )}
 
-      {mainTab === "how" && (
-        <Card className="p-4 sm:p-5 border-border/70 space-y-4 text-sm text-muted-foreground leading-relaxed">
-          <h2 className="text-base font-semibold text-foreground">{hiw.detailsSummary}</h2>
-          <p>{hiw.lead}</p>
-          <p>{hiw.areaColor}</p>
-          <div>
-            <p className="font-medium text-foreground mb-1">{hiw.bandsTitle}</p>
-            <p className="mb-2">{hiw.bandsIntro}</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li>{hiw.band01}</li>
-              <li>{hiw.band23}</li>
-              <li>{hiw.band45}</li>
-              <li>{hiw.band67}</li>
-              <li>{hiw.band810}</li>
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-foreground mb-1">{hiw.dataTitle}</p>
-            <p>{hiw.dataBody}</p>
-          </div>
-          <div>
-            <p className="font-medium text-foreground mb-1">{hiw.caveatTitle}</p>
-            <p>{hiw.caveatBody}</p>
-          </div>
-          <div>
-            <p className="font-medium text-foreground mb-1">{hiw.atTitle}</p>
-            <p>{hiw.atBody}</p>
-          </div>
-          <p className="text-xs border-t border-border/50 pt-3">
-            {de ? (
-              <>
-                Familien- und Sektor-Seiten: Diagramme mit{" "}
-                <a
-                  href="https://ui.shadcn.com/charts"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline-offset-2 hover:underline"
-                >
-                  shadcn/ui Charts
-                </a>{" "}
-                (Recharts, animiert).
-              </>
-            ) : (
-              <>
-                Family and sector pages: charts use{" "}
-                <a
-                  href="https://ui.shadcn.com/charts"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline-offset-2 hover:underline"
-                >
-                  shadcn/ui Charts
-                </a>{" "}
-                (Recharts, animated).
-              </>
-            )}
-          </p>
-        </Card>
-      )}
+{/* "Context & method" content is now rendered as a collapsible inside the treemap view */}
 
       {mainTab === "treemap" && (
         <>
@@ -285,33 +189,33 @@ export default function HomePageClient() {
             </ul>
           </details>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex flex-col gap-1">
-              <h2 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                {de ? "Ebene" : "Layer"}
-              </h2>
-              <div className="flex gap-1">
-                {(
-                  [
-                    { mode: "outlook" as const, label: de ? "Ausblick" : "Outlook" },
-                    { mode: "pay" as const, label: de ? "Medianentgelt" : "Median earnings" },
-                    { mode: "education" as const, label: de ? "Ausbildung" : "Education" },
-                    { mode: "exposure" as const, label: de ? "KI-Exposition" : "AI Exposure" },
-                  ] as const
-                ).map(({ mode, label }) => (
-                  <Button
-                    key={mode}
-                    variant={colorMode === mode ? "secondary" : "ghost"}
-                    size="sm"
-                    className="text-xs h-8"
-                    onClick={() => setColorMode(mode)}
-                  >
-                    {label}
-                  </Button>
-                ))}
-              </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-xs text-muted-foreground whitespace-nowrap">
+              {de ? "Einfärben nach" : "Color by"}
+            </span>
+            <div className="inline-flex rounded-lg border border-border/70 bg-muted/30 p-0.5">
+              {(
+                [
+                  { mode: "outlook" as const, label: de ? "Ausblick" : "Outlook" },
+                  { mode: "pay" as const, label: de ? "Medianentgelt" : "Median earnings" },
+                  { mode: "education" as const, label: de ? "Ausbildung" : "Education" },
+                  { mode: "exposure" as const, label: de ? "KI-Exposition" : "AI Exposure" },
+                ] as const
+              ).map(({ mode, label }) => (
+                <button
+                  key={mode}
+                  type="button"
+                  className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
+                    colorMode === mode
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  onClick={() => setColorMode(mode)}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
-
             <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
               <span>{legendLow}</span>
               <GradientLegend colorMode={colorMode} />
@@ -331,6 +235,39 @@ export default function HomePageClient() {
           <StatsPanel data={austrianOccupations} colorMode={colorMode} locale={locale} />
 
           <TreemapCanvas data={austrianOccupations} colorMode={colorMode} locale={locale} />
+
+          <details>
+            <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground select-none">
+              {hiw.detailsSummary}
+            </summary>
+            <Card className="mt-2 p-4 sm:p-5 border-border/70 space-y-4 text-sm text-muted-foreground leading-relaxed">
+              <p>{hiw.lead}</p>
+              <p>{hiw.areaColor}</p>
+              <div>
+                <p className="font-medium text-foreground mb-1">{hiw.bandsTitle}</p>
+                <p className="mb-2">{hiw.bandsIntro}</p>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>{hiw.band01}</li>
+                  <li>{hiw.band23}</li>
+                  <li>{hiw.band45}</li>
+                  <li>{hiw.band67}</li>
+                  <li>{hiw.band810}</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium text-foreground mb-1">{hiw.dataTitle}</p>
+                <p>{hiw.dataBody}</p>
+              </div>
+              <div>
+                <p className="font-medium text-foreground mb-1">{hiw.caveatTitle}</p>
+                <p>{hiw.caveatBody}</p>
+              </div>
+              <div>
+                <p className="font-medium text-foreground mb-1">{hiw.atTitle}</p>
+                <p>{hiw.atBody}</p>
+              </div>
+            </Card>
+          </details>
         </>
       )}
     </div>

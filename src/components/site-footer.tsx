@@ -6,11 +6,16 @@ import { useLocale } from "@/lib/locale-context";
 function formatBuildDate(iso: string, de: boolean): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  return new Intl.DateTimeFormat(de ? "de-AT" : "en-GB", {
+  const date = new Intl.DateTimeFormat(de ? "de-AT" : "en-GB", {
     year: "numeric",
     month: "long",
     day: "numeric",
   }).format(d);
+  const time = new Intl.DateTimeFormat(de ? "de-AT" : "en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(d);
+  return `${date}, ${time}`;
 }
 
 export function SiteFooter() {

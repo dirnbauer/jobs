@@ -9,6 +9,8 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import {
   BarChart3,
   Search,
+  Users,
+  Factory,
   GitCompare,
   TestTube2,
   BookOpen,
@@ -31,6 +33,20 @@ const NAV_ITEMS = [
     labelEn: "Explorer",
     labelDe: "Explorer",
     homeView: "explorer",
+  },
+  {
+    href: "/?view=families",
+    icon: Users,
+    labelEn: "Families",
+    labelDe: "Familien",
+    homeView: "families",
+  },
+  {
+    href: "/?view=sectors",
+    icon: Factory,
+    labelEn: "Sectors",
+    labelDe: "Sektoren",
+    homeView: "sectors",
   },
   {
     href: "/comparison",
