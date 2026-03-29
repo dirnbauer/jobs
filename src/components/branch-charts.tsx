@@ -124,7 +124,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
         >
           <BarChart
             data={histogramData}
-            margin={{ top: 12, right: 12, left: 20, bottom: 4 }}
+            margin={{ top: 16, right: 20, left: 28, bottom: 16 }}
             accessibilityLayer
           >
             <CartesianGrid vertical={false} strokeDasharray="3 3" />
