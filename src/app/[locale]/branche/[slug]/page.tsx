@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BranchCharts } from "@/components/branch-charts";
 import { Card } from "@/components/ui/card";
 import { austrianOccupations } from "@/lib/data";
 import { computeMarketStats } from "@/lib/jobs-aggregate";
 import { explorerQueryString } from "@/lib/explorer-params";
+import { buildSectorSummaries } from "@/lib/market-groups";
 import { getBranchBySlug, ONACE_BRANCHES } from "@/lib/onace-branches";
 import type { Locale } from "@/lib/locale";
+
+const BranchCharts = dynamic(
+  () => import("@/components/branch-charts").then((mod) => mod.BranchCharts),
+  {
+    loading: () => <div className="h-[580px] animate-pulse rounded-lg bg-muted/40" />,
+  }
+);
+const AUSTRIA_STATS = computeMarketStats(austrianOccupations);
+const SECTOR_SUMMARIES_BY_SECTION = new Map(
+  buildSectorSummaries(austrianOccupations).map((summary) => [summary.branch.section, summary])
+);
 
 export function generateStaticParams() {
   return ONACE_BRANCHES.map((b) => ({ slug: b.slug }));
@@ -23,12 +35,11 @@ export async function generateMetadata({
   const branch = getBranchBySlug(slug);
   if (!branch) return { title: locale === "de" ? "Branche" : "Branch" };
   const title = locale === "de" ? branch.labelDe : branch.labelEn;
-  const rows = austrianOccupations.filter((o) => o.onaceSection === branch.section);
-  const stats = computeMarketStats(rows);
+  const summary = SECTOR_SUMMARIES_BY_SECTION.get(branch.section);
   const desc =
     locale === "de"
-      ? `${rows.length} Berufsgruppen · ${stats.totalJobs.toLocaleString("de-AT")} Jobs · Ø KI-Einfluss ${stats.avgExposure.toFixed(1)}/10`
-      : `${rows.length} occupation groups · ${stats.totalJobs.toLocaleString("en-US")} jobs · avg AI impact ${stats.avgExposure.toFixed(1)}/10`;
+      ? `${summary?.rows.length ?? 0} Berufsgruppen · ${(summary?.stats.totalJobs ?? 0).toLocaleString("de-AT")} Jobs · Ø KI-Einfluss ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`
+      : `${summary?.rows.length ?? 0} occupation groups · ${(summary?.stats.totalJobs ?? 0).toLocaleString("en-US")} jobs · avg AI impact ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`;
   return {
     title: `${title} — ${locale === "de" ? "KI-Einfluss Österreich" : "AI Impact Austria"}`,
     description: desc,
@@ -53,13 +64,14 @@ export default async function BranchePage({
   const branch = getBranchBySlug(slug);
   if (!branch) notFound();
 
-  const rows = austrianOccupations.filter((o) => o.onaceSection === branch.section);
-  const stats = computeMarketStats(rows);
-  const at = computeMarketStats(austrianOccupations);
+  const summary = SECTOR_SUMMARIES_BY_SECTION.get(branch.section);
+  if (!summary) notFound();
+
+  const { rows, stats } = summary;
   const de = locale === "de";
   const label = de ? branch.labelDe : branch.labelEn;
 
-  const avgDiff = stats.avgExposure - at.avgExposure;
+  const avgDiff = stats.avgExposure - AUSTRIA_STATS.avgExposure;
   const avgVsAt =
     Math.abs(avgDiff) < 0.05
       ? de
@@ -77,7 +89,7 @@ export default async function BranchePage({
     <div className="space-y-6 max-w-4xl mx-auto">
       <div>
         <Link
-          href={`/${locale}?view=segment`}
+          href={`/${locale}?view=sectors`}
           className="text-sm text-primary hover:underline underline-offset-2 inline-flex items-center gap-1"
         >
           ← {de ? "Zurück zu Segmenten" : "Back to segments"}
@@ -143,14 +155,14 @@ export default async function BranchePage({
         {de ? (
           <>
             <span className="text-foreground/90 font-medium">Vergleich Österreich gesamt:</span> Ø KI{" "}
-            {at.avgExposure.toFixed(1)}/10 · {at.highExposurePct.toFixed(1)}% bei Score ≥7 ·{" "}
-            {at.totalJobs.toLocaleString("de-AT")} Beschäftigte (alle Gruppen).
+            {AUSTRIA_STATS.avgExposure.toFixed(1)}/10 · {AUSTRIA_STATS.highExposurePct.toFixed(1)}% bei Score ≥7 ·{" "}
+            {AUSTRIA_STATS.totalJobs.toLocaleString("de-AT")} Beschäftigte (alle Gruppen).
           </>
         ) : (
           <>
             <span className="text-foreground/90 font-medium">Austria overall:</span> avg AI{" "}
-            {at.avgExposure.toFixed(1)}/10 · {at.highExposurePct.toFixed(1)}% at score ≥7 ·{" "}
-            {at.totalJobs.toLocaleString("en-US")} employees (all groups).
+            {AUSTRIA_STATS.avgExposure.toFixed(1)}/10 · {AUSTRIA_STATS.highExposurePct.toFixed(1)}% at score ≥7 ·{" "}
+            {AUSTRIA_STATS.totalJobs.toLocaleString("en-US")} employees (all groups).
           </>
         )}
       </p>

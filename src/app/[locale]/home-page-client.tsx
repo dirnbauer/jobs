@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { austrianOccupations } from "@/lib/data";
 import type { ColorMode } from "@/lib/colors";
@@ -10,31 +11,45 @@ import { useLocale } from "@/lib/locale-context";
 import { TreemapCanvas } from "@/components/treemap-canvas";
 import { StatsPanel } from "@/components/stats-panel";
 import { Card } from "@/components/ui/card";
-import { FamilyGrid } from "@/components/family-grid";
-import { JobsExplorer } from "@/components/jobs-explorer";
-import { SegmentGrid } from "@/components/segment-grid";
 
 type MainTab = "treemap" | "explorer" | "families" | "sectors";
+
+const JobsExplorer = dynamic(
+  () => import("@/components/jobs-explorer").then((mod) => mod.JobsExplorer),
+  { loading: () => <ViewSkeleton /> }
+);
+
+const FamilyGrid = dynamic(
+  () => import("@/components/family-grid").then((mod) => mod.FamilyGrid),
+  { loading: () => <ViewSkeleton /> }
+);
+
+const SegmentGrid = dynamic(
+  () => import("@/components/segment-grid").then((mod) => mod.SegmentGrid),
+  { loading: () => <ViewSkeleton /> }
+);
+
+function getMainTab(searchParams: ReturnType<typeof useSearchParams>): MainTab {
+  const view = searchParams.get("view");
+  if (view === "explorer" || view === "families") return view;
+  if (view === "sectors" || view === "segment") return "sectors";
+  if (
+    searchParams.has("q") ||
+    searchParams.has("sort") ||
+    searchParams.has("min") ||
+    searchParams.has("max")
+  ) {
+    return "explorer";
+  }
+  return "treemap";
+}
 
 export default function HomePageClient() {
   const [colorMode, setColorMode] = useState<ColorMode>("exposure");
   const { locale } = useLocale();
   const searchParams = useSearchParams();
   const de = locale === "de";
-
-  const mainTab = useMemo<MainTab>(() => {
-    const v = searchParams.get("view");
-    if (v === "explorer" || v === "families" || v === "sectors") return v;
-    if (
-      searchParams.has("q") ||
-      searchParams.has("sort") ||
-      searchParams.has("min") ||
-      searchParams.has("max")
-    ) {
-      return "explorer";
-    }
-    return "treemap";
-  }, [searchParams]);
+  const mainTab = getMainTab(searchParams);
 
   const hiw = de ? howItWorksCopy.de : howItWorksCopy.en;
 
@@ -285,5 +300,15 @@ function GradientLegend({ colorMode }: { colorMode: ColorMode }) {
       className="w-20 h-2 rounded-sm"
       style={{ background: gradient }}
     />
+  );
+}
+
+function ViewSkeleton() {
+  return (
+    <div className="space-y-3">
+      <div className="h-10 rounded-xl bg-muted/60" />
+      <div className="h-32 rounded-xl bg-muted/40" />
+      <div className="h-48 rounded-xl bg-muted/30" />
+    </div>
   );
 }

@@ -1,7 +1,15 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  startTransition,
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Search } from "lucide-react";
 import { austrianOccupations } from "@/lib/data";
 import type { Occupation } from "@/lib/data";
@@ -17,6 +25,13 @@ import { JobsDataTable } from "@/components/jobs-data-table";
 import { Card } from "@/components/ui/card";
 
 const NATIONAL_TOTAL = austrianOccupations.reduce((s, o) => s + (o.jobs ?? 0), 0);
+const GLOBAL_STATS = computeMarketStats(austrianOccupations);
+const SEARCH_BLOBS = new Map(
+  austrianOccupations.map((occupation) => [
+    occupation.slug,
+    `${occupation.title} ${occupation.titleDe} ${occupation.category} ${occupation.categoryDe} ${occupation.education} ${occupation.educationDe} ${occupation.iscoLabel} ${occupation.iscoLabelDe} ${occupation.isco08} ${occupation.onaceSection}`.toLowerCase(),
+  ])
+);
 
 const SORT_PRESETS: { id: ExplorerSort; labelDe: string; labelEn: string }[] = [
   { id: "exposure-desc", labelDe: "KI-Einfluss ↓", labelEn: "AI impact ↓" },
@@ -31,7 +46,7 @@ function filterRows(rows: Occupation[], q: string, exMin: number, exMax: number)
   return rows.filter((o) => {
     if (o.exposure == null || o.exposure < exMin || o.exposure > exMax) return false;
     if (!needle) return true;
-    const blob = `${o.title} ${o.titleDe} ${o.category} ${o.categoryDe} ${o.education} ${o.educationDe} ${o.iscoLabel} ${o.iscoLabelDe} ${o.isco08} ${o.onaceSection}`.toLowerCase();
+    const blob = SEARCH_BLOBS.get(o.slug) ?? "";
     return blob.includes(needle);
   });
 }
@@ -41,13 +56,10 @@ export function JobsExplorer({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const de = locale === "de";
-
-  const { q: urlQ, sort, exMin, exMax } = useMemo(
-    () => readExplorerFromSearchParams(searchParams),
-    [searchParams]
-  );
+  const { q: urlQ, sort, exMin, exMax } = readExplorerFromSearchParams(searchParams);
 
   const [localQ, setLocalQ] = useState(urlQ);
+  const deferredQ = useDeferredValue(localQ);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -71,7 +83,9 @@ export function JobsExplorer({ locale }: { locale: Locale }) {
       if (hi !== 10) sp.set("max", String(hi));
       else sp.delete("max");
       const qs = sp.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      startTransition(() => {
+        router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      });
     },
     [router, pathname, searchParams, localQ, sort, exMin, exMax]
   );
@@ -94,18 +108,12 @@ export function JobsExplorer({ locale }: { locale: Locale }) {
   }, []);
 
   const filtered = useMemo(
-    () => filterRows(austrianOccupations, localQ, exMin, exMax),
-    [localQ, exMin, exMax]
+    () => filterRows(austrianOccupations, deferredQ, exMin, exMax),
+    [deferredQ, exMin, exMax]
   );
 
-  const globalStats = useMemo(() => computeMarketStats(austrianOccupations), []);
   const filteredStats = useMemo(() => computeMarketStats(filtered), [filtered]);
-
-  const listState = useMemo(
-    () => ({ q: localQ, sort, exMin, exMax }),
-    [localQ, sort, exMin, exMax]
-  );
-  const listQuery = explorerQueryString(listState);
+  const listQuery = explorerQueryString({ q: localQ, sort, exMin, exMax });
 
   return (
     <div className="space-y-6">
@@ -113,27 +121,27 @@ export function JobsExplorer({ locale }: { locale: Locale }) {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <StatCard
           label={de ? "Berufsgruppen" : "Occupation groups"}
-          value={String(globalStats.occupationCount)}
+          value={String(GLOBAL_STATS.occupationCount)}
           sub={de ? "ISCO-08 2-Steller" : "ISCO-08 2-digit groups"}
         />
         <StatCard
           label={de ? "Beschäftigte" : "Employees"}
-          value={formatJobsShort(globalStats.totalJobs, de ? "de" : "en")}
+          value={formatJobsShort(GLOBAL_STATS.totalJobs, de ? "de" : "en")}
           sub={de ? "Eurostat lfsa_egai2d, 2024" : "Eurostat lfsa_egai2d, 2024"}
         />
         <StatCard
           label={de ? "Ø KI-Einfluss" : "Avg. AI impact"}
-          value={globalStats.avgExposure.toFixed(1) + "/10"}
+          value={GLOBAL_STATS.avgExposure.toFixed(1) + "/10"}
           sub={de ? "beschäftigungsgewichtet" : "job-weighted"}
         />
         <StatCard
           label={de ? "Hohe Exposition (≥7)" : "High exposure (≥7)"}
-          value={globalStats.highExposurePct.toFixed(1) + "%"}
+          value={GLOBAL_STATS.highExposurePct.toFixed(1) + "%"}
           sub={de ? "Anteil der Beschäftigung" : "share of employment"}
         />
         <StatCard
           label={de ? "Betroffene Beschäftigung" : "High-impact employment"}
-          value={formatJobsShort(globalStats.highExposureJobs, de ? "de" : "en")}
+          value={formatJobsShort(GLOBAL_STATS.highExposureJobs, de ? "de" : "en")}
           sub={de ? "Berufsgruppen mit KI-Einfluss ≥7" : "occupation groups with AI impact ≥7"}
         />
       </div>

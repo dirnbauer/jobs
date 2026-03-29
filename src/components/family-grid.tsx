@@ -5,13 +5,14 @@ import { austrianOccupations } from "@/lib/data";
 import { buildOccupationFamilySummaries } from "@/lib/market-groups";
 import type { Locale } from "@/lib/locale";
 
+const FAMILY_SUMMARIES = buildOccupationFamilySummaries(austrianOccupations);
+
 export function FamilyGrid({ locale }: { locale: Locale }) {
   const de = locale === "de";
-  const families = buildOccupationFamilySummaries(austrianOccupations);
 
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {families.map(({ family, stats, avgPay, rows }) => (
+      {FAMILY_SUMMARIES.map(({ family, stats, avgPay, rows }) => (
         <Link
           key={family.slug}
           href={`/${locale}/family/${family.slug}`}

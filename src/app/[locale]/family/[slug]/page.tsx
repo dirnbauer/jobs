@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BranchCharts } from "@/components/branch-charts";
 import { Card } from "@/components/ui/card";
 import { austrianOccupations } from "@/lib/data";
 import { explorerQueryString } from "@/lib/explorer-params";
@@ -11,8 +11,19 @@ import {
 } from "@/lib/market-groups";
 import type { Locale } from "@/lib/locale";
 
+const BranchCharts = dynamic(
+  () => import("@/components/branch-charts").then((mod) => mod.BranchCharts),
+  {
+    loading: () => <div className="h-[580px] animate-pulse rounded-lg bg-muted/40" />,
+  }
+);
+const OCCUPATION_FAMILY_SUMMARIES = buildOccupationFamilySummaries(austrianOccupations);
+const OCCUPATION_FAMILY_SUMMARIES_BY_SLUG = new Map(
+  OCCUPATION_FAMILY_SUMMARIES.map((summary) => [summary.family.slug, summary])
+);
+
 export function generateStaticParams() {
-  return buildOccupationFamilySummaries(austrianOccupations).map(({ family }) => ({
+  return OCCUPATION_FAMILY_SUMMARIES.map(({ family }) => ({
     slug: family.slug,
   }));
 }
@@ -27,9 +38,7 @@ export async function generateMetadata({
   const family = getOccupationFamilyBySlug(slug);
   if (!family) return { title: locale === "de" ? "ISCO-Familie" : "ISCO family" };
 
-  const summary = buildOccupationFamilySummaries(austrianOccupations).find(
-    (entry) => entry.family.slug === slug
-  );
+  const summary = OCCUPATION_FAMILY_SUMMARIES_BY_SLUG.get(slug);
   const title = locale === "de" ? family.labelDe : family.labelEn;
   const desc =
     locale === "de"
@@ -61,9 +70,7 @@ export default async function FamilyPage({
   const family = getOccupationFamilyBySlug(slug);
   if (!family) notFound();
 
-  const summary = buildOccupationFamilySummaries(austrianOccupations).find(
-    (entry) => entry.family.slug === slug
-  );
+  const summary = OCCUPATION_FAMILY_SUMMARIES_BY_SLUG.get(slug);
   if (!summary) notFound();
 
   return (
