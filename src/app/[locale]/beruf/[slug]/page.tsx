@@ -28,7 +28,7 @@ export async function generateMetadata({
       : `${family} · AI impact ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("en-US")} employees in Austria (estimate).`;
 
   return {
-    title: `${title} — ${locale === "de" ? "KI-Einfluss Österreich" : "AI Impact Austria"}`,
+    title: `${title} — ${locale === "de" ? "BerufsRadar" : "Job Radar Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };

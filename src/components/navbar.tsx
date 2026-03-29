@@ -58,7 +58,7 @@ export function Navbar() {
               style={{ color: "var(--webcon-primary)" }}
             />
             <span className="font-semibold text-sm sm:text-base tracking-tight">
-              {de ? "KI-Einfluss Österreich" : "AI Impact Austria"}
+              {de ? "BerufsRadar" : "Job Radar Austria"}
             </span>
           </Link>
 

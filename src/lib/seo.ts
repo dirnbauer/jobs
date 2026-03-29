@@ -5,8 +5,8 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://jobs.karpathy.webconsulting.at";
 
 export const SITE_NAME: Record<Locale, string> = {
-  en: "AT AI Impact Map",
-  de: "AT KI-Einflusskarte",
+  en: "Job Radar Austria",
+  de: "BerufsRadar",
 };
 
 const TITLE_SUFFIX: Record<Locale, string> = {
@@ -41,14 +41,14 @@ export const PAGE_SEO: Record<
 > = {
   home: {
     en: {
-      title: "Austrian AI Impact Map",
+      title: "Job Radar Austria",
       description:
         "Occupation-first map of the Austrian labour market: ISCO groups, AI impact, pay, outlook, and sector context from Eurostat plus Statistik Austria.",
       ogDescription:
         "Occupation-first Austrian labour market map with ISCO families, AI impact, and ÖNACE context.",
     },
     de: {
-      title: "Österreichische KI-Einflusskarte",
+      title: "BerufsRadar",
       description:
         "Occupation-first Karte des österreichischen Arbeitsmarkts: ISCO-Gruppen, KI-Einfluss, Entgelt, Ausblick und Sektor-Kontext aus Eurostat plus Statistik Austria.",
       ogDescription:
