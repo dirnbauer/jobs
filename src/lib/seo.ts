@@ -5,8 +5,8 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://jobs.karpathy.webconsulting.at";
 
 export const SITE_NAME: Record<Locale, string> = {
-  en: "AT Occupation Exposure Map",
-  de: "AT Berufs-Expositionskarte",
+  en: "AT AI Impact Map",
+  de: "AT KI-Einflusskarte",
 };
 
 const TITLE_SUFFIX: Record<Locale, string> = {
@@ -45,18 +45,18 @@ export const PAGE_SEO: Record<
 > = {
   home: {
     en: {
-      title: "Austrian Occupation Exposure Map",
+      title: "Austrian AI Impact Map",
       description:
-        "Occupation-first map of the Austrian labour market: ISCO groups, AI exposure, pay, outlook, and sector context from Eurostat plus Statistik Austria.",
+        "Occupation-first map of the Austrian labour market: ISCO groups, AI impact, pay, outlook, and sector context from Eurostat plus Statistik Austria.",
       ogDescription:
-        "Occupation-first Austrian labour market map with ISCO families, AI exposure, and ÖNACE context.",
+        "Occupation-first Austrian labour market map with ISCO families, AI impact, and ÖNACE context.",
     },
     de: {
-      title: "Österreichische Berufs-Expositionskarte",
+      title: "Österreichische KI-Einflusskarte",
       description:
-        "Occupation-first Karte des österreichischen Arbeitsmarkts: ISCO-Gruppen, KI-Exposition, Entgelt, Ausblick und Sektor-Kontext aus Eurostat plus Statistik Austria.",
+        "Occupation-first Karte des österreichischen Arbeitsmarkts: ISCO-Gruppen, KI-Einfluss, Entgelt, Ausblick und Sektor-Kontext aus Eurostat plus Statistik Austria.",
       ogDescription:
-        "Occupation-first Karte des Arbeitsmarkts mit ISCO-Familien, KI-Exposition und ÖNACE-Kontext.",
+        "Occupation-first Karte des Arbeitsmarkts mit ISCO-Familien, KI-Einfluss und ÖNACE-Kontext.",
     },
   },
   about: {
@@ -113,28 +113,28 @@ export const PAGE_SEO: Record<
       description:
         "Official Austrian data sources used in this occupation-first map: Eurostat, Statistik Austria, AMS, WKO, and related references.",
       ogDescription:
-        "Transparency: which official datasets power the Austrian occupation exposure map.",
+        "Transparency: which official datasets power the Austrian AI impact map.",
     },
     de: {
       title: "Datenquellen",
       description:
         "Offizielle österreichische Datenquellen dieser berufsorientierten Arbeitsmarktkarte: Eurostat, Statistik Austria, AMS, WKO und verwandte Referenzen.",
       ogDescription:
-        "Transparenz: Welche offiziellen Datensätze die österreichische Berufs-Expositionskarte speisen.",
+        "Transparenz: Welche offiziellen Datensätze die österreichische KI-Einflusskarte speisen.",
     },
   },
   datenschutz: {
     en: {
       title: "Privacy Policy",
       description:
-        "Privacy information for the Austrian occupation exposure map (jobs.karpathy.webconsulting.at).",
+        "Privacy information for the Austrian AI impact map (jobs.karpathy.webconsulting.at).",
       ogDescription:
         "Privacy policy and data protection notes for this visualization tool.",
     },
     de: {
       title: "Datenschutzerklärung",
       description:
-        "Datenschutzinformationen zur österreichischen Berufs-Expositionskarte (jobs.karpathy.webconsulting.at).",
+        "Datenschutzinformationen zur österreichischen KI-Einflusskarte (jobs.karpathy.webconsulting.at).",
       ogDescription:
         "Datenschutzerklärung und Hinweise zum Visualisierungstool.",
     },

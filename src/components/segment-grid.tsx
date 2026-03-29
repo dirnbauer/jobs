@@ -33,7 +33,7 @@ export function SegmentGrid({ locale }: { locale: Locale }) {
                 {stats.totalJobs.toLocaleString(de ? "de-AT" : "en-US")} {de ? "Beschäftigte" : "employed"}
               </span>
               <span>
-                Ø {stats.avgExposure.toFixed(1)} {de ? "KI-Exposition" : "AI exposure"}
+                Ø {stats.avgExposure.toFixed(1)} {de ? "KI-Einfluss" : "AI impact"}
               </span>
             </div>
           </Link>

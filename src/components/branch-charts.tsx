@@ -29,14 +29,14 @@ interface BranchChartsProps {
 }
 
 const PIE_PALETTE = [
-  "#5470C6",
-  "#91CC75",
-  "#FAC858",
-  "#EE6666",
-  "#73C0DE",
-  "#3BA272",
-  "#FC8452",
-  "#9A60B4",
+  "#1b7a95",
+  "#66c4e1",
+  "#0f4555",
+  "#9dd8eb",
+  "#155d73",
+  "#c5e4ed",
+  "#0d6b84",
+  "#e8f4f8",
 ];
 
 function exposureHistogramJobs(rows: Occupation[]): { x: number[]; y: number[] } {
@@ -78,7 +78,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
   const barConfig = {
     jobs: {
       label: de ? "Beschäftigte" : "Employees",
-      color: "hsl(217 91% 60%)",
+      color: "var(--webcon-primary, #1b7a95)",
     },
   } satisfies ChartConfig;
 
@@ -96,7 +96,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
     <div className="space-y-4">
       <div>
         <h3 className="text-base font-semibold mb-2 text-foreground/90">
-          {de ? "Beschäftigung nach KI-Exposition (0–10)" : "Employment by AI exposure (0–10)"}
+          {de ? "Beschäftigung nach KI-Einfluss (0–10)" : "Employment by AI impact (0–10)"}
         </h3>
         <p className="text-xs text-muted-foreground mb-2">{branchLabel}</p>
         <ChartContainer

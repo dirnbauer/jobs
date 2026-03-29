@@ -71,8 +71,8 @@ const TEST_GROUPS = [
     id: "ai",
     labelEn: "AI scoring",
     labelDe: "KI-Scoring",
-    descriptionEn: "Bounds, spread, rationale quality, and directional patterns for exposure and outlook.",
-    descriptionDe: "Grenzen, Spannweite, Begründungen und Richtungslogik für Exposition und Ausblick.",
+    descriptionEn: "Bounds, spread, rationale quality, and directional patterns for AI impact and outlook.",
+    descriptionDe: "Grenzen, Spannweite, Begründungen und Richtungslogik für KI-Einfluss und Ausblick.",
     testIds: [
       "exposure-range",
       "outlook-range",
@@ -228,8 +228,8 @@ export function TestsView({ locale }: TestsViewProps) {
       <div className="flex items-center justify-between gap-4">
         <div className="text-base text-foreground/80">
           {de
-            ? "Über 30 automatisierte Integritätsprüfungen verifizieren den Datensatz nach Beschäftigungssummen, Entgeltplausibilität, ISCO-Konsistenz und Expositionsverteilung. Diese Tests sichern die wissenschaftliche Nachprüfbarkeit und Reproduzierbarkeit der gesamten Pipeline. Nach jeder Regeneration des Datensatzes erneut ausführen."
-            : "30+ automated integrity checks verify the dataset for employment totals, earnings plausibility, ISCO consistency, and exposure distribution. These tests ensure the scientific verifiability and reproducibility of the entire pipeline. Re-run them after each dataset regeneration."}
+            ? "Über 30 automatisierte Integritätsprüfungen verifizieren den Datensatz nach Beschäftigungssummen, Entgeltplausibilität, ISCO-Konsistenz und KI-Einflussverteilung. Diese Tests sichern die wissenschaftliche Nachprüfbarkeit und Reproduzierbarkeit der gesamten Pipeline. Nach jeder Regeneration des Datensatzes erneut ausführen."
+            : "30+ automated integrity checks verify the dataset for employment totals, earnings plausibility, ISCO consistency, and AI impact distribution. These tests ensure the scientific verifiability and reproducibility of the entire pipeline. Re-run them after each dataset regeneration."}
         </div>
         <Button
           type="button"

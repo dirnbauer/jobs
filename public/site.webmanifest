@@ -1,7 +1,7 @@
 {
-  "name": "KI-Exposition am österreichischen Arbeitsmarkt",
-  "short_name": "KI-Exposition AT",
-  "description": "KI-Exposition und Arbeitsmarktstruktur: 75 Berufsgruppen (ISCO-08) im österreichischen Arbeitsmarkt — webconsulting.at",
+  "name": "KI-Einfluss am österreichischen Arbeitsmarkt",
+  "short_name": "KI-Einfluss AT",
+  "description": "KI-Einfluss und Arbeitsmarktstruktur: 75 Berufsgruppen (ISCO-08) im österreichischen Arbeitsmarkt — webconsulting.at",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0a0a0a",

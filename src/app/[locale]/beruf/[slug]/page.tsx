@@ -24,11 +24,11 @@ export async function generateMetadata({
   const family = locale === "de" ? occ.iscoLabelDe : occ.iscoLabel;
   const desc =
     locale === "de"
-      ? `${family} · KI-Exposition ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("de-AT")} Beschäftigte in Österreich (Schätzung).`
-      : `${family} · AI exposure ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("en-US")} employees in Austria (estimate).`;
+      ? `${family} · KI-Einfluss ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("de-AT")} Beschäftigte in Österreich (Schätzung).`
+      : `${family} · AI impact ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("en-US")} employees in Austria (estimate).`;
 
   return {
-    title: `${title} — ${locale === "de" ? "KI-Exposition Österreich" : "AI Exposure Austria"}`,
+    title: `${title} — ${locale === "de" ? "KI-Einfluss Österreich" : "AI Impact Austria"}`,
     description: desc,
     openGraph: { title, description: desc },
   };

@@ -134,7 +134,7 @@ export function JobsDataTable({
       {
         id: "exposure",
         accessorFn: (r) => r.exposure ?? -1,
-        header: de ? "KI-Exposition" : "AI exposure",
+        header: de ? "KI-Einfluss" : "AI impact",
         enableSorting: true,
         cell: ({ row }) => exposureBar(row.original.exposure),
       },

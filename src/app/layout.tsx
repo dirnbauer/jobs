@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Statistik Austria",
     "ÖNACE",
     "employment",
-    "AI exposure",
+    "AI impact",
     "treemap",
   ],
   authors: [{ name: "webconsulting.at" }],
