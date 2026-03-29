@@ -332,7 +332,7 @@ function Tooltip({
               {exp}/10
             </span>
           </div>
-          <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+          <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-popover-foreground/15">
             <div
               className="h-full rounded-full"
               style={{ width: `${exp * 10}%`, background: accent }}
