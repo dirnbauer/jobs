@@ -22,8 +22,6 @@ type SeoPage =
   | "home"
   | "about"
   | "comparison"
-  | "tests"
-  | "sources"
   | "datenschutz"
   | "impressum"
   | "agb";
@@ -31,8 +29,6 @@ type SeoPage =
 const PAGE_PATH: Record<Exclude<SeoPage, "home">, `/${string}`> = {
   about: "/about",
   comparison: "/comparison",
-  tests: "/tests",
-  sources: "/sources",
   datenschutz: "/datenschutz",
   impressum: "/impressum",
   agb: "/agb",
@@ -63,16 +59,16 @@ export const PAGE_SEO: Record<
     en: {
       title: "About This Project",
       description:
-        "Background on the Austrian occupation-first rebuild: upstream credit, local data, ISCO structure, methodology, and what changed from the US original.",
+        "Background, methodology, data sources, and data verification for the Austrian occupation-first labour market map.",
       ogDescription:
-        "Original by Karpathy; Austrian adaptation by webconsulting.at — background and methodology.",
+        "Original by Karpathy; Austrian adaptation by webconsulting.at — background, sources, and verification.",
     },
     de: {
       title: "Über dieses Projekt",
       description:
-        "Hintergrund zum österreichischen occupation-first Rebuild: Upstream-Credit, lokale Daten, ISCO-Struktur, Methodik und die Unterschiede zum US-Original.",
+        "Hintergrund, Methodik, Datenquellen und Datenverifizierung der österreichischen berufsbasierten Arbeitsmarktkarte.",
       ogDescription:
-        "Original von Karpathy; österreichische Adaption von webconsulting.at — Hintergrund und Methodik.",
+        "Original von Karpathy; österreichische Adaption von webconsulting.at — Hintergrund, Quellen und Verifikation.",
     },
   },
   comparison: {
@@ -89,38 +85,6 @@ export const PAGE_SEO: Record<
         "Gegenüberstellung wichtiger Arbeitsmarkt-Kennzahlen zwischen Österreich und den USA.",
       ogDescription:
         "Österreich und USA im direkten Arbeitsmarktvergleich.",
-    },
-  },
-  tests: {
-    en: {
-      title: "Data Verification",
-      description:
-        "Simple checks that validate displayed Austrian labor market figures against source data.",
-      ogDescription:
-        "Automated verification tests for the job market visualizer datasets.",
-    },
-    de: {
-      title: "Datenverifizierung",
-      description:
-        "Einfache Prüfungen, die angezeigte österreichische Arbeitsmarktzahlen gegen die Quelldaten validieren.",
-      ogDescription:
-        "Automatisierte Verifikationstests für die Visualisierungsdaten.",
-    },
-  },
-  sources: {
-    en: {
-      title: "Data Sources",
-      description:
-        "Official Austrian data sources used in this occupation-first map: Eurostat, Statistik Austria, AMS, WKO, and related references.",
-      ogDescription:
-        "Transparency: which official datasets power the Austrian AI impact map.",
-    },
-    de: {
-      title: "Datenquellen",
-      description:
-        "Offizielle österreichische Datenquellen dieser berufsorientierten Arbeitsmarktkarte: Eurostat, Statistik Austria, AMS, WKO und verwandte Referenzen.",
-      ogDescription:
-        "Transparenz: Welche offiziellen Datensätze die österreichische KI-Einflusskarte speisen.",
     },
   },
   datenschutz: {

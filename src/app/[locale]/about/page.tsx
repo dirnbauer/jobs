@@ -18,8 +18,8 @@ export default async function AboutPage({
         </h1>
         <p className="mt-2 text-base text-foreground/75 leading-relaxed max-w-3xl">
           {de
-            ? "Hintergrund, Methodik und warum unsere österreichische occupation-first Adaption anders aufgebaut ist."
-            : "Background, methodology, and why our Austrian occupation-first adaptation is structured differently."}
+            ? "Hintergrund, Methodik, Datenquellen und Datenverifizierung."
+            : "Background, methodology, data sources, and data verification."}
         </p>
       </div>
       <AboutView locale={locale} />
