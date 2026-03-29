@@ -233,13 +233,22 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                 animationDuration={1000}
                 animationEasing="ease-out"
                 animationBegin={150}
-                label={({ cx, cy, midAngle, innerRadius, outerRadius, pct }) => {
+                label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                  if (
+                    cx == null ||
+                    cy == null ||
+                    midAngle == null ||
+                    innerRadius == null ||
+                    outerRadius == null
+                  ) {
+                    return null;
+                  }
                   const RADIAN = Math.PI / 180;
                   const r = Number(innerRadius) + (Number(outerRadius) - Number(innerRadius)) * 0.5;
                   const x = Number(cx) + r * Math.cos(-midAngle * RADIAN);
                   const y = Number(cy) + r * Math.sin(-midAngle * RADIAN);
-                  const pctNum = parseFloat(pct);
-                  if (pctNum < 4) return null;
+                  const share = Number(percent ?? 0) * 100;
+                  if (share < 4) return null;
                   return (
                     <text
                       x={x}
@@ -248,7 +257,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
                       dominantBaseline="central"
                       className="fill-white text-[11px] font-semibold drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]"
                     >
-                      {pct}
+                      {share.toFixed(1)}%
                     </text>
                   );
                 }}
