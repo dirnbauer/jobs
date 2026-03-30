@@ -97,26 +97,45 @@ export default async function FamilyPage({
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <Card className="p-3 border-border/70">
-          <div className="text-[10px] uppercase text-muted-foreground font-semibold">
-            {de ? "Gruppen" : "Groups"}
+          <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-semibold">
+            {de ? "Berufsgruppen" : "Occupation groups"}
           </div>
-          <div className="text-xl font-bold tabular-nums">{summary.rows.length}</div>
+          <div className="text-xl font-bold tabular-nums mt-0.5">{summary.rows.length}</div>
+          <p className="text-[10px] text-muted-foreground mt-1 leading-snug">
+            {de ? "ISCO-Aggregate in dieser Familie" : "ISCO aggregates in this family"}
+          </p>
         </Card>
         <Card className="p-3 border-border/70">
-          <div className="text-[10px] uppercase text-muted-foreground font-semibold">
-            {de ? "Jobs" : "Jobs"}
+          <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-semibold">
+            {de ? "Beschäftigte" : "Employees"}
           </div>
-          <div className="text-xl font-bold tabular-nums">
+          <div className="text-xl font-bold tabular-nums mt-0.5">
             {summary.stats.totalJobs.toLocaleString(de ? "de-AT" : "en-US")}
           </div>
+          <p className="text-[10px] text-muted-foreground mt-1 leading-snug">
+            {de ? "Summe über zugeordnete Gruppen" : "Sum across mapped groups"}
+          </p>
         </Card>
         <Card className="p-3 border-border/70">
-          <div className="text-[10px] uppercase text-muted-foreground font-semibold">{de ? "Ø KI" : "Avg AI"}</div>
-          <div className="text-xl font-bold tabular-nums">{summary.stats.avgExposure.toFixed(1)}</div>
+          <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-semibold">
+            {de ? "Ø KI-Einfluss" : "Avg. AI impact"}
+          </div>
+          <div className="text-xl font-bold tabular-nums mt-0.5">
+            {summary.stats.avgExposure.toFixed(1)}
+            <span className="text-sm font-medium text-muted-foreground">/10</span>
+          </div>
+          <p className="text-[10px] text-muted-foreground mt-1 leading-snug">
+            {de ? "beschäftigungsgewichtet" : "job-weighted"}
+          </p>
         </Card>
         <Card className="p-3 border-border/70">
-          <div className="text-[10px] uppercase text-muted-foreground font-semibold">€</div>
-          <div className="text-xl font-bold tabular-nums">€{Math.round(summary.avgPay / 1000)}K</div>
+          <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-semibold">
+            {de ? "Mediangehalt" : "Median earnings"}
+          </div>
+          <div className="text-xl font-bold tabular-nums mt-0.5">€{Math.round(summary.avgPay / 1000)}K</div>
+          <p className="text-[10px] text-muted-foreground mt-1 leading-snug">
+            {de ? "brutto jährlich, gewichtet" : "gross annual, weighted"}
+          </p>
         </Card>
       </div>
 
