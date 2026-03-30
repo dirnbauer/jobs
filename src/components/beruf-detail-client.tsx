@@ -10,6 +10,7 @@ import { getOccupationFamilyByMajor } from "@/lib/market-groups";
 import type { Locale } from "@/lib/locale";
 import type { VseSupplement } from "@/lib/vse-supplement";
 import { Card } from "@/components/ui/card";
+import { SourceAttribution } from "@/components/source-attribution";
 
 function formatEur(n: number, de: boolean) {
   return `€${n.toLocaleString(de ? "de-AT" : "en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -201,8 +202,8 @@ export function BerufDetailClient({
       </Card>
 
       <Card className="p-4 sm:p-5 border-border/70">
-        <h2 className="text-base font-semibold mb-2">{de ? "Quelle, Methodik und Reproduzierbarkeit" : "Source, methodology, and reproducibility"}</h2>
-        <p className="text-base text-muted-foreground leading-relaxed font-mono">{occ.source}</p>
+        <h2 className="text-base font-semibold mb-3">{de ? "Quelle, Methodik und Reproduzierbarkeit" : "Source, methodology, and reproducibility"}</h2>
+        <SourceAttribution source={occ.source} locale={locale} />
       </Card>
     </div>
   );

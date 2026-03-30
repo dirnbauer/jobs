@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/card";
+import { MethodologyNote } from "@/components/source-attribution";
 import { austrianOccupations } from "@/lib/data";
 import { computeMarketStats } from "@/lib/jobs-aggregate";
 import { explorerQueryString } from "@/lib/explorer-params";
@@ -195,6 +196,13 @@ export default async function BranchePage({
           ))}
         </ul>
       </div>
+
+      <Card className="p-4 border-border/70">
+        <h2 className="text-sm font-semibold mb-2">
+          {de ? "Quelle & Methodik" : "Source & methodology"}
+        </h2>
+        <MethodologyNote locale={locale} />
+      </Card>
     </div>
   );
 }
