@@ -41,7 +41,7 @@ export function parseSourceString(source: string): ParsedSource | null {
 
     // ── Employment & NACE ──
     const empMatch = emp.match(
-      /Eurostat\s+([\w]+)\s+\((\d{4})\)\s+ISCO-08\s+(\d+):\s+([\d,]+)\s+employed\s+\(([^)]+)\)\s+×\s+([\d.]+%)\s+NACE weight\s+\(([\w_]+):\s+(NACE\s+[A-Z0-9-]+)\)/
+      /Eurostat\s+([\w]+)\s+\((\d{4})\)\s+ISCO-08\s+(\d+):\s+([\d,]+)\s+employed\s+\(([^)]+)\)\s+×\s+([\d.]+%)\s+NACE weight\s+\(([\w_]+):\s+(NACE\s+[A-Z0-9_-]+(?:\s+[A-Z0-9_-]+)?)\)/
     );
     if (!empMatch) return null;
 
