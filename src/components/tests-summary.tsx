@@ -5,7 +5,8 @@ import { dataTests } from "@/lib/data";
 import type { Locale } from "@/lib/locale";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, PlayCircle, Loader2, ChevronDown, FlaskConical } from "lucide-react";
+import { CheckCircle2, XCircle, PlayCircle, Loader2, ChevronDown, FlaskConical, Search, Layers, BarChart3, Factory, Coins, Cpu, TrendingUp, GitCompare, Landmark } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface TestsSummaryProps {
@@ -29,16 +30,20 @@ interface TestLogEntry {
 }
 
 const TEST_GROUPS = [
-  { id: "completeness", labelEn: "Data Completeness", labelDe: "Datenvollständigkeit", icon: "🔍", source: false, descEn: "All fields populated, bilingual, sources traceable", descDe: "Alle Felder befüllt, zweisprachig, Quellen nachvollziehbar" },
-  { id: "isco", labelEn: "ISCO-08 Structure", labelDe: "ISCO-08-Struktur", icon: "🏗️", source: false, descEn: "Code format, family consistency, coverage of all 9 major groups", descDe: "Codeformat, Familienkonsistenz, Abdeckung aller 9 Hauptgruppen" },
-  { id: "employment", labelEn: "Employment Distribution", labelDe: "Beschäftigungsverteilung", icon: "📊", source: false, descEn: "Total employment, concentration (HHI), skewness, partition identity", descDe: "Gesamtbeschäftigung, Konzentration (HHI), Schiefe, Partitionsidentität" },
-  { id: "sectors", labelEn: "Sector Totals", labelDe: "Sektorsummen", icon: "🏭", source: false, descEn: "NACE section employment ranges vs Eurostat ballparks", descDe: "NACE-Abschnittsbeschäftigung im Vergleich zu Eurostat-Größenordnungen" },
-  { id: "pay", labelEn: "Earnings & Pay", labelDe: "Gehalt & Entlohnung", icon: "💰", source: false, descEn: "Pay range, Gini, P90/P10, education ladder, ISCO pay hierarchy", descDe: "Gehaltsspanne, Gini, P90/P10, Bildungsleiter, ISCO-Gehaltshierarchie" },
-  { id: "exposure", labelEn: "AI Exposure", labelDe: "KI-Exposition", icon: "🤖", source: false, descEn: "Score range, correlations with pay/education, sector patterns", descDe: "Score-Bereich, Korrelationen mit Gehalt/Bildung, Sektormuster" },
-  { id: "outlook", labelEn: "Outlook & Growth", labelDe: "Ausblick & Wachstum", icon: "📈", source: false, descEn: "WIFO/AMS forecast bias, variance, sector-level patterns", descDe: "WIFO/AMS-Prognose-Bias, Varianz, Sektormuster" },
-  { id: "cross", labelEn: "Cross-Validation", labelDe: "Kreuzvalidierung", icon: "🔗", source: false, descEn: "Multi-dimensional checks: exposure-outlook independence, bilingual parity", descDe: "Mehrdimensionale Prüfungen: Expositions-Ausblick-Unabhängigkeit, zweisprachige Parität" },
-  { id: "source", labelEn: "Source Data (Eurostat/VSE)", labelDe: "Quelldaten (Eurostat/VSE)", icon: "🏛️", source: true, descEn: "Row-by-row comparison against original Eurostat + Statistik Austria data", descDe: "Zeile-für-Zeile-Vergleich mit Eurostat- und Statistik-Austria-Originaldaten" },
-] as const;
+  { id: "completeness", labelEn: "Data Completeness", labelDe: "Datenvollständigkeit", icon: Search, source: false, descEn: "All fields populated, bilingual, sources traceable", descDe: "Alle Felder befüllt, zweisprachig, Quellen nachvollziehbar" },
+  { id: "isco", labelEn: "ISCO-08 Structure", labelDe: "ISCO-08-Struktur", icon: Layers, source: false, descEn: "Code format, family consistency, coverage of all 9 major groups", descDe: "Codeformat, Familienkonsistenz, Abdeckung aller 9 Hauptgruppen" },
+  { id: "employment", labelEn: "Employment Distribution", labelDe: "Beschäftigungsverteilung", icon: BarChart3, source: false, descEn: "Total employment, concentration (HHI), skewness, partition identity", descDe: "Gesamtbeschäftigung, Konzentration (HHI), Schiefe, Partitionsidentität" },
+  { id: "sectors", labelEn: "Sector Totals", labelDe: "Sektorsummen", icon: Factory, source: false, descEn: "NACE section employment ranges vs Eurostat ballparks", descDe: "NACE-Abschnittsbeschäftigung im Vergleich zu Eurostat-Größenordnungen" },
+  { id: "pay", labelEn: "Earnings & Pay", labelDe: "Gehalt & Entlohnung", icon: Coins, source: false, descEn: "Pay range, Gini, P90/P10, education ladder, ISCO pay hierarchy", descDe: "Gehaltsspanne, Gini, P90/P10, Bildungsleiter, ISCO-Gehaltshierarchie" },
+  { id: "exposure", labelEn: "AI Exposure", labelDe: "KI-Exposition", icon: Cpu, source: false, descEn: "Score range, correlations with pay/education, sector patterns", descDe: "Score-Bereich, Korrelationen mit Gehalt/Bildung, Sektormuster" },
+  { id: "outlook", labelEn: "Outlook & Growth", labelDe: "Ausblick & Wachstum", icon: TrendingUp, source: false, descEn: "WIFO/AMS forecast bias, variance, sector-level patterns", descDe: "WIFO/AMS-Prognose-Bias, Varianz, Sektormuster" },
+  { id: "cross", labelEn: "Cross-Validation", labelDe: "Kreuzvalidierung", icon: GitCompare, source: false, descEn: "Multi-dimensional checks: exposure-outlook independence, bilingual parity", descDe: "Mehrdimensionale Prüfungen: Expositions-Ausblick-Unabhängigkeit, zweisprachige Parität" },
+  { id: "source", labelEn: "Source Data (Eurostat/VSE)", labelDe: "Quelldaten (Eurostat/VSE)", icon: Landmark, source: true, descEn: "Row-by-row comparison against original Eurostat + Statistik Austria data", descDe: "Zeile-für-Zeile-Vergleich mit Eurostat- und Statistik-Austria-Originaldaten" },
+];
+
+function renderGroupIcon(Icon: LucideIcon) {
+  return <Icon className="h-3.5 w-3.5" aria-hidden />;
+}
 
 const STREAM_DELAY_MS = 12;
 
@@ -279,7 +284,7 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
                 className="w-full flex items-center justify-between text-xs font-medium text-foreground/60 uppercase tracking-wide hover:text-foreground/80 transition-colors py-1"
               >
                 <span className="flex items-center gap-1.5">
-                  <span>{group.icon}</span>
+                  {renderGroupIcon(group.icon)}
                   {de ? group.labelDe : group.labelEn}
                   <span className="text-[10px] font-normal normal-case tracking-normal text-foreground/40">
                     ({group.passedCount}/{group.tests.length})
