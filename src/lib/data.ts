@@ -107,7 +107,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Primary tasks: soil cultivation, sowing, harvesting, livestock management. Approximately 80% manual field work. Precision agriculture (GPS-guided machinery, drone-based crop monitoring, sensor-based irrigation) automates data collection, but physical execution remains non-substitutable.",
     exposureRationaleDe: "Kerntätigkeiten: Bodenbearbeitung, Aussaat, Ernte, Tierhaltung. Ca. 80 % manuelle Feldarbeit. Präzisionslandwirtschaft (GPS-gesteuerte Maschinen, drohnenbasiertes Pflanzenmonitoring, sensorgestützte Bewässerung) automatisiert die Datenerfassung, die physische Durchführung bleibt jedoch nicht substituierbar.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 61: 116,900 employed (LFS/Mikrozensus AKE) × 84.3% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 national median (€17.49/h) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 61: 116,900 employed (LFS/Mikrozensus AKE) × 84.3% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 national median (€17.49/h) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Skilled forestry workers",
@@ -131,7 +131,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Tasks consist of felling, skidding, and silvicultural maintenance in uneven terrain. Digital tools are limited to GPS marking and inventory systems. No significant automation potential for core field operations.",
     exposureRationaleDe: "Tätigkeiten umfassen Holzfällung, Rückung und Waldpflege in unebenem Gelände. Digitale Werkzeuge beschränken sich auf GPS-Markierung und Bestandserfassungssysteme. Kein wesentliches Automatisierungspotenzial für die Kerntätigkeiten im Feld.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 61: 116,900 employed (LFS/Mikrozensus AKE) × 15.7% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 national median (€17.49/h) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 61: 116,900 employed (LFS/Mikrozensus AKE) × 15.7% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 national median (€17.49/h) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Veterinarians & agricultural scientists",
@@ -155,7 +155,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Clinical diagnostics, surgical procedures, and animal welfare assessments require physical examination. AI-based image analysis (radiology, dermatology) supports diagnostics; documentation and laboratory data management are partially automatable.",
     exposureRationaleDe: "Klinische Diagnostik, chirurgische Eingriffe und Tierschutzbeurteilungen erfordern körperliche Untersuchung. KI-gestützte Bildanalyse (Radiologie, Dermatologie) unterstützt die Diagnostik; Dokumentation und Labordatenmanagement sind teilweise automatisierbar.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 22: 194,900 employed (LFS/Mikrozensus AKE) × 19.6% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 ISCO-08 22 (€26.79/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 22: 194,900 employed (LFS/Mikrozensus AKE) × 19.6% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 ISCO-08 22 (€26.79/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Forestry, fishery & hunting workers",
@@ -179,7 +179,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Core activities: timber harvesting, commercial fishing, game management. Work in remote, unstructured environments with minimal digital infrastructure. AI application limited to population modelling and GPS-based tracking.",
     exposureRationaleDe: "Kerntätigkeiten: Holzernte, gewerbliche Fischerei, Wildtiermanagement. Arbeit in abgelegenen, unstrukturierten Umgebungen mit minimaler digitaler Infrastruktur. KI-Anwendung beschränkt sich auf Populationsmodellierung und GPS-gestütztes Tracking.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 62: 6,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 national median (€17.49/h) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 62: 6,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 national median (€17.49/h) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Agricultural & forestry labourers",
@@ -203,7 +203,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Manual seasonal tasks: hand harvesting, planting, sorting, animal feeding. Nearly zero digital task share. Robotics in harvesting (e.g. soft fruit) is in early development; economic viability for Austrian farm structures is low.",
     exposureRationaleDe: "Manuelle saisonale Tätigkeiten: Handernte, Pflanzung, Sortierung, Tierfütterung. Digitaler Aufgabenanteil nahezu null. Ernteroboter (z. B. für Beerenobst) befinden sich in früher Entwicklung; die Wirtschaftlichkeit für österreichische Betriebsstrukturen ist gering.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 92: 6,200 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 ISCO-08 92 (€12.67/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 92: 6,200 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE A) | Pay: VSE 2022 ISCO-08 92 (€12.67/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Mining technicians & engineers",
@@ -227,7 +227,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Subsurface extraction, drilling, and blasting require physical presence. AI applications: predictive maintenance of equipment, safety monitoring via sensor networks, logistics optimisation for transport routes.",
     exposureRationaleDe: "Untertagegewinnung, Bohrung und Sprengung erfordern physische Präsenz. KI-Anwendungen: vorausschauende Wartung von Ausrüstung, Sicherheitsüberwachung über Sensornetzwerke, Logistikoptimierung für Transportwege.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 6.3% NACE weight (nama_10_a64_e: NACE B) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 6.3% NACE weight (nama_10_a64_e: NACE B) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Food, beverages & tobacco workers",
@@ -251,7 +251,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Production line operation, sensory quality control (taste, odour, texture), and hygiene compliance are predominantly manual. AI-supported tasks: optical quality inspection, predictive maintenance, demand forecasting for production planning.",
     exposureRationaleDe: "Produktionslinienbetrieb, sensorische Qualitätskontrolle (Geschmack, Geruch, Textur) und Hygienekonformität sind überwiegend manuell. KI-unterstützte Aufgaben: optische Qualitätsprüfung, vorausschauende Wartung, Bedarfsprognosen für die Produktionsplanung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 50.8% NACE weight (nama_10_a64_e: NACE C10-C12) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 50.8% NACE weight (nama_10_a64_e: NACE C10-C12) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Textile & apparel workers",
@@ -275,7 +275,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Manufacturing involves cutting, sewing, pressing, and finishing — tasks requiring manual dexterity. AI assists in pattern generation and demand prediction, but garment assembly at Austrian production scales is not economically automatable.",
     exposureRationaleDe: "Fertigung umfasst Zuschnitt, Nähen, Pressen und Endbearbeitung — Tätigkeiten, die Fingerfertigkeit erfordern. KI unterstützt bei Schnittgenerierung und Nachfrageprognose, die Konfektionierung bei österreichischen Produktionsmaßstäben ist wirtschaftlich nicht automatisierbar.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 8.0% NACE weight (nama_10_a64_e: NACE C13-C15) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 8.0% NACE weight (nama_10_a64_e: NACE C13-C15) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Wood & paper processing",
@@ -299,7 +299,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Sawmill operation, joinery, and surface treatment are predominantly physical. CNC machining introduces digital process control. AI potential: optimisation of cutting plans, wood defect detection via image recognition.",
     exposureRationaleDe: "Sägewerks-, Tischlerei- und Oberflächenbehandlung sind überwiegend physisch. CNC-Bearbeitung führt digitale Prozesssteuerung ein. KI-Potenzial: Optimierung von Schnittplänen, Holzfehler-Erkennung mittels Bildverarbeitung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 18.0% NACE weight (nama_10_a64_e: NACE C16) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 18.0% NACE weight (nama_10_a64_e: NACE C16) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Chemical production workers",
@@ -323,7 +323,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Process monitoring via SCADA systems comprises approximately 40% of work. Physical tasks: sampling, equipment maintenance, material handling. AI applications: predictive process control, anomaly detection in sensor data, yield optimisation.",
     exposureRationaleDe: "Prozessüberwachung über SCADA-Systeme umfasst ca. 40 % der Arbeit. Physische Aufgaben: Probenahme, Anlagenwartung, Materialhandling. KI-Anwendungen: prädiktive Prozesssteuerung, Anomalieerkennung in Sensordaten, Ausbeuteoptimierung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 24.0% NACE weight (nama_10_a64_e: NACE C20) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 24.0% NACE weight (nama_10_a64_e: NACE C20) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Pharmaceutical production",
@@ -347,7 +347,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Cleanroom manufacturing, batch documentation (GMP-compliant), and quality assurance involve both physical and digital tasks. AI is transforming drug discovery (molecular modelling, clinical trial analysis) and regulatory documentation.",
     exposureRationaleDe: "Reinraumfertigung, Chargen-Dokumentation (GMP-konform) und Qualitätssicherung umfassen sowohl physische als auch digitale Aufgaben. KI transformiert die Wirkstoffentwicklung (Molekülmodellierung, Analyse klinischer Studien) und die regulatorische Dokumentation.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 14.6% NACE weight (nama_10_a64_e: NACE C21) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 14.6% NACE weight (nama_10_a64_e: NACE C21) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Metal workers & machinists",
@@ -371,7 +371,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "CNC machining, welding, and precision assembly are manually executed with digital machine interfaces. AI potential: toolpath optimisation, quality inspection via machine vision, predictive tool wear monitoring.",
     exposureRationaleDe: "CNC-Bearbeitung, Schweißen und Präzisionsmontage werden manuell mit digitalen Maschinenschnittstellen ausgeführt. KI-Potenzial: Werkzeugwegoptimierung, Qualitätsprüfung mittels maschinellem Sehen, prädiktive Werkzeugverschleißüberwachung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 12.5% NACE weight (nama_10_a64_e: NACE C24) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 12.5% NACE weight (nama_10_a64_e: NACE C24) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Fabricated metal products workers",
@@ -395,7 +395,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Stamping, bending, surface treatment, and assembly are physically executed. Increasing CNC integration adds digital control interfaces. AI applications: automated visual inspection, production scheduling optimisation.",
     exposureRationaleDe: "Stanzen, Biegen, Oberflächenbehandlung und Montage werden physisch ausgeführt. Zunehmende CNC-Integration erweitert digitale Steuerungsschnittstellen. KI-Anwendungen: automatisierte Sichtprüfung, Produktionsablaufoptimierung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 23.7% NACE weight (nama_10_a64_e: NACE C25) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 23.7% NACE weight (nama_10_a64_e: NACE C25) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Computer & electronics manufacturing",
@@ -419,7 +419,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Combines cleanroom assembly with digital design verification and automated testing. AI accelerates electronic design automation (chip layout, signal integrity analysis) and enables automated optical inspection.",
     exposureRationaleDe: "Verbindet Reinraummontage mit digitaler Designverifikation und automatisiertem Testen. KI beschleunigt elektronische Designautomatisierung (Chiplayout, Signalintegritätsanalyse) und ermöglicht automatisierte optische Inspektion.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 31: 225,100 employed (LFS/Mikrozensus AKE) × 53.8% NACE weight (nama_10_a64_e: NACE C26) | Pay: VSE 2022 ISCO-08 31 (€22.65/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 31: 225,100 employed (LFS/Mikrozensus AKE) × 53.8% NACE weight (nama_10_a64_e: NACE C26) | Pay: VSE 2022 ISCO-08 31 (€22.65/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Electrical equipment manufacturing",
@@ -443,7 +443,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Physical tasks: wiring, soldering, component assembly. Digital tasks: circuit simulation, diagnostic testing. AI supports schematic generation, fault pattern recognition, and test automation.",
     exposureRationaleDe: "Physische Aufgaben: Verdrahtung, Löten, Komponentenmontage. Digitale Aufgaben: Schaltungssimulation, Diagnoseprüfung. KI unterstützt bei Schaltplangenerierung, Fehlermustererkennung und Testautomatisierung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 74: 74,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE C27) | Pay: VSE 2022 ISCO-08 74 (€18.74/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 74: 74,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE C27) | Pay: VSE 2022 ISCO-08 74 (€18.74/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Machinery & equipment manufacturing",
@@ -467,7 +467,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Engineering design (CAD/CAE), production planning, and physical assembly/testing. Approximately 40% digital task share. AI applications: generative design, simulation-based optimisation, digital twin integration for predictive maintenance.",
     exposureRationaleDe: "Konstruktion (CAD/CAE), Fertigungsplanung und physische Montage/Prüfung. Ca. 40 % digitaler Aufgabenanteil. KI-Anwendungen: generatives Design, simulationsbasierte Optimierung, Digital-Twin-Integration für vorausschauende Wartung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 29.9% NACE weight (nama_10_a64_e: NACE C28) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 29.9% NACE weight (nama_10_a64_e: NACE C28) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Motor vehicle production",
@@ -491,7 +491,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Assembly line work with increasing industrial robotics penetration. Approximately 40% of tasks involve digital process monitoring, quality control, and logistics coordination. Electrification alters required skill profiles.",
     exposureRationaleDe: "Montagearbeit mit zunehmender Industrierobotik-Durchdringung. Ca. 40 % der Aufgaben umfassen digitale Prozessüberwachung, Qualitätskontrolle und Logistikkoordination. Die Elektrifizierung verändert die erforderlichen Qualifikationsprofile.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 82: 16,900 employed (LFS/Mikrozensus AKE) × 68.8% NACE weight (nama_10_a64_e: NACE C29) | Pay: VSE 2022 ISCO-08 82 (€16.49/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 82: 16,900 employed (LFS/Mikrozensus AKE) × 68.8% NACE weight (nama_10_a64_e: NACE C29) | Pay: VSE 2022 ISCO-08 82 (€16.49/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Other transport equipment",
@@ -515,7 +515,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Specialised assembly of rail vehicles, aircraft components, and marine equipment. Mix of precision manual work and engineering documentation. AI potential in design optimisation and non-destructive testing analysis.",
     exposureRationaleDe: "Spezialmontage von Schienenfahrzeugen, Flugzeugkomponenten und Schiffsausrüstung. Verbindung von Präzisionshandarbeit und technischer Dokumentation. KI-Potenzial in Designoptimierung und Analyse zerstörungsfreier Prüfung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 82: 16,900 employed (LFS/Mikrozensus AKE) × 31.2% NACE weight (nama_10_a64_e: NACE C30) | Pay: VSE 2022 ISCO-08 82 (€16.49/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 82: 16,900 employed (LFS/Mikrozensus AKE) × 31.2% NACE weight (nama_10_a64_e: NACE C30) | Pay: VSE 2022 ISCO-08 82 (€16.49/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Paper & printing workers",
@@ -539,7 +539,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Papermaking involves physical process operation (pulping, pressing, drying). Print production increasingly digital (prepress, colour management). AI applications: defect detection, print quality optimisation.",
     exposureRationaleDe: "Papierherstellung umfasst physischen Prozessbetrieb (Aufschluss, Pressung, Trocknung). Druckproduktion zunehmend digital (Druckvorstufe, Farbmanagement). KI-Anwendungen: Fehlererkennung, Druckqualitätsoptimierung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 73: 16,800 employed (LFS/Mikrozensus AKE) × 64.5% NACE weight (nama_10_a64_e: NACE C17) | Pay: VSE 2022 ISCO-08 73 (€18.83/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 73: 16,800 employed (LFS/Mikrozensus AKE) × 64.5% NACE weight (nama_10_a64_e: NACE C17) | Pay: VSE 2022 ISCO-08 73 (€18.83/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Printing & media reproduction",
@@ -563,7 +563,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Prepress workflows are fully digital (layout, colour separation, proofing). Physical printing declining due to digital media substitution. AI automates typesetting, image processing, and personalised print-on-demand production.",
     exposureRationaleDe: "Druckvorstufe ist vollständig digital (Layout, Farbseparation, Proofing). Physischer Druck rückläufig durch Substitution durch digitale Medien. KI automatisiert Satz, Bildverarbeitung und personalisierte Print-on-Demand-Produktion.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 73: 16,800 employed (LFS/Mikrozensus AKE) × 35.5% NACE weight (nama_10_a64_e: NACE C18) | Pay: VSE 2022 ISCO-08 73 (€18.83/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 73: 16,800 employed (LFS/Mikrozensus AKE) × 35.5% NACE weight (nama_10_a64_e: NACE C18) | Pay: VSE 2022 ISCO-08 73 (€18.83/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Petroleum refining",
@@ -587,7 +587,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Continuous process operation in refineries with SCADA/DCS control systems. Physical tasks: equipment inspection, maintenance, safety rounds. AI optimises process parameters, yield prediction, and anomaly detection in real-time sensor data.",
     exposureRationaleDe: "Kontinuierlicher Prozessbetrieb in Raffinerien mit SCADA/DCS-Leitsystemen. Physische Aufgaben: Anlageninspektion, Wartung, Sicherheitsrundgänge. KI optimiert Prozessparameter, Ausbeuteprognosen und Anomalieerkennung in Echtzeit-Sensordaten.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 2.1% NACE weight (nama_10_a64_e: NACE C19) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 2.1% NACE weight (nama_10_a64_e: NACE C19) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Rubber & plastic products",
@@ -611,7 +611,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Injection moulding, extrusion, and blow moulding are machine-operated with manual setup. Digital share limited to machine parameter settings and quality monitoring. AI potential: process parameter optimisation, inline defect detection.",
     exposureRationaleDe: "Spritzguss, Extrusion und Blasformen sind maschinengeführt mit manuellem Rüsten. Digitaler Anteil beschränkt sich auf Maschinenparameter-Einstellungen und Qualitätsüberwachung. KI-Potenzial: Prozessparameteroptimierung, Inline-Fehlererkennung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 35.5% NACE weight (nama_10_a64_e: NACE C22) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 35.5% NACE weight (nama_10_a64_e: NACE C22) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Non-metallic mineral products",
@@ -635,7 +635,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Energy-intensive industrial processes (kiln operation, grinding, moulding) for glass, ceramics, and cement. Primarily physical with digital process control. AI applications limited to energy optimisation and quality prediction.",
     exposureRationaleDe: "Energieintensive industrielle Prozesse (Ofenbetrieb, Mahlung, Formgebung) für Glas, Keramik und Zement. Überwiegend physisch mit digitaler Prozesssteuerung. KI-Anwendungen beschränkt auf Energieoptimierung und Qualitätsprognose.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 32.1% NACE weight (nama_10_a64_e: NACE C23) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 81: 61,800 employed (LFS/Mikrozensus AKE) × 32.1% NACE weight (nama_10_a64_e: NACE C23) | Pay: VSE 2022 ISCO-08 81 (€17.18/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Furniture & other manufacturing",
@@ -659,7 +659,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Combines woodworking, upholstery, and finishing — tasks requiring manual craftsmanship. CNC machining for serial production adds digital interfaces. AI potential: design parametrisation, cutting optimisation, demand-driven production planning.",
     exposureRationaleDe: "Verbindet Holzbearbeitung, Polsterung und Endbearbeitung — Tätigkeiten, die handwerkliches Können erfordern. CNC-Bearbeitung für Serienfertigung ergänzt digitale Schnittstellen. KI-Potenzial: Designparametrisierung, Schnittoptimierung, bedarfsgesteuerte Produktionsplanung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 23.2% NACE weight (nama_10_a64_e: NACE C31_C32) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 75: 68,200 employed (LFS/Mikrozensus AKE) × 23.2% NACE weight (nama_10_a64_e: NACE C31_C32) | Pay: VSE 2022 ISCO-08 75 (€15.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Machinery repair & installation",
@@ -683,7 +683,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Fault diagnosis, disassembly, part replacement, and commissioning are physically executed. Digital diagnostic tools (vibration analysis, thermal imaging) support troubleshooting. AI enables predictive maintenance and spare parts forecasting.",
     exposureRationaleDe: "Fehlerdiagnose, Demontage, Teileersatz und Inbetriebnahme werden physisch ausgeführt. Digitale Diagnosewerkzeuge (Schwingungsanalyse, Thermografie) unterstützen die Fehlersuche. KI ermöglicht vorausschauende Wartung und Ersatzteilprognosen.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 7.9% NACE weight (nama_10_a64_e: NACE C33) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 7.9% NACE weight (nama_10_a64_e: NACE C33) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Manufacturing administration & purchasing",
@@ -707,7 +707,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Inventory management, order processing, goods receipt documentation, and supplier correspondence are structured ERP-based workflows. Approximately 80% digital task share. AI and robotic process automation handle purchase order matching, stock-level forecasting, and invoice reconciliation.",
     exposureRationaleDe: "Bestandsführung, Bestellabwicklung, Wareneingangsdokumentation und Lieferantenkorrespondenz sind strukturierte ERP-basierte Arbeitsabläufe. Ca. 80 % digitaler Aufgabenanteil. KI und Robotic Process Automation übernehmen Bestellabgleich, Bestandsprognosen und Rechnungsabstimmung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 43: 130,500 employed (LFS/Mikrozensus AKE) × 25.6% NACE weight (nama_10_a64_e: NACE C) | Pay: VSE 2022 ISCO-08 43 (€17.84/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 43: 130,500 employed (LFS/Mikrozensus AKE) × 25.6% NACE weight (nama_10_a64_e: NACE C) | Pay: VSE 2022 ISCO-08 43 (€17.84/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Energy supply technicians",
@@ -731,7 +731,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Grid operation, transformer maintenance, and cable work are physically executed. Digital tasks: SCADA monitoring, load management, smart grid integration. AI optimises grid balancing, fault prediction, and renewable energy dispatch.",
     exposureRationaleDe: "Netzbetrieb, Trafowartung und Kabelarbeiten werden physisch ausgeführt. Digitale Aufgaben: SCADA-Monitoring, Lastmanagement, Smart-Grid-Integration. KI optimiert Netzausgleich, Störungsprognosen und Einspeisemanagement erneuerbarer Energie.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 31: 225,100 employed (LFS/Mikrozensus AKE) × 46.2% NACE weight (nama_10_a64_e: NACE D) | Pay: VSE 2022 ISCO-08 31 (€22.65/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 31: 225,100 employed (LFS/Mikrozensus AKE) × 46.2% NACE weight (nama_10_a64_e: NACE D) | Pay: VSE 2022 ISCO-08 31 (€22.65/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Water supply & waste management",
@@ -755,7 +755,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Collection, transport, sorting, and treatment of waste and water are predominantly physical outdoor tasks. AI applications: route optimisation for collection vehicles, automated waste sorting via image recognition, process control in treatment plants.",
     exposureRationaleDe: "Sammlung, Transport, Sortierung und Aufbereitung von Abfall und Wasser sind überwiegend physische Außentätigkeiten. KI-Anwendungen: Routenoptimierung für Sammelfahrzeuge, automatisierte Abfallsortierung mittels Bildverarbeitung, Prozesssteuerung in Aufbereitungsanlagen.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 96: 19,400 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE E) | Pay: VSE 2022 ISCO-08 96 (€12.03/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 96: 19,400 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE E) | Pay: VSE 2022 ISCO-08 96 (€12.03/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Construction workers",
@@ -779,7 +779,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Earthwork, concrete placement, scaffolding, and material transport are entirely manual and site-bound. Digital task share below 5%. Robotic construction (bricklaying, 3D printing) exists in pilot projects but has no significant market penetration.",
     exposureRationaleDe: "Erdarbeiten, Betonierarbeiten, Gerüstbau und Materialtransport sind ausschließlich manuell und ortsgebunden. Digitaler Aufgabenanteil unter 5 %. Baurobotik (automatisiertes Mauern, 3D-Druck) existiert in Pilotprojekten, hat aber keine signifikante Marktdurchdringung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 39.6% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 39.6% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Building trades workers",
@@ -803,7 +803,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Electrical installation, plumbing, HVAC assembly, and tiling are manually executed on-site. Digital diagnostic tools (thermal cameras, leak detectors) supplement the work. AI potential in building energy management and fault diagnosis.",
     exposureRationaleDe: "Elektroinstallation, Sanitärinstallation, Heizungs-/Lüftungs-/Klimamontage und Fliesenlegen werden manuell vor Ort ausgeführt. Digitale Diagnosewerkzeuge (Wärmebildkameras, Leckagedetektoren) ergänzen die Arbeit. KI-Potenzial in Gebäude-Energiemanagement und Fehlerdiagnose.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 71: 171,900 employed (LFS/Mikrozensus AKE) × 70.4% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 71 (€17.55/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 71: 171,900 employed (LFS/Mikrozensus AKE) × 70.4% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 71 (€17.55/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Civil engineers & architects",
@@ -827,7 +827,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 6,
     exposureRationale: "Design work primarily digital: Building Information Modelling (BIM), finite element analysis, structural simulation. AI generates design variants, optimises structural load paths, and automates compliance checking against building codes.",
     exposureRationaleDe: "Planungsarbeit überwiegend digital: Building Information Modelling (BIM), Finite-Elemente-Analyse, Tragwerkssimulation. KI generiert Entwurfsvarianten, optimiert Lastpfade und automatisiert Konformitätsprüfungen gegen Bauvorschriften.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 23.5% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 23.5% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Painters & building finishers",
@@ -851,7 +851,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Surface preparation, painting, plastering, and floor laying are entirely manual on-site tasks. No meaningful digital task component. AI application potential is negligible for the foreseeable future.",
     exposureRationaleDe: "Untergrundvorbereitung, Anstrich, Verputz und Bodenverlegung sind ausschließlich manuelle Tätigkeiten vor Ort. Kein nennenswerter digitaler Aufgabenanteil. KI-Anwendungspotenzial ist auf absehbare Zeit vernachlässigbar.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 71: 171,900 employed (LFS/Mikrozensus AKE) × 29.6% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 71 (€17.55/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 71: 171,900 employed (LFS/Mikrozensus AKE) × 29.6% NACE weight (nama_10_a64_e: NACE F) | Pay: VSE 2022 ISCO-08 71 (€17.55/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Customer services clerks",
@@ -875,7 +875,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Tasks: telephone/email support, appointment scheduling, complaint handling, data entry. Over 70% are structured digital communication tasks. Conversational AI and automated ticketing systems substitute a growing share of these interactions.",
     exposureRationaleDe: "Aufgaben: Telefon-/E-Mail-Support, Terminplanung, Beschwerdebearbeitung, Datenerfassung. Über 70 % sind strukturierte digitale Kommunikationsaufgaben. Konversations-KI und automatisierte Ticketsysteme substituieren einen wachsenden Anteil dieser Interaktionen.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 42: 68,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE G47) | Pay: VSE 2022 ISCO-08 42 (€17.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 42: 68,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE G47) | Pay: VSE 2022 ISCO-08 42 (€17.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Motor vehicle trade & repair",
@@ -899,7 +899,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Vehicle diagnostics via OBD-II/EOBD systems involve digital interfaces, but repair, bodywork, and parts replacement are manual. AI applications: automated fault code interpretation, parts catalogue matching, warranty claim processing.",
     exposureRationaleDe: "Fahrzeugdiagnose über OBD-II/EOBD-Systeme umfasst digitale Schnittstellen, Reparatur, Karosseriearbeiten und Teileersatz sind manuell. KI-Anwendungen: automatisierte Fehlercodeinterpretation, Teilekatalogzuordnung, Garantieabwicklung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 26.0% NACE weight (nama_10_a64_e: NACE G45) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 72: 173,600 employed (LFS/Mikrozensus AKE) × 26.0% NACE weight (nama_10_a64_e: NACE G45) | Pay: VSE 2022 ISCO-08 72 (€18.63/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Wholesale trade workers",
@@ -923,7 +923,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Order processing, inventory management, and customer relationship management are digital (Enterprise Resource Planning, Customer Relationship Management systems). Physical warehouse operations account for approximately 40%. AI automates demand forecasting, pricing, and procurement.",
     exposureRationaleDe: "Auftragsabwicklung, Bestandsmanagement und Kundenbeziehungsmanagement sind digital (Enterprise-Resource-Planning-, CRM-Systeme). Physische Lagertätigkeiten machen ca. 40 % aus. KI automatisiert Bedarfsprognosen, Preisbildung und Beschaffung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 55.9% NACE weight (nama_10_a64_e: NACE G46) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 55.9% NACE weight (nama_10_a64_e: NACE G46) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Retail salespersons",
@@ -947,7 +947,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "In-store tasks: customer consultation, merchandise display, checkout. Online retail substitutes approximately 15% of traditional retail volume (Statistik Austria 2023). AI-driven product recommendations, self-checkout systems, and automated inventory reduce demand for sales personnel.",
     exposureRationaleDe: "Tätigkeiten im stationären Handel: Kundenberatung, Warenpräsentation, Kassiertätigkeit. Online-Handel substituiert ca. 15 % des traditionellen Einzelhandelsvolumens (Statistik Austria 2023). KI-gestützte Produktempfehlungen, Self-Checkout-Systeme und automatisierte Bestandsführung reduzieren den Personalbedarf.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 52: 315,700 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE G47) | Pay: VSE 2022 ISCO-08 52 (€13.19/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 52: 315,700 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE G47) | Pay: VSE 2022 ISCO-08 52 (€13.19/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Land transport & drivers",
@@ -971,7 +971,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Driving, loading, and route execution are physically and spatially bound. Digital components: telematics, fleet management systems, electronic freight documents. Autonomous driving technology is progressing (SAE Level 4) but regulatory approval and infrastructure readiness limit near-term deployment.",
     exposureRationaleDe: "Fahrtätigkeit, Be-/Entladung und Routendurchführung sind physisch und räumlich gebunden. Digitale Komponenten: Telematik, Flottenmanagement-Systeme, elektronische Frachtdokumente. Autonome Fahrtechnologie (SAE Level 4) entwickelt sich weiter, regulatorische Zulassung und Infrastruktur begrenzen den kurzfristigen Einsatz.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 83: 158,300 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE H49) | Pay: VSE 2022 ISCO-08 83 (€15.08/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 83: 158,300 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE H49) | Pay: VSE 2022 ISCO-08 83 (€15.08/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Warehousing & logistics support",
@@ -995,7 +995,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Order picking, packing, and goods receipt are physically executed. Warehouse management systems (WMS) coordinate digital workflows. Automated storage and retrieval systems and autonomous mobile robots increasingly handle structured, repetitive tasks.",
     exposureRationaleDe: "Kommissionierung, Verpackung und Wareneingang werden physisch ausgeführt. Lagerverwaltungssysteme koordinieren digitale Abläufe. Automatische Lager- und Bereitstellungssysteme sowie autonome mobile Roboter übernehmen zunehmend strukturierte, repetitive Aufgaben.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 21.1% NACE weight (nama_10_a64_e: NACE H52) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 21.1% NACE weight (nama_10_a64_e: NACE H52) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Postal & courier services",
@@ -1019,7 +1019,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Last-mile delivery, parcel sorting, and customer handover are physically executed. AI-based route optimisation and automated sorting centres increase efficiency, but final delivery to individual addresses remains a manual task.",
     exposureRationaleDe: "Letzte-Meile-Zustellung, Paketsortierung und Kundenübergabe werden physisch ausgeführt. KI-basierte Routenoptimierung und automatisierte Sortierzentren steigern die Effizienz, die Endzustellung an individuelle Adressen bleibt eine manuelle Tätigkeit.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 9.4% NACE weight (nama_10_a64_e: NACE H53) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 9.4% NACE weight (nama_10_a64_e: NACE H53) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Hospitality & retail managers",
@@ -1043,7 +1043,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Operational management tasks span physical site supervision and digital systems: revenue management, dynamic pricing, online booking platforms, and data analytics. Approximately 40% of management tasks are digitally supported.",
     exposureRationaleDe: "Operative Managementaufgaben umfassen physische Standortleitung und digitale Systeme: Revenue Management, dynamische Preisgestaltung, Online-Buchungsplattformen und Datenanalyse. Ca. 40 % der Managementaufgaben sind digital unterstützt.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 14: 34,400 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 14 (€20.97/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 14: 34,400 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 14 (€20.97/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Hotel & accommodation workers",
@@ -1067,7 +1067,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Room preparation, guest services, and front desk operations are physically executed. Property management systems, online check-in, and AI-based chatbots handle reservations and enquiries. Personal guest interaction remains central to service quality.",
     exposureRationaleDe: "Zimmerherrichtung, Gästeservice und Rezeptionstätigkeiten werden physisch ausgeführt. Property-Management-Systeme, Online-Check-in und KI-gestützte Chatbots bearbeiten Reservierungen und Anfragen. Persönliche Gästeinteraktion bleibt zentral für die Servicequalität.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 51: 265,100 employed (LFS/Mikrozensus AKE) × 36.9% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 51 (€12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 51: 265,100 employed (LFS/Mikrozensus AKE) × 36.9% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 51 (€12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Restaurant & food service workers",
@@ -1091,7 +1091,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Table service, order taking, and guest interaction are physically and socially bound. Self-ordering kiosks and digital point-of-sale systems automate transaction processing, but personal service differentiates quality dining from fast food.",
     exposureRationaleDe: "Tischbedienung, Bestellaufnahme und Gästebetreuung sind physisch und sozial gebunden. Selbstbestellkioske und digitale Kassensysteme automatisieren die Transaktionsabwicklung, persönlicher Service differenziert gehobene Gastronomie von Schnellverpflegung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 51: 265,100 employed (LFS/Mikrozensus AKE) × 42.2% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 51 (€12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 51: 265,100 employed (LFS/Mikrozensus AKE) × 42.2% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 51 (€12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Chefs & cooks",
@@ -1115,7 +1115,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Food preparation, cooking, plating, and kitchen management require manual dexterity and sensory judgement. Digital task share limited to inventory management and recipe documentation. Culinary execution is not automatable with current technology.",
     exposureRationaleDe: "Lebensmittelvorbereitung, Kochen, Anrichten und Küchenmanagement erfordern Fingerfertigkeit und sensorische Beurteilung. Digitaler Aufgabenanteil beschränkt sich auf Warenwirtschaft und Rezeptdokumentation. Kulinarische Ausführung ist mit aktueller Technologie nicht automatisierbar.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 94: 33,300 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 94 (€10.19/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 94: 33,300 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE I) | Pay: VSE 2022 ISCO-08 94 (€10.19/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Publishing, media & broadcasting",
@@ -1139,7 +1139,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 8,
     exposureRationale: "Content creation, editing, layout, and digital publishing are fully digital workflows. Large language models generate draft text, automated layout tools compose pages. Human editorial judgement remains necessary for quality assurance and investigative reporting.",
     exposureRationaleDe: "Inhaltserstellung, Lektorat, Layout und digitales Publizieren sind vollständig digitale Arbeitsabläufe. Große Sprachmodelle generieren Textentwürfe, automatisierte Layoutwerkzeuge setzen Seiten. Menschliches redaktionelles Urteil bleibt für Qualitätssicherung und investigativen Journalismus notwendig.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 26: 144,600 employed (LFS/Mikrozensus AKE) × 32.8% NACE weight (nama_10_a64_e: NACE J58) | Pay: VSE 2022 ISCO-08 26 (€22.88/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 26: 144,600 employed (LFS/Mikrozensus AKE) × 32.8% NACE weight (nama_10_a64_e: NACE J58) | Pay: VSE 2022 ISCO-08 26 (€22.88/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Film, TV & broadcasting",
@@ -1163,7 +1163,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Post-production (editing, colour grading, sound design) is fully digital. AI tools generate video sequences, synthetic voices, and automated subtitling. Physical production (camera operation, set construction, live broadcasting) retains manual requirements.",
     exposureRationaleDe: "Postproduktion (Schnitt, Farbkorrektur, Sounddesign) ist vollständig digital. KI-Werkzeuge generieren Videosequenzen, synthetische Stimmen und automatisierte Untertitelung. Physische Produktion (Kamerabedienung, Bühnenbau, Live-Sendung) behält manuelle Anforderungen.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 26: 144,600 employed (LFS/Mikrozensus AKE) × 33.1% NACE weight (nama_10_a64_e: NACE J59_J60) | Pay: VSE 2022 ISCO-08 26 (€22.88/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 26: 144,600 employed (LFS/Mikrozensus AKE) × 33.1% NACE weight (nama_10_a64_e: NACE J59_J60) | Pay: VSE 2022 ISCO-08 26 (€22.88/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Telecommunications technicians",
@@ -1187,7 +1187,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Physical tasks: cable laying, antenna installation, equipment maintenance at cell sites. Digital tasks: network configuration, signal optimisation, fault monitoring via network management systems. Approximately 40% digital task share.",
     exposureRationaleDe: "Physische Aufgaben: Kabelverlegung, Antenneninstallation, Gerätewartung an Standorten. Digitale Aufgaben: Netzwerkkonfiguration, Signaloptimierung, Störungsüberwachung über Network-Management-Systeme. Ca. 40 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 35: 38,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE J61) | Pay: VSE 2022 ISCO-08 35 (€21.58/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 35: 38,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE J61) | Pay: VSE 2022 ISCO-08 35 (€21.58/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Software developers & IT professionals",
@@ -1211,7 +1211,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 9,
     exposureRationale: "Software development, system administration, and data engineering are entirely digital tasks. AI code generation tools (code completion, automated testing, code review) augment approximately 30–50% of development workflows. Demand for software engineering is forecast to grow despite productivity gains.",
     exposureRationaleDe: "Softwareentwicklung, Systemadministration und Data Engineering sind vollständig digitale Tätigkeiten. KI-Codegenerierungswerkzeuge (Code-Vervollständigung, automatisiertes Testen, Code-Review) unterstützen ca. 30–50 % der Entwicklungsworkflows. Die Nachfrage nach Software Engineering wird trotz Produktivitätszuwächsen voraussichtlich steigen.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 25: 129,400 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE J62_J63) | Pay: VSE 2022 ISCO-08 25 (€26.01/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 25: 129,400 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE J62_J63) | Pay: VSE 2022 ISCO-08 25 (€26.01/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Financial services workers",
@@ -1235,7 +1235,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 8,
     exposureRationale: "Transaction processing, credit scoring, regulatory reporting, and fraud detection are digital processes. AI automates risk modelling, anti-money-laundering checks, and customer onboarding. Physical branch operations constitute a declining share of banking activity.",
     exposureRationaleDe: "Transaktionsverarbeitung, Bonitätsprüfung, regulatorisches Reporting und Betrugserkennung sind digitale Prozesse. KI automatisiert Risikomodellierung, Geldwäscheprävention und Kunden-Onboarding. Physischer Filialbetrieb macht einen sinkenden Anteil der Banktätigkeit aus.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 18.8% NACE weight (nama_10_a64_e: NACE K64) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 18.8% NACE weight (nama_10_a64_e: NACE K64) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Insurance workers",
@@ -1259,7 +1259,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Underwriting, claims assessment, actuarial analysis, and policy administration are predominantly digital. AI automates damage estimation (image-based), fraud detection, and risk pricing. Customer interaction shifts to digital channels.",
     exposureRationaleDe: "Underwriting, Schadensbewertung, versicherungsmathematische Analyse und Polizzenverwaltung sind überwiegend digital. KI automatisiert Schadensschätzung (bildbasiert), Betrugserkennung und Risikotarifierung. Kundeninteraktion verlagert sich auf digitale Kanäle.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 6.8% NACE weight (nama_10_a64_e: NACE K65) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 6.8% NACE weight (nama_10_a64_e: NACE K65) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Real estate professionals",
@@ -1283,7 +1283,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Property valuation, market analysis, and marketing are digitally supported. Physical property viewings and contract negotiations require personal presence. AI automates comparative market analysis, property matching algorithms, and virtual tour generation.",
     exposureRationaleDe: "Immobilienbewertung, Marktanalyse und Marketing sind digital unterstützt. Physische Objektbesichtigungen und Vertragsverhandlungen erfordern persönliche Präsenz. KI automatisiert Vergleichswertanalysen, Property-Matching-Algorithmen und virtuelle Rundgangerstellung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 18.5% NACE weight (nama_10_a64_e: NACE L) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 33: 366,000 employed (LFS/Mikrozensus AKE) × 18.5% NACE weight (nama_10_a64_e: NACE L) | Pay: VSE 2022 ISCO-08 33 (€20.66/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Administrative & commercial managers",
@@ -1307,7 +1307,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 6,
     exposureRationale: "Strategic planning, financial controlling, human resources management, and marketing direction involve approximately 60% digital tasks (reporting, analytics, workforce planning). AI-based tools automate data analysis, forecasting, and scenario modelling.",
     exposureRationaleDe: "Strategieplanung, Finanzcontrolling, Personalmanagement und Marketingleitung umfassen ca. 60 % digitale Aufgaben (Reporting, Analytik, Personalplanung). KI-gestützte Werkzeuge automatisieren Datenanalyse, Prognosen und Szenariomodellierung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 12: 87,900 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE M69_M70) | Pay: VSE 2022 ISCO-08 12 (€35.12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 12: 87,900 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE M69_M70) | Pay: VSE 2022 ISCO-08 12 (€35.12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Production & specialised services managers",
@@ -1331,7 +1331,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Operational oversight of manufacturing, construction, or IT service operations. Digital tasks: production planning, supply chain management, scheduling. Physical tasks: site supervision, quality audits. Approximately 50% digital task share.",
     exposureRationaleDe: "Operative Leitung von Produktions-, Bau- oder IT-Dienstleistungsbetrieben. Digitale Aufgaben: Produktionsplanung, Supply-Chain-Management, Terminierung. Physische Aufgaben: Standortaufsicht, Qualitätsaudits. Ca. 50 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 13: 75,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE C28) | Pay: VSE 2022 ISCO-08 13 (€33.25/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 13: 75,100 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE C28) | Pay: VSE 2022 ISCO-08 13 (€33.25/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Lawyers, accountants & consultants",
@@ -1355,7 +1355,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Contract drafting, legal research, financial auditing, and consulting deliverables are text-intensive digital tasks. AI-based tools automate document review, due diligence, regulatory compliance checks, and financial statement analysis.",
     exposureRationaleDe: "Vertragsentwurf, juristische Recherche, Wirtschaftsprüfung und Beratungsleistungen sind textintensive digitale Aufgaben. KI-gestützte Werkzeuge automatisieren Dokumentenprüfung, Due Diligence, regulatorische Konformitätsprüfungen und Bilanzanalyse.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 24: 155,100 employed (LFS/Mikrozensus AKE) × 82.2% NACE weight (nama_10_a64_e: NACE M69_M70) | Pay: VSE 2022 ISCO-08 24 (€25.06/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 24: 155,100 employed (LFS/Mikrozensus AKE) × 82.2% NACE weight (nama_10_a64_e: NACE M69_M70) | Pay: VSE 2022 ISCO-08 24 (€25.06/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Architects & engineering consultants",
@@ -1379,7 +1379,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 6,
     exposureRationale: "Design work is predominantly digital: Building Information Modelling, computer-aided engineering, parametric design. AI generates design alternatives and optimises structural, thermal, and energy performance. Physical site visits and client consultation remain necessary.",
     exposureRationaleDe: "Planungsarbeit ist überwiegend digital: Building Information Modelling, computergestützte Ingenieurberechnung, parametrisches Design. KI generiert Entwurfsalternativen und optimiert Tragwerks-, Wärme- und Energieeffizienz. Baustellenbegehungen und Kundenberatung bleiben notwendig.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 46.8% NACE weight (nama_10_a64_e: NACE M71) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 46.8% NACE weight (nama_10_a64_e: NACE M71) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Research scientists & academics",
@@ -1403,7 +1403,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Literature analysis, data processing, statistical modelling, and manuscript preparation are digital tasks (approximately 60%). Laboratory work, field research, and experimental setup are physical. AI accelerates systematic reviews, data analysis, and hypothesis generation.",
     exposureRationaleDe: "Literaturanalyse, Datenverarbeitung, statistische Modellierung und Manuskripterstellung sind digitale Aufgaben (ca. 60 %). Laborarbeit, Feldforschung und Versuchsaufbau sind physisch. KI beschleunigt systematische Reviews, Datenanalyse und Hypothesengenerierung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 15.1% NACE weight (nama_10_a64_e: NACE M72) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 21: 152,300 employed (LFS/Mikrozensus AKE) × 15.1% NACE weight (nama_10_a64_e: NACE M72) | Pay: VSE 2022 ISCO-08 21 (€26.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Advertising, marketing & other professional",
@@ -1427,7 +1427,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 8,
     exposureRationale: "Campaign planning, content creation, performance analytics, and media buying are fully digital workflows. AI generates marketing copy, automates A/B testing, optimises bidding strategies, and produces personalised content at scale.",
     exposureRationaleDe: "Kampagnenplanung, Inhaltserstellung, Performance-Analytik und Mediaeinkauf sind vollständig digitale Arbeitsabläufe. KI generiert Werbetexte, automatisiert A/B-Tests, optimiert Gebotsstrategien und produziert personalisierte Inhalte skaliert.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 24: 155,100 employed (LFS/Mikrozensus AKE) × 17.8% NACE weight (nama_10_a64_e: NACE M73) | Pay: VSE 2022 ISCO-08 24 (€25.06/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 24: 155,100 employed (LFS/Mikrozensus AKE) × 17.8% NACE weight (nama_10_a64_e: NACE M73) | Pay: VSE 2022 ISCO-08 24 (€25.06/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Bookkeepers, payroll & stock clerks",
@@ -1451,7 +1451,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 8,
     exposureRationale: "Double-entry bookkeeping, payroll processing, inventory tracking, and accounts reconciliation are structured, rule-based digital tasks. AI and robotic process automation handle end-to-end processing of invoices, bank reconciliations, and payroll calculations.",
     exposureRationaleDe: "Doppelte Buchführung, Lohnverrechnung, Bestandserfassung und Kontenabstimmung sind strukturierte, regelbasierte digitale Aufgaben. KI und Robotic Process Automation übernehmen die durchgängige Verarbeitung von Rechnungen, Bankabstimmungen und Gehaltsberechnungen.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 43: 130,500 employed (LFS/Mikrozensus AKE) × 74.4% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 43 (€17.84/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 43: 130,500 employed (LFS/Mikrozensus AKE) × 74.4% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 43 (€17.84/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Other clerical support workers",
@@ -1475,7 +1475,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Mail processing, data coding, document filing, and record keeping are structured, repetitive digital tasks. AI-based document processing (optical character recognition, natural language processing) automates classification, extraction, and routing.",
     exposureRationaleDe: "Postbearbeitung, Datenkodierung, Dokumentenablage und Aktenführung sind strukturierte, repetitive digitale Aufgaben. KI-gestützte Dokumentenverarbeitung (optische Zeichenerkennung, natürliche Sprachverarbeitung) automatisiert Klassifikation, Extraktion und Weiterleitung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 44: 31,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 44 (€14.19/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 44: 31,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 44 (€14.19/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Employment agency & temp workers",
@@ -1499,7 +1499,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Staffing coordination, contract administration, and timesheet processing are digital. Temporary assignments themselves span physical sectors (manufacturing, logistics, construction). AI automates candidate matching and administrative workflows.",
     exposureRationaleDe: "Personalkoordination, Vertragsadministration und Zeiterfassung sind digital. Die Überlassungstätigkeiten selbst erstrecken sich über physische Branchen (Fertigung, Logistik, Bau). KI automatisiert Bewerber-Matching und administrative Abläufe.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 29.8% NACE weight (nama_10_a64_e: NACE N78) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 93: 136,000 employed (LFS/Mikrozensus AKE) × 29.8% NACE weight (nama_10_a64_e: NACE N78) | Pay: VSE 2022 ISCO-08 93 (€14.02/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Office administration & support services",
@@ -1523,7 +1523,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Calendar management, correspondence, travel booking, data entry, and meeting coordination are predominantly digital tasks. AI-based tools automate scheduling, email drafting, document formatting, and data processing.",
     exposureRationaleDe: "Terminmanagement, Korrespondenz, Reisebuchung, Datenerfassung und Besprechungskoordination sind überwiegend digitale Aufgaben. KI-gestützte Werkzeuge automatisieren Terminplanung, E-Mail-Entwurf, Dokumentenformatierung und Datenverarbeitung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 41: 197,200 employed (LFS/Mikrozensus AKE) × 92.5% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 41 (€16.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 41: 197,200 employed (LFS/Mikrozensus AKE) × 92.5% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 41 (€16.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Cleaning & security services",
@@ -1547,7 +1547,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Cleaning, security patrols, and facility maintenance are physically executed across diverse environments. Digital task share below 10% (access control systems, shift scheduling). Robotics for commercial cleaning exists but covers only standardised floor areas.",
     exposureRationaleDe: "Reinigung, Sicherheitsrundgänge und Gebäudewartung werden physisch in verschiedenen Umgebungen ausgeführt. Digitaler Aufgabenanteil unter 10 % (Zutrittskontrollsysteme, Dienstplanung). Reinigungsroboter für gewerbliche Nutzung existieren, decken aber nur standardisierte Bodenflächen ab.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 91: 147,600 employed (LFS/Mikrozensus AKE) × 88.4% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 91 (€10.8/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 91: 147,600 employed (LFS/Mikrozensus AKE) × 88.4% NACE weight (nama_10_a64_e: NACE N) | Pay: VSE 2022 ISCO-08 91 (€10.8/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Public administration managers & senior officials",
@@ -1571,7 +1571,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 6,
     exposureRationale: "Case processing, permit administration, compliance verification, and citizen correspondence are structured digital workflows. Austria's E-Government strategy (Digitales Amt) accelerates process automation. AI potential in document classification, case routing, and decision support.",
     exposureRationaleDe: "Fallbearbeitung, Genehmigungsverwaltung, Konformitätsprüfung und Bürgerkommunikation sind strukturierte digitale Arbeitsabläufe. Österreichs E-Government-Strategie (Digitales Amt) beschleunigt die Prozessautomatisierung. KI-Potenzial in Dokumentenklassifikation, Fallweiterleitung und Entscheidungsunterstützung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 11: 33,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE O) | Pay: VSE 2022 ISCO-08 11 (€45.87/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 11: 33,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE O) | Pay: VSE 2022 ISCO-08 11 (€45.87/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Police, firefighters & security workers",
@@ -1595,7 +1595,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Patrol duty, emergency response, criminal investigation, and fire suppression are physically and situationally bound. AI applications: video surveillance analysis, dispatch optimisation, predictive policing models. Approximately 80% of tasks require physical presence.",
     exposureRationaleDe: "Streifendienst, Notfalleinsätze, Kriminalermittlung und Brandbekämpfung sind physisch und situativ gebunden. KI-Anwendungen: Videoüberwachungsanalyse, Einsatzoptimierung, prädiktive Polizeimodelle. Ca. 80 % der Aufgaben erfordern physische Präsenz.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 54: 44,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE O) | Pay: VSE 2022 ISCO-08 54 (€11.83/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 54: 44,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE O) | Pay: VSE 2022 ISCO-08 54 (€11.83/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Teaching professionals",
@@ -1619,7 +1619,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Lesson preparation, curriculum development, and assessment are digitally supported (approximately 40%). Classroom instruction, student mentoring, and social-emotional support require physical presence and interpersonal skills not substitutable by AI.",
     exposureRationaleDe: "Unterrichtsvorbereitung, Lehrplanentwicklung und Leistungsbeurteilung sind digital unterstützt (ca. 40 %). Präsenzunterricht, Schülerbetreuung und sozial-emotionale Förderung erfordern physische Anwesenheit und zwischenmenschliche Kompetenz, die durch KI nicht substituierbar ist.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 23: 245,000 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE P) | Pay: VSE 2022 ISCO-08 23 (€20/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 23: 245,000 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE P) | Pay: VSE 2022 ISCO-08 23 (€20/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Education support staff",
@@ -1643,7 +1643,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Administrative tasks (scheduling, record keeping, communication) are digital. Pedagogical assistance, child supervision, and special needs support require physical presence. Approximately 30% digital task share.",
     exposureRationaleDe: "Administrative Aufgaben (Terminplanung, Aktenführung, Kommunikation) sind digital. Pädagogische Assistenz, Kinderbetreuung und Sonderpädagogik erfordern physische Präsenz. Ca. 30 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 53: 156,900 employed (LFS/Mikrozensus AKE) × 23.9% NACE weight (nama_10_a64_e: NACE P) | Pay: VSE 2022 ISCO-08 53 (€15.15/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 53: 156,900 employed (LFS/Mikrozensus AKE) × 23.9% NACE weight (nama_10_a64_e: NACE P) | Pay: VSE 2022 ISCO-08 53 (€15.15/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Doctors & medical specialists",
@@ -1667,7 +1667,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Diagnostics is increasingly AI-supported (medical imaging analysis, differential diagnosis, laboratory interpretation). Physical examination, surgical procedures, and patient communication require manual execution and clinical judgement. Approximately 40% digital task share.",
     exposureRationaleDe: "Diagnostik wird zunehmend KI-unterstützt (Bildgebungsanalyse, Differentialdiagnostik, Laborbefundinterpretation). Körperliche Untersuchung, chirurgische Eingriffe und Patientenkommunikation erfordern manuelle Durchführung und klinisches Urteilsvermögen. Ca. 40 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 22: 194,900 employed (LFS/Mikrozensus AKE) × 80.4% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 22 (€26.79/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 22: 194,900 employed (LFS/Mikrozensus AKE) × 80.4% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 22 (€26.79/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Nurses & health associates",
@@ -1691,7 +1691,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 3,
     exposureRationale: "Direct patient care (vital signs monitoring, medication administration, wound care, patient mobilisation) is physically executed. AI supports clinical documentation, medication interaction checks, and care planning. Approximately 20% digital task share.",
     exposureRationaleDe: "Direkte Patientenversorgung (Vitalzeichenüberwachung, Medikamentenverabreichung, Wundversorgung, Mobilisation) wird physisch ausgeführt. KI unterstützt klinische Dokumentation, Medikamenten-Interaktionsprüfungen und Pflegeplanung. Ca. 20 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 32: 78,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 32 (€20.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 32: 78,600 employed (LFS/Mikrozensus AKE) × 100.0% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 32 (€20.2/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Other health activities workers",
@@ -1715,7 +1715,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Physiotherapy, laboratory analysis, pharmacy dispensing, and medical device operation combine physical patient contact with technical procedures. AI potential in laboratory image analysis and rehabilitation exercise monitoring.",
     exposureRationaleDe: "Physiotherapie, Laboranalytik, Apothekenausgabe und Medizintechnik-Bedienung verbinden physischen Patientenkontakt mit technischen Verfahren. KI-Potenzial in Laborbildanalyse und Rehabilitationsüberwachung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 53: 156,900 employed (LFS/Mikrozensus AKE) × 18.1% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 53 (€15.15/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 53: 156,900 employed (LFS/Mikrozensus AKE) × 18.1% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 53 (€15.15/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Social work & care workers",
@@ -1739,7 +1739,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Personal care, mobility assistance, social activation, and crisis intervention require physical presence and empathic interaction. Digital tasks limited to care documentation and resource coordination. Approximately 15% digital task share.",
     exposureRationaleDe: "Personenpflege, Mobilitätsassistenz, soziale Aktivierung und Krisenintervention erfordern physische Präsenz und empathische Interaktion. Digitale Aufgaben beschränkt auf Pflegedokumentation und Ressourcenkoordination. Ca. 15 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 53: 156,900 employed (LFS/Mikrozensus AKE) × 58.0% NACE weight (nama_10_a64_e: NACE Q87_Q88) | Pay: VSE 2022 ISCO-08 53 (€15.15/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 53: 156,900 employed (LFS/Mikrozensus AKE) × 58.0% NACE weight (nama_10_a64_e: NACE Q87_Q88) | Pay: VSE 2022 ISCO-08 53 (€15.15/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Health & care administration",
@@ -1763,7 +1763,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 7,
     exposureRationale: "Patient registration, appointment scheduling, medical records management, billing, and correspondence are structured digital workflows. Approximately 85% digital task share. AI automates medical coding (ICD/DRG), appointment optimisation, and document classification.",
     exposureRationaleDe: "Patientenaufnahme, Terminplanung, Krankenaktenverwaltung, Abrechnung und Korrespondenz sind strukturierte digitale Arbeitsabläufe. Ca. 85 % digitaler Aufgabenanteil. KI automatisiert medizinische Kodierung (ICD/DRG), Terminoptimierung und Dokumentenklassifikation.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 41: 197,200 employed (LFS/Mikrozensus AKE) × 7.5% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 41 (€16.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 41: 197,200 employed (LFS/Mikrozensus AKE) × 7.5% NACE weight (nama_10_a64_e: NACE Q86) | Pay: VSE 2022 ISCO-08 41 (€16.91/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Care facility support & cleaning",
@@ -1787,7 +1787,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 1,
     exposureRationale: "Hospital and care home cleaning, kitchen assistance, laundry, portering, and waste disposal are entirely physical tasks. Digital task share below 5% (shift scheduling systems). Robotic floor cleaning is deployed in some facilities but covers only standardised corridor areas.",
     exposureRationaleDe: "Krankenhaus- und Pflegeheimreinigung, Küchenunterstützung, Wäscheversorgung, Botendienste und Abfallentsorgung sind ausschließlich physische Tätigkeiten. Digitaler Aufgabenanteil unter 5 % (Dienstplansysteme). Reinigungsroboter kommen in einzelnen Einrichtungen zum Einsatz, decken aber nur standardisierte Gangflächen ab.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 91: 147,600 employed (LFS/Mikrozensus AKE) × 11.6% NACE weight (nama_10_a64_e: NACE Q87_Q88) | Pay: VSE 2022 ISCO-08 91 (€10.8/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 91: 147,600 employed (LFS/Mikrozensus AKE) × 11.6% NACE weight (nama_10_a64_e: NACE Q87_Q88) | Pay: VSE 2022 ISCO-08 91 (€10.8/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Social & community workers",
@@ -1811,7 +1811,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 4,
     exposureRationale: "Case assessment, individual and group counselling, crisis intervention, and community outreach are interpersonal tasks requiring empathic judgement. Approximately 35% digital task share (case documentation, reporting, resource databases). AI assists with risk scoring, needs assessment questionnaires, and service matching.",
     exposureRationaleDe: "Fallbeurteilung, Einzel- und Gruppenberatung, Krisenintervention und Gemeinwesenarbeit sind interpersonelle Tätigkeiten, die empathisches Urteilsvermögen erfordern. Ca. 35 % digitaler Aufgabenanteil (Falldokumentation, Berichtswesen, Ressourcendatenbanken). KI unterstützt bei Risikobewertung, Bedarfserhebungsfragebögen und Dienstleistungszuordnung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 26: 144,600 employed (LFS/Mikrozensus AKE) × 34.1% NACE weight (nama_10_a64_e: NACE Q87_Q88) | Pay: VSE 2022 ISCO-08 26 (€22.88/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 26: 144,600 employed (LFS/Mikrozensus AKE) × 34.1% NACE weight (nama_10_a64_e: NACE Q87_Q88) | Pay: VSE 2022 ISCO-08 26 (€22.88/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Arts, entertainment & recreation",
@@ -1835,7 +1835,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Live performance, artistic direction, and cultural programming require personal creative execution. AI tools generate visual art, music, and text — augmenting digital content production. Physical presence in performance, sport instruction, and event management is non-substitutable.",
     exposureRationaleDe: "Live-Performance, künstlerische Leitung und Kulturprogrammgestaltung erfordern persönliche kreative Ausführung. KI-Werkzeuge generieren bildende Kunst, Musik und Text — sie ergänzen die digitale Inhaltsproduktion. Physische Präsenz bei Aufführung, Sportanleitung und Veranstaltungsmanagement ist nicht substituierbar.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 34: 98,700 employed (LFS/Mikrozensus AKE) × 49.7% NACE weight (nama_10_a64_e: NACE R) | Pay: VSE 2022 ISCO-08 34 (€17.74/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 34: 98,700 employed (LFS/Mikrozensus AKE) × 49.7% NACE weight (nama_10_a64_e: NACE R) | Pay: VSE 2022 ISCO-08 34 (€17.74/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Membership organizations & associations",
@@ -1859,7 +1859,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 5,
     exposureRationale: "Member communication, event management, and advocacy require personal relationship management. Administrative tasks (accounting, correspondence, database management) are digital. Approximately 50% digital task share.",
     exposureRationaleDe: "Mitgliederkommunikation, Veranstaltungsmanagement und Interessenvertretung erfordern persönliches Beziehungsmanagement. Administrative Aufgaben (Buchhaltung, Korrespondenz, Datenbankpflege) sind digital. Ca. 50 % digitaler Aufgabenanteil.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 34: 98,700 employed (LFS/Mikrozensus AKE) × 50.3% NACE weight (nama_10_a64_e: NACE S) | Pay: VSE 2022 ISCO-08 34 (€17.74/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 34: 98,700 employed (LFS/Mikrozensus AKE) × 50.3% NACE weight (nama_10_a64_e: NACE S) | Pay: VSE 2022 ISCO-08 34 (€17.74/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   },
   {
     title: "Personal services & repair",
@@ -1883,7 +1883,7 @@ export const austrianOccupations: Occupation[] = [
     exposure: 2,
     exposureRationale: "Hairdressing, cosmetic treatments, and repair services require manual dexterity and direct client interaction. Digital task share limited to appointment scheduling and point-of-sale processing. No significant AI substitution potential for core service delivery.",
     exposureRationaleDe: "Friseurhandwerk, kosmetische Behandlungen und Reparaturdienste erfordern Fingerfertigkeit und direkten Kundenkontakt. Digitaler Aufgabenanteil beschränkt sich auf Terminbuchung und Kassenabwicklung. Kein wesentliches KI-Substitutionspotenzial für die Kerndienstleistung.",
-    source: "Eurostat lfsa_egai2d (2024) ISCO-08 51: 265,100 employed (LFS/Mikrozensus AKE) × 21.0% NACE weight (nama_10_a64_e: NACE S) | Pay: VSE 2022 ISCO-08 51 (€12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 70+ hypothesis-driven verification tests",
+    source: "Eurostat lfsa_egai2d (2024) ISCO-08 51: 265,100 employed (LFS/Mikrozensus AKE) × 21.0% NACE weight (nama_10_a64_e: NACE S) | Pay: VSE 2022 ISCO-08 51 (€12/h median × 2080h × 1.17) | Pipeline: scripts/generate-occupations.ts → deterministic build, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests",
   }
 ];
 
