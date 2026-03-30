@@ -137,10 +137,21 @@ export function TreemapCanvas({ data, colorMode, locale }: TreemapCanvasProps) {
 
     // Get theme
     const isDark = document.documentElement.classList.contains("dark");
-    const bg = isDark ? "#0a0a0f" : "#f8f9fa";
+    const bg = isDark ? "#020617" : "#ffffff";
+    const w = canvas.width / dpr;
+    const h = canvas.height / dpr;
 
-    ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+    // Soft teal gradient background (matching all charts)
+    const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+    if (isDark) {
+      bgGrad.addColorStop(0, "#020617"); // slate-950
+      bgGrad.addColorStop(1, "#042f2e20"); // teal-950/12
+    } else {
+      bgGrad.addColorStop(0, "#ffffff");
+      bgGrad.addColorStop(1, "#f0fdfa99"); // teal-50/60
+    }
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, w, h);
 
     for (const r of rects) {
       const isHovered = r === hovered;

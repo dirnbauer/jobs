@@ -21,6 +21,7 @@ function pageTitle(segment: string, locale: Locale): string {
 type SeoPage =
   | "home"
   | "about"
+  | "verification"
   | "comparison"
   | "datenschutz"
   | "impressum"
@@ -28,6 +29,7 @@ type SeoPage =
 
 const PAGE_PATH: Record<Exclude<SeoPage, "home">, `/${string}`> = {
   about: "/about",
+  verification: "/verification",
   comparison: "/comparison",
   datenschutz: "/datenschutz",
   impressum: "/impressum",
@@ -69,6 +71,22 @@ export const PAGE_SEO: Record<
         "Hintergrund, Methodik, Datenquellen und Datenverifizierung der österreichischen berufsbasierten Arbeitsmarktkarte.",
       ogDescription:
         "Original von Karpathy; österreichische Adaption von webconsulting.at — Hintergrund, Quellen und Verifikation.",
+    },
+  },
+  verification: {
+    en: {
+      title: "Data Verification",
+      description:
+        "99 hypothesis-driven tests validate employment, earnings, ISCO structure, AI exposure, and sector totals against Eurostat and Statistik Austria source data.",
+      ogDescription:
+        "99 scientific tests verify Austrian labour market data against Eurostat and VSE sources.",
+    },
+    de: {
+      title: "Datenverifizierung",
+      description:
+        "99 hypothesengetriebene Tests validieren Beschäftigung, Gehalt, ISCO-Struktur, KI-Exposition und Sektorsummen gegen Eurostat- und Statistik-Austria-Quelldaten.",
+      ogDescription:
+        "99 wissenschaftliche Tests verifizieren österreichische Arbeitsmarktdaten gegen Eurostat- und VSE-Quellen.",
     },
   },
   comparison: {

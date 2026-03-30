@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/locale";
 import { Card } from "@/components/ui/card";
 import { ExternalLink } from "lucide-react";
-import { TestsSummary } from "@/components/tests-summary";
+import Link from "next/link";
 
 interface AboutViewProps {
   locale: Locale;
@@ -60,7 +60,7 @@ function AboutEn() {
             <strong className="text-foreground">Outlook 2023–2030</strong> → WIFO/AMS Mittelfristige Beschäftigungsprognose (weighted NACE + ISCO growth)
           </li>
           <li className="list-disc">
-            <strong className="text-foreground">Reproducibility</strong> → All data is Open Government Data. Pipeline is deterministic, no LLM at build time. 30+ automated integrity tests verify every regeneration.
+            <strong className="text-foreground">Reproducibility</strong> → All data is Open Government Data. Pipeline is deterministic, no LLM at build time. 99 hypothesis-driven tests verify employment, pay, ISCO structure, AI exposure, and sector totals on every regeneration — including 13 that compare row-by-row against original Eurostat and VSE source data.
           </li>
         </ul>
         <p className="text-sm leading-relaxed text-foreground/70">
@@ -107,8 +107,20 @@ function AboutEn() {
         </p>
       </Card>
 
-      {/* ── Data Verification ────────────────────────────────────────── */}
-      <TestsSummary locale="en" />
+      {/* ── Data Verification (link to dedicated page) ──────────────── */}
+      <Card className="p-5 space-y-2">
+        <h3 className="text-base font-semibold">Data Verification</h3>
+        <p className="text-sm text-foreground/70">
+          99 hypothesis-driven tests verify employment, earnings, ISCO structure, AI exposure, and sector totals — including 13 tests that compare row-by-row against original Eurostat and Statistik Austria source data.
+        </p>
+        <Link
+          href="/en/verification"
+          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-2"
+        >
+          View all verification tests
+          <ExternalLink className="h-3.5 w-3.5" />
+        </Link>
+      </Card>
     </div>
   );
 }
@@ -159,7 +171,7 @@ function AboutDe() {
             <strong className="text-foreground">Ausblick 2023–2030</strong> → WIFO/AMS Mittelfristige Beschäftigungsprognose (gewichtetes NACE- + ISCO-Wachstum)
           </li>
           <li className="list-disc">
-            <strong className="text-foreground">Reproduzierbarkeit</strong> → Alle Daten als Open Government Data. Pipeline ist deterministisch, kein LLM beim Build. Über 30 automatisierte Integritätstests verifizieren jede Regeneration.
+            <strong className="text-foreground">Reproduzierbarkeit</strong> → Alle Daten als Open Government Data. Pipeline ist deterministisch, kein LLM beim Build. 99 hypothesengetriebene Tests verifizieren Beschäftigung, Gehalt, ISCO-Struktur, KI-Exposition und Sektorsummen bei jeder Regeneration — darunter 13, die Zeile für Zeile gegen Eurostat- und VSE-Originaldaten vergleichen.
           </li>
         </ul>
         <p className="text-sm leading-relaxed text-foreground/70">
@@ -206,8 +218,20 @@ function AboutDe() {
         </p>
       </Card>
 
-      {/* ── Datenverifizierung ───────────────────────────────────────── */}
-      <TestsSummary locale="de" />
+      {/* ── Datenverifizierung (Link zur dedizierten Seite) ──────────── */}
+      <Card className="p-5 space-y-2">
+        <h3 className="text-base font-semibold">Datenverifizierung</h3>
+        <p className="text-sm text-foreground/70">
+          99 hypothesengetriebene Tests verifizieren Beschäftigung, Gehalt, ISCO-Struktur, KI-Exposition und Sektorsummen — darunter 13 Tests, die Zeile für Zeile mit Eurostat- und Statistik-Austria-Originaldaten vergleichen.
+        </p>
+        <Link
+          href="/de/verification"
+          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-2"
+        >
+          Alle Verifizierungstests anzeigen
+          <ExternalLink className="h-3.5 w-3.5" />
+        </Link>
+      </Card>
     </div>
   );
 }

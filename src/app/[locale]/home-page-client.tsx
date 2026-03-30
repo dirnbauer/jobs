@@ -87,8 +87,8 @@ export default function HomePageClient() {
               <div className="mt-2 space-y-2 pl-3 border-l border-border/50">
                 <p>
                   {de
-                    ? "Beschäftigung: Eurostat lfsa_egai2d (2024). Entgelte: Verdienststrukturerhebung 2022 (Statistik Austria OGD). Klassifikation: ISCO-08 Berufsgruppen, ÖNACE-Wirtschaftsabschnitte. 30+ automatisierte Integritätsprüfungen. Alle Rohdaten als Open Government Data frei herunterladbar."
-                    : "Employment: Eurostat lfsa_egai2d (2024). Earnings: Structure of Earnings Survey 2022 (Statistik Austria OGD). Classification: ISCO-08 occupation groups, ÖNACE economic sections. 30+ automated integrity tests. All raw data freely downloadable as Open Government Data."}
+                    ? "Beschäftigung: Eurostat lfsa_egai2d (2024). Entgelte: Verdienststrukturerhebung 2022 (Statistik Austria OGD). Klassifikation: ISCO-08 Berufsgruppen, ÖNACE-Wirtschaftsabschnitte. 99 hypothesengetriebene Verifizierungstests. Alle Rohdaten als Open Government Data frei herunterladbar."
+                    : "Employment: Eurostat lfsa_egai2d (2024). Earnings: Structure of Earnings Survey 2022 (Statistik Austria OGD). Classification: ISCO-08 occupation groups, ÖNACE economic sections. 99 hypothesis-driven verification tests. All raw data freely downloadable as Open Government Data."}
                 </p>
                 <p>
                   {de ? (

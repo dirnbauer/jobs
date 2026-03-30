@@ -5,7 +5,7 @@ import { dataTests } from "@/lib/data";
 import type { Locale } from "@/lib/locale";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, XCircle, PlayCircle, Loader2, ChevronDown } from "lucide-react";
+import { CheckCircle2, XCircle, PlayCircle, Loader2, ChevronDown, FlaskConical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface TestsSummaryProps {
@@ -29,14 +29,18 @@ interface TestLogEntry {
 }
 
 const TEST_GROUPS = [
-  { id: "integrity", labelEn: "Integrity", labelDe: "Integrität", testIds: ["total-employment", "no-zero-jobs", "no-zero-pay", "education-valid", "unique-slugs", "has-source", "occupation-count"] },
-  { id: "occupation-structure", labelEn: "ISCO structure", labelDe: "ISCO-Struktur", testIds: ["isco-fields-present", "isco-major-matches-code", "isco-family-labels-consistent", "isco-family-coverage"] },
-  { id: "pay", labelEn: "Pay", labelDe: "Gehalt", testIds: ["pay-range", "salary-gini", "salary-cv", "education-pay-ladder", "weighted-median-pay", "wage-bill", "education-extreme-share"] },
-  { id: "ai", labelEn: "AI scoring", labelDe: "KI-Scoring", testIds: ["exposure-range", "outlook-range", "exposure-span", "exposure-pay-correlation", "physical-low-exposure", "knowledge-high-exposure", "exposure-rationale-length", "outlook-unbiased"] },
-  { id: "sector", labelEn: "Sectors", labelDe: "Sektoren", testIds: ["manufacturing-total", "it-total", "services-share", "health-total", "construction-range", "nace-sections-all", "employment-hhi", "trade-sector-g"] },
+  { id: "completeness", labelEn: "Data Completeness", labelDe: "Datenvollständigkeit", icon: "🔍", source: false, descEn: "All fields populated, bilingual, sources traceable", descDe: "Alle Felder befüllt, zweisprachig, Quellen nachvollziehbar" },
+  { id: "isco", labelEn: "ISCO-08 Structure", labelDe: "ISCO-08-Struktur", icon: "🏗️", source: false, descEn: "Code format, family consistency, coverage of all 9 major groups", descDe: "Codeformat, Familienkonsistenz, Abdeckung aller 9 Hauptgruppen" },
+  { id: "employment", labelEn: "Employment Distribution", labelDe: "Beschäftigungsverteilung", icon: "📊", source: false, descEn: "Total employment, concentration (HHI), skewness, partition identity", descDe: "Gesamtbeschäftigung, Konzentration (HHI), Schiefe, Partitionsidentität" },
+  { id: "sectors", labelEn: "Sector Totals", labelDe: "Sektorsummen", icon: "🏭", source: false, descEn: "NACE section employment ranges vs Eurostat ballparks", descDe: "NACE-Abschnittsbeschäftigung im Vergleich zu Eurostat-Größenordnungen" },
+  { id: "pay", labelEn: "Earnings & Pay", labelDe: "Gehalt & Entlohnung", icon: "💰", source: false, descEn: "Pay range, Gini, P90/P10, education ladder, ISCO pay hierarchy", descDe: "Gehaltsspanne, Gini, P90/P10, Bildungsleiter, ISCO-Gehaltshierarchie" },
+  { id: "exposure", labelEn: "AI Exposure", labelDe: "KI-Exposition", icon: "🤖", source: false, descEn: "Score range, correlations with pay/education, sector patterns", descDe: "Score-Bereich, Korrelationen mit Gehalt/Bildung, Sektormuster" },
+  { id: "outlook", labelEn: "Outlook & Growth", labelDe: "Ausblick & Wachstum", icon: "📈", source: false, descEn: "WIFO/AMS forecast bias, variance, sector-level patterns", descDe: "WIFO/AMS-Prognose-Bias, Varianz, Sektormuster" },
+  { id: "cross", labelEn: "Cross-Validation", labelDe: "Kreuzvalidierung", icon: "🔗", source: false, descEn: "Multi-dimensional checks: exposure-outlook independence, bilingual parity", descDe: "Mehrdimensionale Prüfungen: Expositions-Ausblick-Unabhängigkeit, zweisprachige Parität" },
+  { id: "source", labelEn: "Source Data (Eurostat/VSE)", labelDe: "Quelldaten (Eurostat/VSE)", icon: "🏛️", source: true, descEn: "Row-by-row comparison against original Eurostat + Statistik Austria data", descDe: "Zeile-für-Zeile-Vergleich mit Eurostat- und Statistik-Austria-Originaldaten" },
 ] as const;
 
-const STREAM_DELAY_MS = 24;
+const STREAM_DELAY_MS = 12;
 
 const testsById = new Map(dataTests.map((t) => [t.id, t]));
 
@@ -47,6 +51,8 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
   );
   const [isRunning, setIsRunning] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+  const [selectedTest, setSelectedTest] = useState<string | null>(null);
   const [runLog, setRunLog] = useState<TestLogEntry[]>([]);
   const logRef = useRef<HTMLDivElement | null>(null);
 
@@ -123,17 +129,30 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
   const allPassed = passed === total;
   const resultsById = new Map(results.map((r) => [r.id, r]));
 
+  const toggleGroup = (id: string) => {
+    setExpandedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
   const groupedTests = TEST_GROUPS.map((group) => {
-    const tests = group.testIds.map((id) => testsById.get(id)).filter(Boolean) as (typeof dataTests)[number][];
+    const tests = dataTests.filter((t) => t.group === group.id);
     const passedCount = tests.filter((t) => resultsById.get(t.id)?.passed).length;
     return { ...group, tests, passedCount };
   });
+
+  const selectedTestObj = selectedTest ? testsById.get(selectedTest) : null;
+  const selectedResult = selectedTest ? resultsById.get(selectedTest) : null;
 
   return (
     <Card className="p-5 space-y-3">
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-3">
-          <h2 className="text-base font-bold">
+          <h2 className="text-base font-bold flex items-center gap-2">
+            <FlaskConical className="h-4 w-4" aria-hidden />
             {de ? "Datenverifizierung" : "Data Verification"}
           </h2>
           <div className="flex items-center gap-2">
@@ -168,7 +187,7 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
               </div>
               <div className="text-[11px] text-foreground/45">
                 {isRunning
-                  ? (de ? `Prüfe ${dataTests.length} Regeln…` : `Checking ${dataTests.length} rules…`)
+                  ? (de ? `Prüfe ${dataTests.length} Hypothesen…` : `Testing ${dataTests.length} hypotheses…`)
                   : (de ? "Letzter Durchlauf abgeschlossen" : "Latest run completed")}
               </div>
             </div>
@@ -215,8 +234,8 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
 
       <p className="text-sm text-foreground/70">
         {de
-          ? "Über 30 automatisierte Integritätsprüfungen verifizieren Beschäftigungssummen, Entgeltplausibilität, ISCO-Konsistenz und KI-Einflussverteilung."
-          : "30+ automated integrity checks verify employment totals, earnings plausibility, ISCO consistency, and AI impact distribution."}
+          ? `${total} wissenschaftlich fundierte Hypothesentests verifizieren Beschäftigungssummen, Entgeltplausibilität, ISCO-Konsistenz, KI-Exposition und Arbeitsmarktstruktur.`
+          : `${total} hypothesis-driven tests verify employment totals, earnings plausibility, ISCO consistency, AI exposure scoring, and labor-market structure.`}
       </p>
 
       {/* Compact group summary */}
@@ -247,31 +266,119 @@ export function TestsSummary({ locale }: TestsSummaryProps) {
         className="text-xs text-foreground/50 hover:text-foreground/70 transition-colors flex items-center gap-1"
       >
         <ChevronDown className={`h-3 w-3 transition-transform ${expanded ? "rotate-180" : ""}`} />
-        {expanded ? (de ? "Details ausblenden" : "Hide details") : (de ? "Details anzeigen" : "Show details")}
+        {expanded ? (de ? "Details ausblenden" : "Hide details") : (de ? "Alle Tests anzeigen" : "Show all tests")}
       </button>
 
       {expanded && (
-        <div className="space-y-3 pt-2 border-t border-border/50">
+        <div className="space-y-2 pt-2 border-t border-border/50">
           {groupedTests.map((group) => (
             <div key={group.id} className="space-y-1">
-              <div className="text-xs font-medium text-foreground/60 uppercase tracking-wide">
-                {de ? group.labelDe : group.labelEn}
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
-                {group.tests.map((t) => {
-                  const r = resultsById.get(t.id);
-                  return (
-                    <div key={t.id} className="flex items-center gap-1.5 text-xs text-foreground/70">
-                      {r?.passed ? (
-                        <CheckCircle2 className="h-3 w-3 text-green-600 dark:text-green-400 shrink-0" />
-                      ) : (
-                        <XCircle className="h-3 w-3 text-red-600 dark:text-red-400 shrink-0" />
-                      )}
-                      <span className="truncate">{de ? t.nameDe : t.name}</span>
-                    </div>
-                  );
-                })}
-              </div>
+              <button
+                type="button"
+                onClick={() => toggleGroup(group.id)}
+                className="w-full flex items-center justify-between text-xs font-medium text-foreground/60 uppercase tracking-wide hover:text-foreground/80 transition-colors py-1"
+              >
+                <span className="flex items-center gap-1.5">
+                  <span>{group.icon}</span>
+                  {de ? group.labelDe : group.labelEn}
+                  <span className="text-[10px] font-normal normal-case tracking-normal text-foreground/40">
+                    ({group.passedCount}/{group.tests.length})
+                  </span>
+                  {group.source && (
+                    <span className="text-[9px] font-bold normal-case tracking-normal px-1.5 py-0.5 rounded bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-400">
+                      {de ? "ORIGINALDATEN" : "SOURCE DATA"}
+                    </span>
+                  )}
+                </span>
+                <ChevronDown className={`h-3 w-3 transition-transform ${expandedGroups.has(group.id) ? "rotate-180" : ""}`} />
+              </button>
+
+              {expandedGroups.has(group.id) && (
+                <>
+                <p className="text-[11px] text-foreground/45 pl-6 -mt-0.5 mb-1">
+                  {de ? group.descDe : group.descEn}
+                </p>
+                <div className="space-y-0.5 pl-1">
+                  {group.tests.map((t) => {
+                    const r = resultsById.get(t.id);
+                    const isSelected = selectedTest === t.id;
+                    return (
+                      <div key={t.id}>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedTest(isSelected ? null : t.id)}
+                          className={`w-full flex items-start gap-1.5 text-xs text-left py-0.5 rounded px-1 transition-colors ${
+                            isSelected ? "bg-foreground/5" : "hover:bg-foreground/[0.02]"
+                          }`}
+                        >
+                          {r?.passed ? (
+                            <CheckCircle2 className="h-3 w-3 text-green-600 dark:text-green-400 shrink-0 mt-0.5" />
+                          ) : (
+                            <XCircle className="h-3 w-3 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
+                          )}
+                          <span className="text-foreground/70">{de ? t.nameDe : t.name}</span>
+                        </button>
+
+                        {/* Scientific detail panel */}
+                        {isSelected && selectedTestObj && (
+                          <div className="ml-5 mt-1 mb-2 space-y-2 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs">
+                            {/* Thesis */}
+                            <div>
+                              <div className="font-semibold text-foreground/50 uppercase tracking-wider text-[10px] mb-0.5">
+                                {de ? "These (Hypothese)" : "Thesis (Hypothesis)"}
+                              </div>
+                              <div className="text-foreground/80 leading-relaxed">
+                                {de ? selectedTestObj.thesisDe : selectedTestObj.thesis}
+                              </div>
+                            </div>
+
+                            {/* Antithesis */}
+                            <div>
+                              <div className="font-semibold text-foreground/50 uppercase tracking-wider text-[10px] mb-0.5">
+                                {de ? "Antithese (Was Scheitern bedeutet)" : "Antithesis (What failure means)"}
+                              </div>
+                              <div className="text-foreground/60 leading-relaxed">
+                                {de ? selectedTestObj.antithesisDe : selectedTestObj.antithesis}
+                              </div>
+                            </div>
+
+                            {/* Evidence / Verdict */}
+                            <div className="flex items-start gap-3">
+                              <div className="flex-1">
+                                <div className="font-semibold text-foreground/50 uppercase tracking-wider text-[10px] mb-0.5">
+                                  {de ? "Evidenz" : "Evidence"}
+                                </div>
+                                <div className="font-mono text-foreground/70">
+                                  {selectedResult?.actual ?? "—"}
+                                </div>
+                              </div>
+                              <div className="flex-1">
+                                <div className="font-semibold text-foreground/50 uppercase tracking-wider text-[10px] mb-0.5">
+                                  {de ? "Erwartet" : "Expected"}
+                                </div>
+                                <div className="font-mono text-foreground/70">
+                                  {selectedResult?.expected ?? "—"}
+                                </div>
+                              </div>
+                              <div>
+                                <div className="font-semibold text-foreground/50 uppercase tracking-wider text-[10px] mb-0.5">
+                                  {de ? "Urteil" : "Verdict"}
+                                </div>
+                                <div className={`font-bold ${selectedResult?.passed ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"}`}>
+                                  {selectedResult?.passed
+                                    ? (de ? "Bestätigt" : "Confirmed")
+                                    : (de ? "Widerlegt" : "Refuted")}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                </>
+              )}
             </div>
           ))}
         </div>

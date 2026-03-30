@@ -118,7 +118,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
         <p className="text-xs text-muted-foreground mb-2">{branchLabel}</p>
         <ChartContainer
           config={barConfig}
-          className="aspect-auto h-[280px] w-full overflow-hidden rounded-2xl border border-sky-200/70 bg-gradient-to-br from-white via-sky-50 to-cyan-100/70 shadow-[0_24px_70px_-34px_rgba(14,116,144,0.48)] dark:border-cyan-900/60 dark:from-slate-950 dark:via-slate-900 dark:to-cyan-950/40 [&_.recharts-cartesian-grid_line]:stroke-sky-200/80 dark:[&_.recharts-cartesian-grid_line]:stroke-slate-700/80 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-sky-200/30 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-cyan-400/12"
+          className="aspect-auto h-[280px] w-full overflow-hidden rounded-2xl border border-teal-200/50 bg-gradient-to-br from-white to-teal-50/60 shadow-[0_24px_70px_-34px_rgba(13,148,136,0.22)] dark:border-teal-900/40 dark:from-slate-950 dark:to-teal-950/20 [&_.recharts-cartesian-grid_line]:stroke-teal-200/60 dark:[&_.recharts-cartesian-grid_line]:stroke-slate-700/80 [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-teal-200/20 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-teal-400/10"
         >
           <BarChart
             data={histogramData}
@@ -202,7 +202,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
           <div className="hidden sm:block">
             <ChartContainer
               config={pieChartConfig}
-              className="aspect-auto h-[420px] w-full overflow-visible rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30 mx-auto"
+              className="aspect-auto h-[420px] w-full overflow-visible rounded-2xl border border-teal-200/50 bg-gradient-to-br from-white to-teal-50/60 shadow-[0_24px_70px_-34px_rgba(13,148,136,0.22)] dark:border-teal-900/40 dark:from-slate-950 dark:to-teal-950/20 mx-auto"
             >
               <PieChart margin={{ top: 24, right: 140, bottom: 24, left: 140 }}>
                 <ChartTooltip
@@ -291,7 +291,7 @@ export function BranchCharts({ rows, locale, branchLabel }: BranchChartsProps) {
           <div className="sm:hidden space-y-3">
             <ChartContainer
               config={pieChartConfig}
-              className="aspect-square max-w-[240px] mx-auto overflow-hidden rounded-2xl border border-fuchsia-200/60 bg-gradient-to-br from-white via-rose-50 to-amber-50 shadow-[0_24px_70px_-34px_rgba(190,24,93,0.28)] dark:border-fuchsia-900/40 dark:from-slate-950 dark:via-slate-900 dark:to-fuchsia-950/30"
+              className="aspect-square max-w-[240px] mx-auto overflow-hidden rounded-2xl border border-teal-200/50 bg-gradient-to-br from-white to-teal-50/60 shadow-[0_24px_70px_-34px_rgba(13,148,136,0.22)] dark:border-teal-900/40 dark:from-slate-950 dark:to-teal-950/20"
             >
               <PieChart margin={{ top: 12, right: 12, bottom: 12, left: 12 }}>
                 <Pie

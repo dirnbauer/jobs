@@ -25,6 +25,7 @@ const PRIMARY: NavItem[] = [
   { href: "/?view=families", labelEn: "Major Groups", labelDe: "Hauptgruppen", homeView: "families" },
   { href: "/?view=sectors", labelEn: "Industries", labelDe: "Branchen", homeView: "sectors" },
   { href: "/comparison", labelEn: "Comparison", labelDe: "Vergleich" },
+  { href: "/verification", labelEn: "Verification", labelDe: "Verifizierung" },
   { href: "/about", labelEn: "About", labelDe: "Info" },
 ];
 

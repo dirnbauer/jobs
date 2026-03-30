@@ -86,7 +86,7 @@ export function SourceAttribution({
         <span className="font-mono text-xs">generate-occupations.ts</span>
         {" · "}
         {de ? "deterministisch" : "deterministic"} · OGD ·{" "}
-        {de ? "30+ automatisierte Integritätstests" : "30+ automated integrity tests"}
+        {de ? "99 hypothesengetriebene Verifizierungstests" : "99 hypothesis-driven verification tests"}
       </Row>
     </dl>
   );
@@ -106,8 +106,8 @@ export function MethodologyNote({ locale }: { locale: Locale }) {
       </p>
       <p>
         {de
-          ? "Pipeline: deterministisch, kein LLM zur Buildzeit, alle Quelldaten öffentlich herunterladbar (OGD), 30+ automatisierte Integritätstests."
-          : "Pipeline: deterministic, no LLM at build time, all source data publicly downloadable (OGD), 30+ automated integrity tests."}
+          ? "Pipeline: deterministisch, kein LLM zur Buildzeit, alle Quelldaten öffentlich herunterladbar (OGD), 99 hypothesengetriebene Verifizierungstests."
+          : "Pipeline: deterministic, no LLM at build time, all source data publicly downloadable (OGD), 99 hypothesis-driven verification tests."}
         {" "}
         <a
           href={`/${locale}/about`}
