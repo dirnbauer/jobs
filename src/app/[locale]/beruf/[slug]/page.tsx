@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { BerufDetailClient } from "@/components/beruf-detail-client";
 import { austrianOccupations } from "@/lib/data";
 import type { Locale } from "@/lib/locale";
+import { buildDynamicPageMetadata } from "@/lib/seo";
 import { getVseSupplementForIsco } from "@/lib/vse-supplement";
 
 export function generateStaticParams() {
@@ -27,11 +28,7 @@ export async function generateMetadata({
       ? `${family} · KI-Einfluss ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("de-AT")} Beschäftigte in Österreich (Schätzung).`
       : `${family} · AI impact ${occ.exposure ?? "—"}/10 · ${(occ.jobs ?? 0).toLocaleString("en-US")} employees in Austria (estimate).`;
 
-  return {
-    title: `${title} — ${locale === "de" ? "BerufsRadar" : "Job Radar Austria"}`,
-    description: desc,
-    openGraph: { title, description: desc },
-  };
+  return buildDynamicPageMetadata(locale, `/beruf/${slug}`, title, desc);
 }
 
 export default async function BerufPage({

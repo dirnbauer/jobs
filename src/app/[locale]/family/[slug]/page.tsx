@@ -11,6 +11,7 @@ import {
   getOccupationFamilyBySlug,
 } from "@/lib/market-groups";
 import type { Locale } from "@/lib/locale";
+import { buildDynamicPageMetadata } from "@/lib/seo";
 
 const BranchCharts = dynamic(
   () => import("@/components/branch-charts").then((mod) => mod.BranchCharts),
@@ -46,11 +47,7 @@ export async function generateMetadata({
       ? `${summary?.rows.length ?? 0} Berufsgruppen · ${(summary?.stats.totalJobs ?? 0).toLocaleString("de-AT")} Jobs · Ø KI-Einfluss ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`
       : `${summary?.rows.length ?? 0} occupation groups · ${(summary?.stats.totalJobs ?? 0).toLocaleString("en-US")} jobs · avg AI impact ${(summary?.stats.avgExposure ?? 0).toFixed(1)}/10`;
 
-  return {
-    title: `${title} — ${locale === "de" ? "BerufsRadar" : "Job Radar Austria"}`,
-    description: desc,
-    openGraph: { title, description: desc },
-  };
+  return buildDynamicPageMetadata(locale, `/family/${slug}`, title, desc);
 }
 
 const DEFAULT_EXPLORER = explorerQueryString({

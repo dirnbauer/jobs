@@ -1,7 +1,7 @@
 {
-  "name": "KI-Einfluss am österreichischen Arbeitsmarkt",
-  "short_name": "KI-Einfluss AT",
-  "description": "KI-Einfluss und Arbeitsmarktstruktur: 75 Berufsgruppen (ISCO-08) im österreichischen Arbeitsmarkt — webconsulting.at",
+  "name": "BerufsRadar - Job Radar Austria",
+  "short_name": "BerufsRadar",
+  "description": "Occupation-first map of the Austrian labour market: 75 ISCO-08 groups, AI impact, pay, outlook, and sector context from Eurostat and Statistik Austria.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0a0a0a",

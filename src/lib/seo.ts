@@ -232,3 +232,22 @@ export function buildSubpageMetadata(locale: Locale, page: Exclude<SeoPage, "hom
     ...openGraphTwitter(locale, suffix, p.title, p.ogDescription),
   };
 }
+
+/**
+ * Dynamic data-driven pages (family, beruf, branche).
+ * Provides full OG image, twitter card, and alternates support.
+ */
+export function buildDynamicPageMetadata(
+  locale: Locale,
+  pathSuffix: string,
+  title: string,
+  description: string,
+): Metadata {
+  const fullTitle = pageTitle(title, locale);
+  return {
+    title: fullTitle,
+    description,
+    alternates: alternates(locale, pathSuffix),
+    ...openGraphTwitter(locale, pathSuffix, title, description),
+  };
+}
